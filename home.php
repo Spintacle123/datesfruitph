@@ -11,11 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="css/homestyle18.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- rating -->
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
-	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -24,26 +26,33 @@
 		<?php include("header.php") ?>
 	</div>
 
-	<div class="header image-ad">
-		<div class="row h-100">
-			<div class="col-lg-6 d-flex justify-content-between align-items-center">
-				<h1>Quality tools <br> for quality work</h1>
-				<p>Unlock the Full Potential of Your Renovation Project <br>
-					with the Best-Quality Tools: Elevate Your Craftsmanship, Streamline Your Workflow, <br>
-					and Achieve Unmatched Results that Stand the Test of Time!</p>
+	<div>
+		<div class="absolute flex flex-col z-40 mt-28 ml-[12rem] w-[35vw] h-[50vh]">
+			<h1 class="text-[60px] tracking-[0.54px] leading-[70px] font-medium text-white">A Delectable and Nutritious Fruit</h1>
+			<p class="opacity-80 font-normal">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
+			<button class="flex mt-5 text-white bg-[#FFD700] w-44 h-9 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
+		</div>
 
-				<!-- <?php if (!empty($_SESSION['ID'])) { ?>
-					<a href="products.php" class="btn">Explore now &#8594;</a>
-				<?php } else { ?>
-					<a href="login.php" class="btn">Login</a>
-				<?php } ?> -->
+    <div class="absolute h-[75vh] w-[30vw] bg-gradient-to-r from-black to-transparent z-30"></div>
 
-				<a href="products.php" class="btn">Go to products</a>
-
+		<div class="swiper dates-slider mt-[10vh] font-medium w-[100vw]">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide image-ad bg-[url('./assets/img/benefits-of-dates-for-women.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./assets/img/main-ad.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./assets/img/main-ad.jpg')]"></div>
+				...
 			</div>
-			<div class="col-lg-6">
-				<!-- <img src="images/gg.png"> -->
-			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination z-50"></div>
+
+			<!-- If we need navigation buttons -->
+			<!-- <div class="swiper-button-prev"></div> -->
+			<!-- <div class="swiper-button-next"></div> -->
+
+			<!-- If we need scrollbar -->
+			<div class="swiper-scrollbar"></div>
 		</div>
 	</div>
 
@@ -92,7 +101,6 @@
 			<?php endwhile; ?>
 		</div>
 	</div>
-
 
 	<div class="container animate__animated animate__bounceIn animate__delay-1s">
 		<div class="ads-1"></div>
@@ -148,8 +156,6 @@
 		</div>
 	</div>
 
-
-
 	<!------- new arrivals product ------->
 	<div class="small-container1">
 		<br>
@@ -201,7 +207,6 @@
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-
 			// Load total no.of items added in the cart and display in the navbar
 			load_cart_item_number();
 
@@ -218,28 +223,57 @@
 				});
 			}
 		});
+
+		const swiper = new Swiper('.swiper', {
+			// Optional parameters
+			// direction: 'vertical',
+			loop: true,
+
+			// If we need pagination
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true
+			},
+
+			// Navigation arrows
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+
+			// And if we need scrollbar
+			scrollbar: {
+				el: '.swiper-scrollbar',
+			},
+
+			autoplay: {
+				delay: 5000,
+			},
+		});
 	</script>
-
-
+  <script src="https://cdn.tailwindcss.com"></script>
 </body>
 
-</html>
 <style>
 	body {
 		background-color: #f5f5f5;
+    font-family: 'Ubuntu'
 	}
 
-	*,
-	h3 {
-		font-family: 'Josefin Sans', sans-serif;
+  h1 {
+    font-family: 'Ubuntu'
+  }
+
+	*, h3 {
 		color: #000;
+    font-family: 'Ubuntu'
 	}
 
 	.image-ad {
-		height: 75vh;
-		background-image: url('./assets/img/main-ad.jpg') !important;
+		height: 75vh;		
 		background-position: center;
 		background-size: cover;
+		width: 100vw;
 	}
 
 	.image-ad>div {
@@ -252,11 +286,9 @@
 		color: white;
 		font-size: 5rem;
 		line-height: 1em;
-		font-family: 'Josefin Sans', sans-serif;
 	}
 
 	.image-ad>div>div>p {
-		font-family: 'Josefin Sans', sans-serif;
 		font-size: 1em;
 		margin-top: 30px;
 	}
@@ -376,4 +408,15 @@
 		width: 100%;
 		border-radius: 10px;
 	}
+
+	.dates-slider .swiper-pagination-bullet{
+    width: 15px;
+    height: 15px;
+		background-color: #cecece;
+	}
+
+	.swiper-scrollbar {
+		visibility: hidden;
+	}
 </style>
+</html>
