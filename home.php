@@ -41,7 +41,7 @@
 				<!-- Slides -->
 				<div class="swiper-slide image-ad bg-[url('./assets/img/benefits-of-dates-for-women.jpg')]"></div>
 				<div class="swiper-slide image-ad bg-[url('./assets/img/main-ad.jpg')]"></div>
-				<div class="swiper-slide image-ad bg-[url('./assets/img/main-ad.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./assets/img/card.jpg')]"></div>
 				...
 			</div>
 			<!-- If we need pagination -->
