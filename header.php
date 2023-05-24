@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div class="navbar px-[12rem] h-[10vh] bg-black border-b-4 border-yellow-400">
+  <div class="navbar px-[12rem] py-10 h-[6rem] bg-black border-b-4 border-yellow-400">
     <div class="logos -mb-20">
         <a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
           <img src="./assets/img/datesfruits.jpg" class="">
