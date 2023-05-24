@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="css/homestyle18.css">
+	<link rel="stylesheet" type="text/css" href="css/homestyle.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- rating -->
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
   <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
@@ -27,7 +27,7 @@
 	</div>
 
 	<div>
-		<div class="absolute flex flex-col z-40 mt-28 ml-[12rem] w-[35vw] h-[50vh]">
+		<div class="absolute flex flex-col justify-center z-40 mt-28 ml-[12rem] w-[35vw] h-[50vh]">
 			<h1 class="text-[60px] tracking-[0.54px] leading-[70px] font-medium text-white">A Delectable and Nutritious Fruit</h1>
 			<p class="opacity-80 font-normal">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
 			<button class="flex mt-5 text-white bg-[#FFD700] w-44 h-9 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
@@ -56,111 +56,10 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="category">
-			<div>
-				<h3>GARDEN TOOLS</h3>
-				<p>Our garden tools for hire are top-quality, built to last, and meticulously maintained to ensure <br> optimal performance for every gardening task.</p>
-			</div>
-			<a href="products.php">SHOW MORE</a>
-		</div>
-		<div class="items">
-			<?php
-			include 'config.php';
-			// $item = $conn->prepare('SELECT * FROM products WHERE class = "Garden Tools" order by ID DESC limit 5');
-			$item = $conn->prepare("SELECT products.*, sum(reviews.rating)/count(reviews.rating) as rating from products left join reviews on reviews.product_id = products.id WHERE products.class = 'Garden Tools' group by products.id order by products.id limit 5 ");
-			$item->execute();
-			$result = $item->get_result();
-			while ($row = $result->fetch_assoc()) :
-			?>
-				<div class="card animate__animated animate__bounceInUp">
-					<a href="product-details.php?product-details=<?= $row['id']; ?>">
-						<?php if ($row['purchased'] == 0) { ?>
-							<span class="label-new">New</span>
-						<?php } ?>
-						<img class="" src="<?= $row['image'] ?>">
-						<p><?= $row['name'] ?></p>
-						<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span> </span>
-
-						<div class="ratings">
-							<span>Rating</span>
-							<?php
-							if ($row['rating']) {
-								for ($i = 0; $i < round($row['rating']); $i++) {
-									echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="main_star">
-											<path fill="#bdcd23" d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z" />
-										</svg>';
-								}
-							} else {
-								echo 'No Rating Found';
-							}
-							?>
-						</div>
-					</a>
-				</div>
-			<?php endwhile; ?>
-		</div>
-	</div>
-
-	<div class="container animate__animated animate__bounceIn animate__delay-1s">
-		<div class="ads-1"></div>
-	</div>
-
-	<div class="container">
-		<div class="category">
-			<div>
-				<h3>CARPENTER TOOLS</h3>
-				<p>Our garden tools for hire are top-quality, built to last, and meticulously maintained to ensure <br> optimal performance for every gardening task.</p>
-			</div>
-			<a href="products.php">SHOW MORE</a>
-		</div>
-		<div class="items">
-			<?php
-			$i = 1;
-			include 'config.php';
-			// $item = $conn->prepare('SELECT * FROM products WHERE class = "Carpentry Tools" order by ID DESC limit 5');
-			$item = $conn->prepare("SELECT products.*, sum(reviews.rating)/count(reviews.rating) as rating from products left join reviews on reviews.product_id = products.id WHERE products.class = 'Carpentry Tools' group by products.id order by products.id limit 5 ");
-
-			$item->execute();
-			$result = $item->get_result();
-			while ($row = $result->fetch_assoc()) : $i++
-			?>
-				<div class="card animate__animated animate__bounceInUp animate__delay-2s">
-					<a href="product-details.php?product-details=<?= $row['id']; ?>">
-						<?php if ($row['purchased'] == 0) { ?>
-							<span class="label-new">New</span>
-						<?php } ?>
-						<img class="" src="<?= $row['image'] ?>">
-						<p><?= $row['name'] ?></p>
-						<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span></span>
-
-						<div class="ratings">
-							<span>Rating</span>
-							<div class="flex">
-								<?php
-								if ($row['rating']) {
-									for ($i = 0; $i < round($row['rating']); $i++) {
-										echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="main_star">
-											<path fill="#bdcd23" d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z" />
-										</svg>';
-									}
-								} else {
-									echo 'No Rating Found';
-								}
-								?>
-							</div>
-						</div>
-					</a>
-				</div>
-			<?php endwhile; ?>
-		</div>
-	</div>
-
-	<!------- new arrivals product ------->
-	<div class="small-container1">
-		<br>
-		<h2 class="title" style="color:#fff;">New Products to Serve</h2>
-		<div class="row">
+	<!------- "Our Products" ------->
+	<div class="px-[12rem] pt-[3vh] pb-[10vh] bg-[#f7f2ec]">
+		<h2 class="text-lg font-bold text-[#DC7105] mb-6">Our Products</h2>
+		<div class="row flex justify-between">
 			<?php
 			include 'config.php';
 			$item = $conn->prepare('SELECT * FROM products order by ID DESC limit 4');
@@ -168,22 +67,74 @@
 			$result = $item->get_result();
 			while ($row = $result->fetch_assoc()) :
 			?>
-			<div class="col-4">
+			<div class="">
 				<a href="product-details.php?product-details=<?= $row['id']; ?>">
-				<img src="<?= $row['image'] ?>">
-				<h4><?= $row['name'] ?></h4>
-				<p><strong>Php: </strong> <?= $row['price'] ?></p>
+				<div class="flex flex-col bg-white h-48 w-48 p-4 items-center justify-center rounded-tr-xl rounded-bl-xl overflow-hidden">
+					<img src="<?= $row['image'] ?>" class="h-28 w-28">
+					<p class="text-black"><?= $row['name'] ?></p>
+				</div>
 			</a>
 			</div>
 			<?php endwhile; ?>
 		</div>
 	</div>
 
+<!------- "Featured Products" ------->
+<div class="px-[12rem] pt-[3vh] pb-[7vh] bg-[#e8e4de]">
+	<h2 class="text-lg font-bold text-[#DC7105] mb-6">Featured Products</h2>
+	<div class="row flex justify-between">
+		<?php
+		include 'config.php';
+		$item = $conn->prepare('SELECT * FROM products order by ID DESC limit 4');
+		$item->execute();
+		$result = $item->get_result();
+		while ($row = $result->fetch_assoc()) :
+		?>
+		<div class="">
+			<a href="product-details.php?product-details=<?= $row['id']; ?>">
+			<div class="flex flex-col bg-white h-48 w-48 p-4 items-center justify-center rounded-tr-xl rounded-bl-xl overflow-hidden">
+				<img src="<?= $row['image'] ?>" class="h-28 w-28">
+				<p class="text-black"><?= $row['name'] ?></p>
+			</div>
+		</a>
+		</div>
+		<?php endwhile; ?>
+	</div>
+	<button class="flex mt-14 text-white bg-[#FFD700] w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
+		Load More
+	</button>
+</div>
+
+<!-- About Us -->
+<div class="px-[12rem] pt-[5vh] pb-[5vh] bg-[#f7f2ec]">
+	<div class="flex h-[98vh] justify-between items-center px-10 mx-auto bg-white rounded-tr-[3rem] rounded-bl-[3rem]">
+		<div class="flex basis-1/2 h-full py-12">
+			<div class="flex justify-center items-center rounded-tr-[3rem] rounded-bl-[3rem] overflow-hidden">
+				<img 
+					src="./assets/img/The-Psychology-of-Interior-Design-Part-2-Retail-Store-Layouts-Fohlio-Loop-Retail-Store-Layout-2.jpg" 
+					class="h-full max-h-full min-h-full object-cover"
+				>
+			</div>
+		</div>
+		<div class="h-[78vh] border-l border-gray-200 mx-4"></div>
+		<div class="basis-1/2 flex flex-col my-12">
+			<div class="text-3xl font-black">About Us</div>
+			<div class="text-[#707070]">At our shop, we take pride in offering a delightful assortment of dates and nuts to satisfy your cravings and provide you with nourishing snacks. We believe in the power of natural and wholesome foods to enhance your well-being.</div>
+			<div class="text-[#707070]">Our collection of dates includes a variety of delectable options, from soft and juicy Medjool dates to the sweet and caramel-like flavors of Deglet Noor dates. These luscious fruits are known for their natural sweetness, satisfying texture, and numerous health benefits.</div>	
+			<div class="text-[#707070]">In addition to dates, we also bring you a wide selection of premium nuts. Whether you prefer the buttery richness of almonds, the crunchiness of pistachios, or the earthy goodness of walnuts, our shop offers an array of high-quality nuts to suit every taste.</div>
+			<div class="text-[#707070]">We carefully source our products from trusted suppliers who share our commitment to quality. Each date and nut is handpicked, ensuring freshness, flavor, and superior quality in every bite... Our friendly and knowledgeable team is here to assist you in finding the perfect combination of dates and nuts to suit your preferences. Whether you're looking for a healthy snack...</div>
+			<button class="flex mt-10 text-white bg-[#FFD700] w-fit px-7 py-5 h-9 ml-auto mr-7 items-center justify-center rounded-tr-lg rounded-bl-lg">
+				Read More
+			</button>
+		</div>
+	</div>
+</div>
+
 
 	<!------- brands ------->
-	<br>
+	<!-- <br>
 	<a href="#top" style="background: #cc0000; color: #fff; padding: 10px; margin-left: 50px; text-decoration: none; border-radius: 2rem;">Back to top</a>
-	<br><br>
+	<br><br> -->
 
 
 	<!------- footer ------->
@@ -257,16 +208,20 @@
 <style>
 	body {
 		background-color: #f5f5f5;
-    font-family: 'Ubuntu'
+    font-family: 'Ubuntu';
 	}
 
   h1 {
-    font-family: 'Ubuntu'
+    font-family: 'Ubuntu';
   }
 
+	h2 {
+		
+    font-family: 'Ubuntu';
+	}
+
 	*, h3 {
-		color: #000;
-    font-family: 'Ubuntu'
+    font-family: 'Ubuntu';
 	}
 
 	.image-ad {
