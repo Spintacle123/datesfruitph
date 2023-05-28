@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="css/homestyle.css">
+	<link rel="stylesheet" type="text/css" href="css/homestyle1.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- rating -->
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
   <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
@@ -29,7 +29,7 @@
 	<div>
 		<div class="absolute flex flex-col justify-center z-40 mt-28 ml-[12rem] w-[35vw] h-[50vh]">
 			<h1 class="text-[60px] tracking-[0.54px] leading-[70px] font-medium text-white">A Delectable and Nutritious Fruit</h1>
-			<p class="opacity-80 font-normal">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
+			<p class="opacity-80 font-normal text-white">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
 			<button class="flex mt-5 text-white bg-[#FFD700] w-44 h-9 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
 		</div>
 
@@ -57,8 +57,8 @@
 	</div>
 
 	<!------- "Our Products" ------->
-	<div class="px-[12rem] pt-[3vh] pb-[10vh] bg-[#f7f2ec]">
-		<h2 class="text-lg font-bold text-[#DC7105] mb-6">Our Products</h2>
+	<div class="relative px-[12rem] pt-[3vh] pb-[10vh] bg-[#f7f2ec]">
+		<h2 class="relative z-50 text-lg font-bold text-[#DC7105] mb-6">Our Products</h2>
 		<div class="row flex justify-between">
 			<?php
 			include 'config.php';
@@ -67,7 +67,7 @@
 			$result = $item->get_result();
 			while ($row = $result->fetch_assoc()) :
 			?>
-			<div class="">
+			<div class="relative z-50">
 				<a href="product-details.php?product-details=<?= $row['id']; ?>">
 				<div class="flex flex-col bg-white h-48 w-48 p-4 items-center justify-center rounded-tr-xl rounded-bl-xl overflow-hidden">
 					<img src="<?= $row['image'] ?>" class="h-28 w-28">
@@ -77,10 +77,12 @@
 			</div>
 			<?php endwhile; ?>
 		</div>
+
+		<div class="absolute h-full w-full floral-pattern opacity-5 top-0 left-0 z-0"></div>
 	</div>
 
 <!------- "Featured Products" ------->
-<div class="px-[12rem] pt-[3vh] pb-[7vh] bg-[#e8e4de]">
+<div class="relative flex flex-col px-[12rem] pt-[3vh] pb-[7vh] bg-[#e8e4de]">
 	<h2 class="text-lg font-bold text-[#DC7105] mb-6">Featured Products</h2>
 	<div class="row flex justify-between">
 		<?php
@@ -103,20 +105,34 @@
 	<button class="flex mt-14 text-white bg-[#FFD700] w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
 		Load More
 	</button>
+
+	<div class="absolute flex flex-col h-fit w-fit -mt-[2vh] left-0 -ml-[3vw] z-50">
+		<img class="flex w-[320px] shrink-0 -ml-[5vw] mt-[0vh] rotate-90" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+		<img class="flex w-[320px] shrink-0 -ml-[5vw] -mt-[5vh] rotate-90 transform scale-x-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+		<img class="flex w-[320px] shrink-0 -ml-[7vw] -mt-[10vh] rotate-90 transform scale-x-[-1] scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+		<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[12vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+	</div>
+
+	<div class="absolute flex flex-col h-fit w-fit -mt-[2vh] right-0 -mr-[3vw] transform scale-x-[-1] scale-y-[-1] z-50">
+		<img class="flex w-[320px] shrink-0 -ml-[5vw] mt-[0vh] rotate-90 transform scale-x-[-1] scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+		<img class="flex w-[320px] shrink-0 -ml-[5vw] -mt-[5vh] rotate-90 transform scale-x-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+		<img class="flex w-[320px] shrink-0 -ml-[7vw] -mt-[10vh] rotate-90 scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+		<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[10vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+	</div>
 </div>
 
 <!-- About Us -->
-<div class="px-[12rem] pt-[5vh] pb-[5vh] bg-[#f7f2ec]">
-	<div class="flex h-[98vh] justify-between items-center px-10 mx-auto bg-white rounded-tr-[3rem] rounded-bl-[3rem]">
+<div class="relative px-[12rem] pt-[5vh] pb-[5vh] bg-[#f7f2ec]">
+	<div class="relative z-50 flex h-full justify-between items-center px-10 mx-auto bg-white rounded-tr-[3rem] rounded-bl-[3rem]">
 		<div class="flex basis-1/2 h-full py-12">
-			<div class="flex justify-center items-center rounded-tr-[3rem] rounded-bl-[3rem] overflow-hidden">
+			<div class="flex h-fit w-fit justify-center items-center rounded-tr-[3rem] rounded-bl-[3rem] overflow-hidden">
 				<img 
 					src="./assets/img/The-Psychology-of-Interior-Design-Part-2-Retail-Store-Layouts-Fohlio-Loop-Retail-Store-Layout-2.jpg" 
-					class="h-full max-h-full min-h-full object-cover"
+					class="max-h-[100vh] min-h-[85vh] object-cover"
 				>
 			</div>
 		</div>
-		<div class="h-[78vh] border-l border-gray-200 mx-4"></div>
+		<div class="h-full border-l border-gray-200 mx-4"></div>
 		<div class="basis-1/2 flex flex-col my-12">
 			<div class="text-3xl font-black">About Us</div>
 			<div class="text-[#707070]">At our shop, we take pride in offering a delightful assortment of dates and nuts to satisfy your cravings and provide you with nourishing snacks. We believe in the power of natural and wholesome foods to enhance your well-being.</div>
@@ -126,6 +142,33 @@
 			<button class="flex mt-10 text-white bg-[#FFD700] w-fit px-7 py-5 h-9 ml-auto mr-7 items-center justify-center rounded-tr-lg rounded-bl-lg">
 				Read More
 			</button>
+		</div>
+	</div>
+
+	<div class="absolute h-full w-full floral-pattern opacity-5 top-0 left-0 z-0"></div>
+</div>
+
+<!------- "Why Choose Us?" ------->
+<div class="flex flex-col w-full h-fit px-[12rem] pt-[9vh] pb-[15vh] bg-white">
+	<div class="flex flex-col items-center">
+		<h1 class="my-0 text-center font-extrabold tracking-tighter">Why Choose Us?</h1>
+		<p class="text-center text-[#707070] mx-[14.5vw]">Choose us for exceptional quality, a wide selection, a focus on health and wellness, knowledgeable staff, and a commitment to customer satisfaction. Experience the joy of indulging in premium dates and nuts by visiting our Dates & Nuts Shop today!</p>
+	</div>
+	<div class="flex justify-between pt-20">
+		<div class="flex flex-col w-[23vw] items-center">
+			<img class="w-20 h-20" src="./assets/icon/carts.png" alt="">
+			<p class="text-center font-bold text-lg">100+ Products</p>
+			<p class="text-center text-[#707070] opacity-[0.58]">Indulge in a vast assortment of flavors and textures with our extensive selection of over 100 kinds of nuts, carefully curated to cater to every nut lover's palate.</p>
+		</div>
+		<div class="flex flex-col w-[23vw] items-center">
+			<img class="w-20 h-20" src="./assets/icon/fast-delivery.png" alt="">
+			<p class="text-center font-bold text-lg">Price lower than others</p>
+			<p class="text-center text-[#707070] opacity-[0.58]">Enjoy the added convenience of free delivery, bringing the delightful flavors of our dates and nuts directly to your doorstep without any additional cost.</p>
+		</div>
+		<div class="flex flex-col w-[23vw] items-center">
+			<img class="w-20 h-20" src="./assets/icon/commission.png" alt="">
+			<p class="text-center font-bold text-lg">Delivery Anywhere</p>
+			<p class="text-center text-[#707070] opacity-[0.58]">Experience the satisfaction of shopping with us as we offer prices that are consistently lower than our competitors, ensuring you receive exceptional value without compromising on quality.</p>
 		</div>
 	</div>
 </div>

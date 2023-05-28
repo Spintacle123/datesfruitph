@@ -55,7 +55,7 @@ a{
 	color: #fff;
 }
 p{
-	color: #fff;
+	color: black;
 }
 strong{
 	color: red;
@@ -203,6 +203,12 @@ h4{
 
 .col-4:hover{
 	transform: translateY(-5px);
+}
+
+.floar-pattern{
+	background-image: url('./assets/seamless-floral-boho-style-removebg-preview.png');
+	background-size: 300px 300px;
+	background-repeat: repeat;
 }
 
 /*------offer------*/
