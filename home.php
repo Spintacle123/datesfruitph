@@ -26,7 +26,7 @@
 		<?php include("header.php") ?>
 	</div>
 
-	<div>
+	<div id="home" class="relative">
 		<div class="absolute flex flex-col justify-center z-40 mt-28 ml-[12rem] w-[35vw] h-[50vh]">
 			<h1 class="text-[60px] tracking-[0.54px] leading-[70px] font-medium text-white">A Delectable and Nutritious Fruit</h1>
 			<p class="opacity-80 font-normal text-white">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
@@ -122,7 +122,7 @@
 </div>
 
 <!-- About Us -->
-<div class="relative px-[12rem] pt-[5vh] pb-[5vh] bg-[#f7f2ec]">
+<div id="about-us" class="relative px-[12rem] pt-[5vh] pb-[5vh] bg-[#f7f2ec]">
 	<div class="relative z-50 flex h-full justify-between items-center px-10 mx-auto bg-white rounded-tr-[3rem] rounded-bl-[3rem]">
 		<div class="flex basis-1/2 h-full py-12">
 			<div class="flex h-fit w-fit justify-center items-center rounded-tr-[3rem] rounded-bl-[3rem] overflow-hidden">
@@ -246,6 +246,18 @@
 		});
 	</script>
   <script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
+				});
+			});
+		});
+	</script>
+
 </body>
 
 <style>
