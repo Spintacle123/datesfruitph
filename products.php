@@ -22,6 +22,7 @@ $result1 = mysqli_query($conn, $query);
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -31,7 +32,37 @@ $result1 = mysqli_query($conn, $query);
 	</div>
 
 	<div class="small-container">
-		<div class="row row-2">
+		<div class="flex justify-center">
+			<div class="flex flex-row space-x-[20rem] pt-[5rem]">
+				<div class="flex flex-row space-x-3">
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+						<button>All</buttton>
+					</div>
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+						<button>Mixed Nuts</button>
+					</div>
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+						<button>Peanuts</button>
+					</div>
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+						<button>Dried Nuts</button>
+					</div>
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+						<button>Other Nuts</button>
+					</div>
+				</div>
+				<div class="flex flex-row border hover:border-[#FF8000] rounded-tr-lg rounded-bl-lg">
+					<div class="py-1 w-[10rem]" >
+						<input type="text" class="bg-[#EFEFEF] ml-2" placeholder="Search Products">
+					</div>
+					<div class="border rounded-tr-lg rounded-bl-lg bg-[#DC7105] justify-center items-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="white" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <div class="row row-2">
 			<h2 class="title">All Products</h2>
 
 			<select name="fetchval" id="fetchval">
@@ -40,7 +71,7 @@ $result1 = mysqli_query($conn, $query);
 					<option> <?php echo $row1[1]; ?> </option>
 				<?php endwhile; ?>
 			</select>
-		</div>
+		</div> -->
 
 		<div class="sort">
 			<div class="items">
