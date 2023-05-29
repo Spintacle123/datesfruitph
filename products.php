@@ -33,30 +33,30 @@ $result1 = mysqli_query($conn, $query);
 
 	<div class="small-container">
 		<div class="flex justify-center">
-			<div class="flex flex-row space-x-[20rem] pt-[5rem]">
+			<div class="flex flex-row space-x-[19rem] pt-[5rem]">
 				<div class="flex flex-row space-x-3">
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
 						<button>All</buttton>
 					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
 						<button>Mixed Nuts</button>
 					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
 						<button>Peanuts</button>
 					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
 						<button>Dried Nuts</button>
 					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5">
+					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
 						<button>Other Nuts</button>
 					</div>
 				</div>
-				<div class="flex flex-row border hover:border-[#FF8000] rounded-tr-lg rounded-bl-lg">
-					<div class="py-1 w-[10rem]" >
+				<div class="flex flex-row px-1 justify-center items-center border hover:border-[#FF8000] rounded-tr-lg rounded-bl-lg">
+					<div class="py-1 w-[12rem]" >
 						<input type="text" class="bg-[#EFEFEF] ml-2" placeholder="Search Products">
 					</div>
-					<div class="border rounded-tr-lg rounded-bl-lg bg-[#DC7105] justify-center items-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="white" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
+					<div class="flex p-0.5 border rounded-tr-lg rounded-bl-lg bg-[#DC7105] justify-center items-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="white" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
 					</div>
 				</div>
 			</div>
@@ -316,5 +316,18 @@ $result1 = mysqli_query($conn, $query);
 		padding-top: 7px;
 		border-top: 1px solid #f1f1f1;
 		margin-top: 20px;
+	}
+
+	.samp {
+		transition: all 0.6s ease-in-out 0s;
+		display: flex;
+		justify-content: center;
+		background-color: #EFEFEF;
+	}
+
+	.samp:hover {
+		transition: all;
+		border: 2px solid #FF8000;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 </style>
