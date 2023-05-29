@@ -1,37 +1,52 @@
 <?php
    session_start();
+
+   $currentUrl = $_SERVER['REQUEST_URI']; // Get the current page URL
+   $currentPage = basename($currentUrl);
+
+   // Check if the current page URL matches the specific page
+   $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' with the actual path or identifier of your specific page
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- rating -->
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title></title>
+   <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+   <!-- <link rel="stylesheet" type="text/css" href="css/homestyle1.css"> -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- rating -->
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <div class="navbar px-[12rem] py-10 h-[6rem] bg-black border-b-4 border-yellow-400">
-    <div class="logos -mb-20">
-        <a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
-          <img src="./assets/img/datesfruits.jpg" class="">
-        </a>
-    </div>
-    <nav>
-        <ul id="MenuItems">
-          <li><a href="home.php">Home</a></li>
-          <li><a href="products.php">Products</a></li>
-          <li><a href="aboutus.php">About Us</a></li>
-          <li><a href="inquire.php">Contact Us</a></li>
-        </ul>
-    </nav>
-  </div>
+  <div class="navbar px-[12rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
+      <div class="logos -mb-20">
+         <a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
+            <img src="./assets/datesfruits.png" class="">
+         </a>
+      </div>
+      <nav class="flex flex-col">
+         <ul id="MenuItems" class="flex items-center ml-auto mr-0 justify-between">
+         <?php if (!$isSpecificPage): ?>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php">Home</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#about-us">About Us</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#contact-us">Contact Us</a></li>
+         <?php endif; ?>
+         <?php if ($isSpecificPage): ?>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#home">Home</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#about-us">About Us</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#contact-us">Contact Us</a></li>
+         <?php endif; ?>
+         </ul>
+      </nav>
+   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script type="text/javascript">
@@ -121,6 +136,12 @@
       font-size: 10px;
       margin-right: -25px;
       margin-top: -5px;
+   }
+
+   .floral-pattern{
+      background-image: url('./assets/seamless-floral-boho-style-removebg-preview.png');
+      background-size: 300px 300px;
+      background-repeat: repeat;
    }
 </style>
 </html>
