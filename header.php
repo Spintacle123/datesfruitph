@@ -1,5 +1,11 @@
 <?php
    session_start();
+
+   $currentUrl = $_SERVER['REQUEST_URI']; // Get the current page URL
+   $currentPage = basename($currentUrl);
+
+   // Check if the current page URL matches the specific page
+   $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' with the actual path or identifier of your specific page
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,20 +25,28 @@
 
 <body>
   <div class="navbar px-[12rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
-    <div class="logos -mb-20">
-        <a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
-          <img src="./assets/datesfruits.png" class="">
-        </a>
-    </div>
-    <nav class="flex flex-col">
-        <ul id="MenuItems" class="flex items-center ml-auto mr-0 justify-between">
-          <li class="w-[7.5rem] overflow-hidden"><a href="home.php">Home</a></li>
-          <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
-          <li class="w-[7.5rem] overflow-hidden"><a href="aboutus.php">About Us</a></li>
-          <li class="w-[7.5rem] overflow-hidden"><a href="inquire.php">Contact Us</a></li>
-        </ul>
-    </nav>
-  </div>
+      <div class="logos -mb-20">
+         <a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
+            <img src="./assets/datesfruits.png" class="">
+         </a>
+      </div>
+      <nav class="flex flex-col">
+         <ul id="MenuItems" class="flex items-center ml-auto mr-0 justify-between">
+         <?php if (!$isSpecificPage): ?>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php">Home</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#about-us">About Us</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#contact-us">Contact Us</a></li>
+         <?php endif; ?>
+         <?php if ($isSpecificPage): ?>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#home">Home</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#about-us">About Us</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#contact-us">Contact Us</a></li>
+         <?php endif; ?>
+         </ul>
+      </nav>
+   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script type="text/javascript">
