@@ -103,7 +103,17 @@ $result1 = mysqli_query($conn, $query);
 							<?php } ?>
 							<img class="" src="<?= $row['image'] ?>">
 							<p><?= $row['name'] ?></p>
-							<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span></span>
+
+							<div><small>Starts at</small></div>
+							<?php
+			          $query="SELECT * FROM products_units WHERE product_id =?";
+			          $stmt=$conn->prepare($query);
+			          $stmt->bind_param("i", $row['id']);
+			          $stmt->execute();
+			          $result2=$stmt->get_result();
+			          $row2=$result2->fetch_assoc();
+			        ?>
+							<span><strong>PHP </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span>
 
 							<!-- <div class="ratings">
 								<span>Rating</span>

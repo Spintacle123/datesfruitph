@@ -88,7 +88,7 @@
                               <th scope="col">Product ID</th>
                               <th scope="col">Name</th>
                               <th scope="col">Category</th>
-                              <th scope="col">Price</th>
+                              <th scope="col">Units</th>
                               <th scope="col">Status</th>
                               <th scope="col">Action</th>
                             </tr>
@@ -99,7 +99,24 @@
                                   <td><?= $row['id']; ?></td>
                                   <td><?= $row['name']; ?></td>
                                   <td><?= $row['class']; ?></td>
-                                  <td>Php: <?= number_format($row['price'],2); ?></td>
+                                  <td>
+                                    <?php
+                                      $query="SELECT * FROM products_units WHERE product_id =?";
+                                      $stmt=$conn->prepare($query);
+                                      $stmt->bind_param("i", $row['id']);
+                                      $stmt->execute();
+                                      $result2=$stmt->get_result();
+                                      $row2=$result2->fetch_all(MYSQLI_ASSOC);
+
+                                      foreach ($row2 as $key => $value) {
+                                    ?>
+                                    <div>
+                                      PHP <?php echo number_format($value['unit_price']); ?> / <?php echo $value['unit_value']; ?> <?php echo $value['unit']; ?>
+                                    </div>
+                                    <?php } ?>
+                                  </td>
+
+                                  <!-- <td>Php: <?= number_format($row['price'],2); ?></td> -->
                                   <td>
                                     <?php
                                       if($row["status"] == 1){

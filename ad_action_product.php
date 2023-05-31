@@ -124,10 +124,23 @@
 			$stmt->bind_param("sssisdssi",$name,$class,$code,$prod_qntty,$price,$capital,$description,$newimage,$id);
 			$stmt->execute();
 
+			// Clean and insert product units
+			$query = "DELETE FROM `products_units` WHERE `product_id` = ?";
+			$stmt = $conn->prepare($query);
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+
+			for ($i=0; $i < count($_POST['unit']); $i++) { 
+				$query = "INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`) VALUES(?, ?, ?, ?)";
+				$stmt = $conn->prepare($query);
+				$stmt->bind_param("isss", $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i]);
+				$stmt->execute();
+			}
+
 			$_SESSION['response']="Product Details Updated Successfully!";
 			$_SESSION['res_type']="primary";
+
 			header('location:ad_addproducts.php');
-		// }
 	}
 
 	//get details

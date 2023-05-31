@@ -45,11 +45,26 @@ error_reporting(0);
 			<div class="p-details">
 				<h2><?= $dname; ?></h2>
 				<p>Description: <?= $ddescription; ?></p>
-				<h2>Quantity: <?= $dprod_qntty; ?></h2>
-
-				<h2>$ <span id="price"> <?= number_format($dprice, 2); ?></span> <span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"></span></h2>
-
 			</div>
+
+			<div class="row mt-4" >
+				<?php
+          $query="SELECT * FROM products_units WHERE product_id =?";
+          $stmt=$conn->prepare($query);
+          $stmt->bind_param("i", $_GET['product-details']);
+          $stmt->execute();
+          $result2=$stmt->get_result();
+          $row2=$result2->fetch_all(MYSQLI_ASSOC);
+
+          foreach ($row2 as $key => $value) {
+        ?>
+        <div class="col-md-3 border" >
+        	<code class="mt-4 block" >Option <?php echo $key + 1; ?></code>
+					<h2 class="mt-0" >PHP <?php echo number_format($value['unit_price']); ?><span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"> / <?php echo $value['unit_value']; ?> <?php echo $value['unit']; ?></span></h2>
+        </div>
+        <?php } ?>
+			</div>
+
 		</div>
 	</div>
 
