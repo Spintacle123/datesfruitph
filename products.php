@@ -52,16 +52,20 @@ $result1 = mysqli_query($conn, $query);
 					</div>
 				</div>
 				<div class="flex flex-row px-1 justify-center items-center border hover:border-[#FF8000] rounded-tr-lg rounded-bl-lg">
-					<div class="py-1 w-[12rem]" >
-						<input type="text" class="bg-[#EFEFEF] ml-2" placeholder="Search Products">
+					<div class="py-1 w-[12rem]">
+						<input type="text" id="search-input" class="bg-[#EFEFEF] ml-2" placeholder="Search Products">
 					</div>
-					<div class="flex p-0.5 border rounded-tr-lg rounded-bl-lg bg-[#DC7105] justify-center items-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="white" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
-					</div>
+					<button onclick="performSearch()">
+						<div class="flex p-0.5 border rounded-tr-lg rounded-bl-lg bg-[#DC7105] justify-center items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24">
+								<path fill="white" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
+							</svg>
+						</div>
+					</button>
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- <div class="row row-2">
 			<h2 class="title">All Products</h2>
 
@@ -197,6 +201,20 @@ $result1 = mysqli_query($conn, $query);
 				});
 			});
 		});
+	</script>
+
+	<script>
+		function performSearch() {
+			var searchTerm = document.getElementById('search-input').value;
+			$.ajax({
+				url: "search.php",
+				type: "POST",
+				data: 'request=' + searchTerm,
+				success: function(data) {
+					$(".sort").html(data);
+				}
+			});
+		}
 	</script>
 
 	<script type="text/javascript">
