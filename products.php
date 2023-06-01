@@ -106,13 +106,13 @@ $result1 = mysqli_query($conn, $query);
 
 							<div><small>Starts at</small></div>
 							<?php
-			          $query="SELECT * FROM products_units WHERE product_id =?";
-			          $stmt=$conn->prepare($query);
-			          $stmt->bind_param("i", $row['id']);
-			          $stmt->execute();
-			          $result2=$stmt->get_result();
-			          $row2=$result2->fetch_assoc();
-			        ?>
+							$query = "SELECT * FROM products_units WHERE product_id =?";
+							$stmt = $conn->prepare($query);
+							$stmt->bind_param("i", $row['id']);
+							$stmt->execute();
+							$result2 = $stmt->get_result();
+							$row2 = $result2->fetch_assoc();
+							?>
 							<span><strong>PHP </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span>
 
 							<!-- <div class="ratings">
@@ -201,6 +201,26 @@ $result1 = mysqli_query($conn, $query);
 				});
 			});
 		});
+	</script>
+
+	<script>
+		// Get the parameter value from the URL
+		var searchParam = new URLSearchParams(window.location.search).get('search');
+
+		// Decode the parameter value if needed
+		var decodedSearchTerm = decodeURIComponent(searchParam);
+
+		// Use the parameter value as needed
+		if (decodedSearchTerm !== "null") {
+			$.ajax({
+				url: "sort.php",
+				type: "POST",
+				data: 'request=' + decodedSearchTerm,
+				success: function(data) {
+					$(".sort").html(data);
+				}
+			});
+		}
 	</script>
 
 	<script>
