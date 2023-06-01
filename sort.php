@@ -6,12 +6,12 @@ if (isset($_POST['request'])) {
 
 	$request = $_POST['request'];
 
-	if ($_POST['request'] == '') {
+	if ($_POST['request'] == '' || null) {
 		$query = "SELECT * FROM products WHERE status = 1";
 		$result = mysqli_query($conn, $query);
 		$count = mysqli_num_rows($result);
 	} else {
-		$query = "SELECT * FROM products WHERE status = 1 AND name = '$request'";
+		$query = "SELECT * FROM products WHERE status = 1 AND class = '$request'";
 		$result = mysqli_query($conn, $query);
 		$count = mysqli_num_rows($result);
 	}
