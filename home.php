@@ -149,35 +149,30 @@
 		<div class="absolute h-full w-full floral-pattern opacity-5 top-0 left-0 z-0"></div>
 	</div>
 
-	<!------- "Featured Products" ------->
-	<div class="relative flex flex-col px-[19rem] pt-[5vh] pb-[5vh] bg-[#e8e4de]">
-		<h2 class="text-[2em] font-bold text-[#DC7105] mb-6">Featured Products</h2>
-		<div class="row grid grid-cols-5 products justify-start">
-			<?php
-			include 'config.php';
-			$item = $conn->prepare('SELECT * FROM products WHERE capital = "isFeatured" order by ID DESC limit 5');
-			$item->execute();
-			$result = $item->get_result();
-			while ($row = $result->fetch_assoc()) :
-			?>
-				<div class="h-max">
-					<a href="product-details.php?product-details=<?= $row['id']; ?>">
-						<div class="hover:opacity-90 hover:rounded-tl-[2em] hover:rounded-br-[2em] hover:rounded-tr-[0em] hover:rounded-bl-[0em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-3 py-3 items-start justify-left h-[21em] rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
-							<div class="bg-orange-400 text-white rounded-[5px] px-[5px]">
-								<p class="text-white text-[0.5em] label my-1">1 BOX (500 grms)</p>
-							</div>
-							<div class="w-100 flex justify-center items-center m-auto">
-								<img src="<?= $row['image'] ?>" class="h-38 w-38 m-auto">
-							</div>
-							<div class="w-100 text-left pl-3 pb-4">
-								<p class="text-black font-bold  p-0 m-0"><?= $row['name'] ?></p>
-								<span>Php 1,900.00</span>
-							</div>
-						</div>
+<!------- "Featured Products" ------->
+<div class="relative flex flex-col px-[19rem] pt-[5vh] pb-[5vh] bg-[#e8e4de]">
+	<h2 class="text-[2em] font-bold text-[#DC7105] mb-6">Featured Products</h2>
+	<div class="row grid grid-cols-5 products justify-start">
+		<?php
+		include 'config.php';
+		$item = $conn->prepare('SELECT * FROM products WHERE isfeatured = 1 order by ID DESC limit 5');
+		$item->execute();
+		$result = $item->get_result();
+		while ($row = $result->fetch_assoc()) :
+		?>
+		<div class="h-max">
+			<a href="product-details.php?product-details=<?= $row['id']; ?>">
+				<div class="hover:opacity-90 hover:rounded-tl-[2em] hover:rounded-br-[2em] hover:rounded-tr-[0em] hover:rounded-bl-[0em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-3 py-3 items-start justify-left h-[21em] rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
+					<div class="bg-orange-400 text-white rounded-[5px] px-[5px]">
+						<p class="text-white text-[0.5em] label my-1">1 BOX (500 grms)</p>
+					</div>	
+					<div class="w-100 flex justify-center items-center m-auto">
+						<img src="<?= $row['image'] ?>" class="h-38 w-38 m-auto">
+					</div>
 					</a>
 				</div>
-			<?php endwhile; ?>
 		</div>
+		<?php endwhile; ?>
 		<button class="flex mt-14 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
 			Load More
 		</button>
@@ -246,6 +241,8 @@
 			</div>
 		</div>
 	</div>
+
+	
 
 
 	<!------- brands ------->

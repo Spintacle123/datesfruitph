@@ -31,7 +31,7 @@ if (isset($_GET['product-details'])) {
 	$dimage = $row['image'];
 	$dname = $row['name'];
 	$dprice = $row['price'];
-	$dcapital = $row['capital'];
+	// $dcapital = $row['capital'];
 	$dcode = $row['code'];
 	$ddescription = $row['description'];
 	$dqty = $row['qty'];

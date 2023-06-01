@@ -26,6 +26,7 @@ error_reporting(0);
 			document.getElementById("sizevalue").value = selectedValue;
 		}
 	</script>
+	<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
