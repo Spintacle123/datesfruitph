@@ -10,7 +10,7 @@
 <body>
     <div id="contact-us" class="footer">
 		<div class="container" style="padding-top: 0px">
-			<div class="footer flex  foot">
+			<div class="footer flex foot px-32">
 				<div style="margin-right: 400px">
 					<div class="-mt-6 ml-12 flex">
 						<a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
