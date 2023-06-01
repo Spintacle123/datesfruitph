@@ -167,12 +167,12 @@
 						<p class="text-white text-[0.5em] label my-1">1 BOX (500 grms)</p>
 					</div>	
 					<div class="w-100 flex justify-center items-center m-auto">
-							<img src="<?= $row['image'] ?>" class="h-38 w-38 m-auto">
-						</div>
+						<img src="<?= $row['image'] ?>" class="h-38 w-38 m-auto">
+					</div>
 					</a>
 				</div>
-			<?php endwhile; ?>
 		</div>
+		<?php endwhile; ?>
 		<button class="flex mt-14 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
 			Load More
 		</button>
@@ -241,6 +241,8 @@
 			</div>
 		</div>
 	</div>
+
+	
 
 
 	<!------- brands ------->
