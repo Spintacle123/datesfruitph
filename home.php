@@ -155,7 +155,7 @@
 	<div class="row grid grid-cols-5 products justify-start">
 		<?php
 		include 'config.php';
-		$item = $conn->prepare('SELECT * FROM products WHERE capital = "isFeatured" order by ID DESC limit 5');
+		$item = $conn->prepare('SELECT * FROM products WHERE isfeatured = 1 order by ID DESC limit 5');
 		$item->execute();
 		$result = $item->get_result();
 		while ($row = $result->fetch_assoc()) :
