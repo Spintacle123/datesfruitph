@@ -1,14 +1,15 @@
 <?php
-   session_start();
+session_start();
 
-   $currentUrl = $_SERVER['REQUEST_URI']; // Get the current page URL
-   $currentPage = basename($currentUrl);
+$currentUrl = $_SERVER['REQUEST_URI']; // Get the current page URL
+$currentPage = basename($currentUrl);
 
-   // Check if the current page URL matches the specific page
-   $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' with the actual path or identifier of your specific page
+// Check if the current page URL matches the specific page
+$isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' with the actual path or identifier of your specific page
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-  <div class="navbar px-[19rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
+   <div class="navbar px-[19rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
       <div class="logos -mb-20">
          <a href="home.php" class="rounded-full h-[9rem] w-[9rem] overflow-hidden">
             <img src="./assets/datesfruits.png" class="">
@@ -32,52 +33,55 @@
       </div>
       <nav class="flex flex-col">
          <ul id="MenuItems" class="flex items-center ml-auto mr-0 justify-between">
-         <?php if (!$isSpecificPage): ?>
-            <li class="w-[7.5rem] overflow-hidden"><a href="home.php">Home</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#about-us">About Us</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#contact-us">Contact</a></li>
-         <?php endif; ?>
-         <?php if ($isSpecificPage): ?>
-            <li class="w-[7.5rem] overflow-hidden"><a href="#home">Home</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="#about-us">About Us</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="#contact-us">Contact</a></li>
-         <?php endif; ?>
+            <?php if (!$isSpecificPage) : ?>
+               <li class="w-[7.5rem] overflow-hidden"><a href="home.php">Home</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="gifting.php">Gifting</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="home.php#about-us">About Us</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="home.php#contact-us">Contact</a></li>
+            <?php endif; ?>
+            <?php if ($isSpecificPage) : ?>
+               <li class="w-[7.5rem] overflow-hidden"><a href="#home">Home</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="gifting.php">Gifting</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="#about-us">About Us</a></li>
+               <li class="w-[7.5rem] overflow-hidden"><a href="#contact-us">Contact</a></li>
+            <?php endif; ?>
          </ul>
       </nav>
    </div>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+   <script type="text/javascript">
+      $(document).ready(function() {
          // Load total no.of items added in the cart and display in the navbar
          load_cart_item_number();
 
          function load_cart_item_number() {
             $.ajax({
-            url: 'action.php',
-            method: 'get',
-            data: {
-               cartItem: "cart_item"
-            },
-            success: function(response) {
-               $("#cart-item").html(response);
-            }
+               url: 'action.php',
+               method: 'get',
+               data: {
+                  cartItem: "cart_item"
+               },
+               success: function(response) {
+                  $("#cart-item").html(response);
+               }
             });
          }
       });
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+   </script>
+   <script src="https://cdn.tailwindcss.com"></script>
 </body>
 
 <style>
-  *, body {
-    font-family: 'Ubuntu'
+   *,
+   body {
+      font-family: 'Ubuntu'
    }
 
-  h5{
-    font-family: 'Ubuntu'
+   h5 {
+      font-family: 'Ubuntu';
       color: #abff5f;
       margin-left: 30px;
       border-left: 2px solid;
@@ -86,22 +90,22 @@
       justify-content: center;
       align-content: center;
       gap: 5px;
-  }
+   }
 
-  .logos {
+   .logos {
       display: flex;
-  }
+   }
 
-  nav ul li:hover{
+   nav ul li:hover {
       background-color: none;
-  }
+   }
 
-  .logos > a > img {
+   .logos>a>img {
       width: 200px;
       height: auto;
-  }
+   }
 
-   .a-address{
+   .a-address {
       margin-top: 7px;
       margin-left: 20px;
    }
@@ -119,12 +123,12 @@
       margin-bottom: -20px;
    }
 
-   .cart > span,
-   .cart > svg {
+   .cart>span,
+   .cart>svg {
       margin-bottom: -10px !important;
    }
 
-   .cart > #cart-item {
+   .cart>#cart-item {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -138,10 +142,11 @@
       margin-top: -5px;
    }
 
-   .floral-pattern{
+   .floral-pattern {
       background-image: url('./assets/seamless-floral-boho-style-removebg-preview.png');
       background-size: 300px 300px;
       background-repeat: repeat;
    }
 </style>
+
 </html>
