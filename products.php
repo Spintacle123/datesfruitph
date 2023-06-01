@@ -83,7 +83,7 @@ $result1 = mysqli_query($conn, $query);
 					$page = 1;
 				}
 
-				$prod_per_page = 16;
+				$prod_per_page = 5;
 				$start_from = ($page - 1) * $prod_per_page;
 
 				// $item = $conn->prepare("SELECT * FROM products WHERE status = 1 order by rand() limit $start_from,$prod_per_page ");
@@ -92,14 +92,20 @@ $result1 = mysqli_query($conn, $query);
 				$result = $item->get_result();
 				while ($row = $result->fetch_assoc()) :
 				?>
-					<div class="card animate__animated animate__bounceInUp animate__delay-2s">
+					<div class="card animate__animated animate__bounceInUp animate__delay-2s rounded-tr-[4rem] border rounded-bl-[4rem]">
 						<a href="product-details.php?product-details=<?= $row['id']; ?>">
 							<?php if ($row['purchased'] == 0) { ?>
-								<span class="label-new">New</span>
+								<div class="pb-3"><span class="label-new">New</span></div>
 							<?php } ?>
 							<img class="" src="<?= $row['image'] ?>">
 							<p><?= $row['name'] ?></p>
 							<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span></span>
+							<div  class="flex justify-end -mr-[2rem]">
+								<div class="p-[0.2rem] border rounded-tr-lg rounded-bl-lg bg-[#EABF22] w-fit">
+								<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/></svg>
+								</div>
+							</div>
+							
 
 							<!-- <div class="ratings">
 								<span>Rating</span>
@@ -234,7 +240,7 @@ $result1 = mysqli_query($conn, $query);
 	}
 
 	.items>div {
-		width: calc(100% / 5);
+		width: calc(70%/4);
 	}
 
 	.garden-items {
@@ -273,9 +279,9 @@ $result1 = mysqli_query($conn, $query);
 		display: flex;
 		justify-content: center;
 		background-color: #fff;
-		border-radius: 10px;
+		/* border-radius: 10px; */
 		padding: 20px 30px 10px 30px;
-		border: 1px solid #f1f1f1;
+		/* border: 1px solid #f1f1f1; */
 	}
 
 	.card:hover {
