@@ -90,6 +90,7 @@
                               <th scope="col">Category</th>
                               <th scope="col">Units</th>
                               <th scope="col">Status</th>
+                              <th scope="col">isFeatured</th>
                               <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -124,6 +125,16 @@
                                       }
                                       else{
                                         echo '<a class="btn btn-sm btn-danger" href="ad_activeproduct_process.php?action=active&transaction_ID='.$row["id"]. '">Not-available</a>';
+                                      }
+                                    ?>
+                                  </td>
+                                  <td>
+                                    <?php
+                                      if($row["isfeatured"] == 1){
+                                        echo '<a class="btn btn-sm btn-warning" href="ad_activeisfeatured_process.php?action=notisfeatured&transaction_ID='.$row["id"]. '">isFeatured</a>'; 
+                                      }
+                                      else{
+                                        echo '<a class="btn btn-sm btn-danger" href="ad_activeisfeatured_process.php?action=isfeatured&transaction_ID='.$row["id"]. '">Not-isFeatured</a>';
                                       }
                                     ?>
                                   </td>
@@ -199,7 +210,10 @@
                                 <input type="text" name="price" value="<?= $price; ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g,'')" placeholder="Price" required>
                               </div>
                               <div class="col-sm-6">
-                                <input type="text" name="capital" value="<?= $capital; ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g,'')" placeholder="Capital" required>
+                                <select name="isfeatured" value="<?= $isfeatured; ?>" class="form-select" aria-label="Default select example" required>
+                                  <option value="0">Not isFeatured</option>
+                                  <option value="1">isFeatured</option>
+                                </select>
                               </div>
                             </div>
 

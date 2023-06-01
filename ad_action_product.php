@@ -9,7 +9,7 @@
 	$name="";
 	$price="";
 	$prod_qntty="";
-	$capital="";
+	$isfeatured="";
 	$image="";
 	$code="";
 	$description="";
@@ -34,7 +34,7 @@
 			$code=$_POST['code'];
 			$prod_qntty=$_POST['prod_qntty'];
 			$price=$_POST['price'];
-			$capital=$_POST['capital'];
+			$isfeatured=$_POST['isfeatured'];
 			$description=$_POST['description'];
 
 			$upload="images/".$image;
@@ -48,9 +48,9 @@
 				$_SESSION['response']="Sorry, product code is already taken! Please try again";
 				$_SESSION['res_type']="success";
 			}else{
-				$query="INSERT INTO products(class,name,code,prod_qntty,price,capital,description,image)VALUES(?,?,?,?,?,?,?,?)";
+				$query="INSERT INTO products(class,name,code,prod_qntty,price,isfeatured,description,image)VALUES(?,?,?,?,?,?,?,?)";
 				$stmt=$conn->prepare($query);
-				$stmt->bind_param("sssisdss",$class,$name,$code,$prod_qntty,$price,$capital,$description,$upload);
+				$stmt->bind_param("sssisiss",$class,$name,$code,$prod_qntty,$price,$isfeatured,$description,$upload);
 				$stmt->execute();
 				move_uploaded_file($_FILES['images']['tmp_name'], $upload);
 
