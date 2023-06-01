@@ -14,7 +14,7 @@ $result1 = mysqli_query($conn, $query);
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Menu</title>
-	<link rel="stylesheet" type="text/css" href="css/prod17.css">
+	<link rel="stylesheet" type="text/css" href="css/products1.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
@@ -32,25 +32,8 @@ $result1 = mysqli_query($conn, $query);
 	</div>
 
 	<div class="small-container">
-		<div class="flex justify-center">
-			<div class="flex flex-row space-x-[19rem] pt-[5rem]">
-				<div class="flex flex-row space-x-3">
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
-						<button>All</buttton>
-					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
-						<button>Mixed Nuts</button>
-					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
-						<button>Peanuts</button>
-					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
-						<button>Dried Nuts</button>
-					</div>
-					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
-						<button>Other Nuts</button>
-					</div>
-				</div>
+		<div class="flex justify-end">
+			<div class="flex flex-row space-x-[19rem] mr-[1.5rem] pt-[5rem]">
 				<div class="flex flex-row px-1 justify-center items-center border hover:border-[#FF8000] rounded-tr-lg rounded-bl-lg">
 					<div class="py-1 w-[12rem]">
 						<input type="text" id="search-input" class="bg-[#EFEFEF] ml-2" placeholder="Search Products">
@@ -103,14 +86,6 @@ $result1 = mysqli_query($conn, $query);
 							<?php } ?>
 							<img class="" src="<?= $row['image'] ?>">
 							<p><?= $row['name'] ?></p>
-							<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span></span>
-							<div  class="flex justify-end -mr-[2rem]">
-								<div class="p-[0.2rem] border rounded-tr-lg rounded-bl-lg bg-[#EABF22] w-fit">
-								<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/></svg>
-								</div>
-							</div>
-							
-
 							<div><small>Starts at</small></div>
 							<?php
 							$query = "SELECT * FROM products_units WHERE product_id =?";
@@ -120,7 +95,15 @@ $result1 = mysqli_query($conn, $query);
 							$result2 = $stmt->get_result();
 							$row2 = $result2->fetch_assoc();
 							?>
-							<span><strong>PHP </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span>
+							<span><strong class="text-sm">PHP </strong> <span class="text-sm"><?= $row['price'] ?></span> <span class="color: #c6c6c6; text-sm">/<?php echo $row2['unit']; ?></span></span>
+							<div  class="flex justify-end -mr-[2rem]">
+								<div class="p-[0.2rem] mr-[1.5rem] border rounded-tr-lg rounded-bl-lg bg-[#EABF22] w-fit">
+									<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/></svg>
+								</div>
+							</div>
+							
+
+							
 
 							<!-- <div class="ratings">
 								<span>Rating</span>
@@ -148,28 +131,31 @@ $result1 = mysqli_query($conn, $query);
 	<br><br>
 	<div class="page-btn">
 		<!------- Pagination ------->
-		<?php
-		$pr_query = "select * from products";
-		$pr_result = mysqli_query($conn, $pr_query);
-		$total_record = mysqli_num_rows($pr_result);
+		<div class="flex justify-center	">
+			<?php
+			$pr_query = "select * from products";
+			$pr_result = mysqli_query($conn, $pr_query);
+			$total_record = mysqli_num_rows($pr_result);
 
-		$total_pages = ceil($total_record / $prod_per_page);
+			$total_pages = ceil($total_record / $prod_per_page);
 
 
-		if ($page > 1) {
-			echo "<a href='products.php?page=" . ($page - 1) . "'>&#129144</a>";
-		}
+			if ($page > 1) {
+				echo "<a class='arrow -mr-[1.5rem]' href='products.php?page=" . ($page - 1) . "'>&#129144</a>";
+			}
 
-		for ($i = 1; $i < $total_pages; $i++) {
-			echo "<a href='products.php?page=" . $i . "'>$i</a>";
-		}
+			for ($i = 1; $i < $total_pages; $i++) {
+				echo "<a class='-mr-[1.5rem]' href='products.php?page=" . $i . "'>$i</a>";
+			}
 
-		if ($i > $page) {
-			echo "<a href='products.php?page=" . ($page + 1) . "'>&#129146</a>";
-		}
-		?>
-	</div>
-	</div>
+			if ($i > $page) {
+				echo "<a class='arrow' href='products.php?page=" . ($page + 1) . "'>&#129146</a>";
+			}
+			?>
+		</div>
+
+		</div>
+	</div>   
 
 
 
