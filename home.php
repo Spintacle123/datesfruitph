@@ -191,6 +191,7 @@
 			<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[10vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
 		</div>
 	</div>
+</div>
 
 	<!-- About Us -->
 	<div class="relative px-[19rem] pt-[10vh] pb-[10vh] bg-[#f7f2ec]">
