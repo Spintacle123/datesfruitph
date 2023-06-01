@@ -88,8 +88,9 @@
                               <th scope="col">Product ID</th>
                               <th scope="col">Name</th>
                               <th scope="col">Category</th>
-                              <th scope="col">Price</th>
+                              <th scope="col">Units</th>
                               <th scope="col">Status</th>
+                              <th scope="col">isFeatured</th>
                               <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -99,7 +100,24 @@
                                   <td><?= $row['id']; ?></td>
                                   <td><?= $row['name']; ?></td>
                                   <td><?= $row['class']; ?></td>
-                                  <td>Php: <?= number_format($row['price'],2); ?></td>
+                                  <td>
+                                    <?php
+                                      $query="SELECT * FROM products_units WHERE product_id =?";
+                                      $stmt=$conn->prepare($query);
+                                      $stmt->bind_param("i", $row['id']);
+                                      $stmt->execute();
+                                      $result2=$stmt->get_result();
+                                      $row2=$result2->fetch_all(MYSQLI_ASSOC);
+
+                                      foreach ($row2 as $key => $value) {
+                                    ?>
+                                    <div>
+                                      PHP <?php echo number_format($value['unit_price']); ?> / <?php echo $value['unit_value']; ?> <?php echo $value['unit']; ?>
+                                    </div>
+                                    <?php } ?>
+                                  </td>
+
+                                  <!-- <td>Php: <?= number_format($row['price'],2); ?></td> -->
                                   <td>
                                     <?php
                                       if($row["status"] == 1){
@@ -107,6 +125,16 @@
                                       }
                                       else{
                                         echo '<a class="btn btn-sm btn-danger" href="ad_activeproduct_process.php?action=active&transaction_ID='.$row["id"]. '">Not-available</a>';
+                                      }
+                                    ?>
+                                  </td>
+                                  <td>
+                                    <?php
+                                      if($row["isfeatured"] == 1){
+                                        echo '<a class="btn btn-sm btn-warning" href="ad_activeisfeatured_process.php?action=notisfeatured&transaction_ID='.$row["id"]. '">isFeatured</a>'; 
+                                      }
+                                      else{
+                                        echo '<a class="btn btn-sm btn-danger" href="ad_activeisfeatured_process.php?action=isfeatured&transaction_ID='.$row["id"]. '">Not-isFeatured</a>';
                                       }
                                     ?>
                                   </td>
@@ -182,7 +210,10 @@
                                 <input type="text" name="price" value="<?= $price; ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g,'')" placeholder="Price" required>
                               </div>
                               <div class="col-sm-6">
-                                <input type="text" name="capital" value="<?= $capital; ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g,'')" placeholder="Capital" required>
+                                <select name="isfeatured" value="<?= $isfeatured; ?>" class="form-select" aria-label="Default select example" required>
+                                  <option value="0">Not isFeatured</option>
+                                  <option value="1">isFeatured</option>
+                                </select>
                               </div>
                             </div>
 

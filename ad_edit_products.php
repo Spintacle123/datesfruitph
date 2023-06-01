@@ -38,6 +38,7 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>  
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.3.1
@@ -134,6 +135,36 @@
                               <div class="col-sm-12">
                                 <label>Description: </label>
                                 <textarea type="text" name="description" class="form-control" value="<?= $description; ?>"></textarea>
+                              </div>
+                            </div>
+
+                            <?php
+                              $query="SELECT * FROM products_units WHERE product_id =?";
+                              $stmt=$conn->prepare($query);
+                              $stmt->bind_param("i", $id);
+                              $stmt->execute();
+                              $result=$stmt->get_result();
+                              $row=$result->fetch_all(MYSQLI_ASSOC);
+                            ?>
+                            <div class="row mb-3" x-data="{items: <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8', true); ?>}" >
+                              <div class="col-sm-12">
+                                <label>Units: </label>  
+
+                                <template x-for="(item, index) in items" :key="index" >
+                                  <div class="input-group mb-2" >
+                                    <select x-model="item.unit" name="unit[]" class="form-select" >
+                                      <option>piece</option>
+                                      <option>gram</option>
+                                      <option>kilo</option>
+                                    </select>
+                                    <input x-model="item.unit_value" name="unit_value[]" type="text" value="test" class="form-control" placeholder="Unit value" />
+                                    <input x-model="item.unit_price" name="unit_price[]" type="text" value="test" class="form-control" placeholder="Price" />
+                                    <button class="btn btn-danger" @click.prevent="items.splice(index, 1)" >x</button>
+                                  </div>
+                                </template>
+
+                                <div @click="items.push({unit: '', unit_value: '', price: 0})" class="btn btn-primary" >Add product unit</div>
+
                               </div>
                             </div>
 

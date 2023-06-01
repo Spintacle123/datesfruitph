@@ -13,11 +13,10 @@ error_reporting(0);
 	<link rel="stylesheet" type="text/css" href="css/pdet10.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
-
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script type="text/javascript">
@@ -39,18 +38,80 @@ error_reporting(0);
 	
 
 	<div class="container">
-		<div class="product-details">
-			<div class="p-img">
-				<img src="<?= $dimage; ?>" alt="">
+		<div class="product-details flex justify-center pt-[5rem]">
+			<div class="flex w-[70%] gap-0 bg-orange-100" style="gap: 0px">
+				<div class="p-img w-[60%]" style="background-image: url(<?= $dimage; ?>);background-repeat: no-repeat; background-size: cover">
+					<!-- <img class="w-full h-full" src="<?= $dimage; ?>" alt=""> -->
+				</div>
+				<div class="w-[40%] p-details h-max bg-orange-200 pl-0 pr-0">
+					<div class="bg-orange-300 w-full ">
+						<h1 class="p-0 m-0 bg-orange-100 py-3 text-orange-100">1</h1>
+						<h2 class="font-bold titles text-white p-0 m-0 px-4 py-3"><?= $dname; ?></h2>
+					</div>
+					<!-- <div class="pl-4 pr-4 bg-white h-full">
+						<p>Description: <?= $ddescription; ?></p>
+						<h2>Quantity: <?= $dprod_qntty; ?></h2>
+						<h2>$ <span id="price"> <?= number_format($dprice, 2); ?></span> <span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"></span></h2>
+					</div> -->
+					<div class="pl-4 pr-4 bg-white h-full p-4">
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2 font-bold">Grams/Kilos</div>
+							<div class="border-2 p-2 font-bold">Prices</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">200 Grams</div>
+							<div class="border-2 p-2">180 Php</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">500 Grams</div>
+							<div class="border-2 p-2">326 Php</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">1 Kilo</div>
+							<div class="border-2 p-2">680 Php</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">1 Box (5 Kilo)</div>
+							<div class="border-2 p-2">1,900 Php</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">Jar (250 Grams)</div>
+							<div class="border-2 p-2">280 Php</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">Circle Can (500 Grams)</div>
+							<div class="border-2 p-2">375 Php</div>
+						</div>
+						<div class="grid grid-cols-2">
+							<div class="border-2 p-2">Heart Can (475 Grams)</div>
+							<div class="border-2 p-2">475 Php</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="p-details">
 				<h2><?= $dname; ?></h2>
 				<p>Description: <?= $ddescription; ?></p>
-				<h2>Quantity: <?= $dprod_qntty; ?></h2>
-
-				<h2>$ <span id="price"> <?= number_format($dprice, 2); ?></span> <span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"></span></h2>
-
 			</div>
+
+			<div class="row mt-4" >
+				<?php
+          $query="SELECT * FROM products_units WHERE product_id =?";
+          $stmt=$conn->prepare($query);
+          $stmt->bind_param("i", $_GET['product-details']);
+          $stmt->execute();
+          $result2=$stmt->get_result();
+          $row2=$result2->fetch_all(MYSQLI_ASSOC);
+
+          foreach ($row2 as $key => $value) {
+        ?>
+        <div class="col-md-3 border" >
+        	<code class="mt-4 block" >Option <?php echo $key + 1; ?></code>
+					<h2 class="mt-0" >PHP <?php echo number_format($value['unit_price']); ?><span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"> / <?php echo $value['unit_value']; ?> <?php echo $value['unit']; ?></span></h2>
+        </div>
+        <?php } ?>
+			</div>
+
 		</div>
 	</div>
 
@@ -199,8 +260,7 @@ error_reporting(0);
 			}
 		});
 	</script>
-
-
+ 	<script src="https://cdn.tailwindcss.com"></script>
 
 </body>
 
@@ -396,8 +456,13 @@ error_reporting(0);
 </script>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
+	body {
+		background-color: white !important;
+	}
+
 	* {
-		font-family: 'Josefin Sans', sans-serif !important;
+		font-family: 'Poppins', sans-serif;
 		color: #000;
 	}
 
@@ -407,6 +472,7 @@ error_reporting(0);
 
 	.container {
 		max-width: 1300px;
+		background-color: white !important;
 	}
 
 	.container>.product-details {
@@ -415,12 +481,7 @@ error_reporting(0);
 		margin-top: 9rem;
 	}
 
-	.container>.product-details>.p-img {
-		width: calc(100%/2);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+
 
 	.container>.product-details>.p-img>img {
 		width: 80%;
@@ -430,6 +491,9 @@ error_reporting(0);
 		color: #b0aeae;
 	}
 
+	.titles {
+		font-family: 'Niconne', 'cursive' !important;
+	}
 	.container>.product-details>.p-details {
 		width: calc(100% / 2);
 		display: flex;
@@ -603,5 +667,9 @@ error_reporting(0);
 		padding-top: 7px;
 		border-top: 1px solid #f1f1f1;
 		margin-top: 20px;
+	}
+
+	.product-details{
+		background-color: #fff;
 	}
 </style>

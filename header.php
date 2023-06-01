@@ -24,9 +24,9 @@
 </head>
 
 <body>
-  <div class="navbar px-[12rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
+  <div class="navbar px-[19rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
       <div class="logos -mb-20">
-         <a href="home.php" class="rounded-full h-24 w-24 overflow-hidden">
+         <a href="home.php" class="rounded-full h-[9rem] w-[9rem] overflow-hidden">
             <img src="./assets/datesfruits.png" class="">
          </a>
       </div>
@@ -36,13 +36,13 @@
             <li class="w-[7.5rem] overflow-hidden"><a href="home.php">Home</a></li>
             <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
             <li class="w-[7.5rem] overflow-hidden"><a href="home.php#about-us">About Us</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#contact-us">Contact Us</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="home.php#contact-us">Contact</a></li>
          <?php endif; ?>
          <?php if ($isSpecificPage): ?>
             <li class="w-[7.5rem] overflow-hidden"><a href="#home">Home</a></li>
             <li class="w-[7.5rem] overflow-hidden"><a href="products.php">Products</a></li>
             <li class="w-[7.5rem] overflow-hidden"><a href="#about-us">About Us</a></li>
-            <li class="w-[7.5rem] overflow-hidden"><a href="#contact-us">Contact Us</a></li>
+            <li class="w-[7.5rem] overflow-hidden"><a href="#contact-us">Contact</a></li>
          <?php endif; ?>
          </ul>
       </nav>

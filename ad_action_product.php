@@ -9,7 +9,7 @@
 	$name="";
 	$price="";
 	$prod_qntty="";
-	$capital="";
+	$isfeatured="";
 	$image="";
 	$code="";
 	$description="";
@@ -34,7 +34,7 @@
 			$code=$_POST['code'];
 			$prod_qntty=$_POST['prod_qntty'];
 			$price=$_POST['price'];
-			$capital=$_POST['capital'];
+			$isfeatured=$_POST['isfeatured'];
 			$description=$_POST['description'];
 
 			$upload="images/".$image;
@@ -48,9 +48,9 @@
 				$_SESSION['response']="Sorry, product code is already taken! Please try again";
 				$_SESSION['res_type']="success";
 			}else{
-				$query="INSERT INTO products(class,name,code,prod_qntty,price,capital,description,image)VALUES(?,?,?,?,?,?,?,?)";
+				$query="INSERT INTO products(class,name,code,prod_qntty,price,isfeatured,description,image)VALUES(?,?,?,?,?,?,?,?)";
 				$stmt=$conn->prepare($query);
-				$stmt->bind_param("sssisdss",$class,$name,$code,$prod_qntty,$price,$capital,$description,$upload);
+				$stmt->bind_param("sssisiss",$class,$name,$code,$prod_qntty,$price,$isfeatured,$description,$upload);
 				$stmt->execute();
 				move_uploaded_file($_FILES['images']['tmp_name'], $upload);
 
@@ -124,10 +124,23 @@
 			$stmt->bind_param("sssisdssi",$name,$class,$code,$prod_qntty,$price,$capital,$description,$newimage,$id);
 			$stmt->execute();
 
+			// Clean and insert product units
+			$query = "DELETE FROM `products_units` WHERE `product_id` = ?";
+			$stmt = $conn->prepare($query);
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+
+			for ($i=0; $i < count($_POST['unit']); $i++) { 
+				$query = "INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`) VALUES(?, ?, ?, ?)";
+				$stmt = $conn->prepare($query);
+				$stmt->bind_param("isss", $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i]);
+				$stmt->execute();
+			}
+
 			$_SESSION['response']="Product Details Updated Successfully!";
 			$_SESSION['res_type']="primary";
+
 			header('location:ad_addproducts.php');
-		// }
 	}
 
 	//get details
