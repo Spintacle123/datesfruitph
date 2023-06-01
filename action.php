@@ -6,11 +6,16 @@ $id = "";
 $class = "";
 $user_id = "";
 $name = "";
+$description = "";
 $price = "";
 $second_price = "";
 $capital = "";
 $code = "";
 $image = "";
+$image1 = "";
+$image2 = "";
+$image3 = "";
+$image4 = "";
 $ss = "";
 $qty = "";
 // $dprod_qntty = "";
@@ -37,6 +42,28 @@ if (isset($_GET['product-details'])) {
 	$dqty = $row['qty'];
 	$dprod_qntty = $row['prod_qntty'];
 	$drating = $row['rating'];
+}
+//load the selected product into the product-details.php
+if (isset($_GET['exclusive-details'])) {
+	$id = $_GET['exclusive-details'];
+	$query = "SELECT * FROM giftings WHERE id=?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("i", $id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
+
+	$did = $row['id'];
+	$dclass = $row['class'];
+	$dimage = $row['image'];
+	$dimage1 = $row['image1'];
+	$dimage2 = $row['image2'];
+	$dimage3 = $row['image3'];
+	$dimage4 = $row['image4'];
+	$dname = $row['name'];
+	$ddescription = $row['description'];
+	$dprice = $row['price'];
+	$dcode = $row['code'];
 }
 
 // Add products into the cart table
