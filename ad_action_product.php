@@ -77,7 +77,7 @@
 		$code=$row['code'];
 		$prod_qntty=$row['prod_qntty'];
 		$price=$row['price'];
-		$capital=$row['capital'];
+		// $capital=$row['capital'];
 		$description=$row['description'];
 		$image=$row['image'];
 
@@ -103,7 +103,7 @@
 			$code=$_POST['code'];
 			$prod_qntty=$_POST['prod_qntty'];
 			$price=$_POST['price'];
-			$capital=$_POST['capital'];
+			// $capital=$_POST['capital'];
 			$description=$_POST['description'];
 
 			if(isset($_FILES['images']['name'])&&($_FILES['images']['name']!="")){
@@ -119,9 +119,9 @@
 			}
 
 
-			$query="UPDATE products SET name=?,class=?,code=?,prod_qntty=?,price=?,capital=?,description=?,image=? WHERE id=?";
+			$query="UPDATE products SET name=?,class=?,code=?,prod_qntty=?,price=?,description=?,image=? WHERE id=?";
 			$stmt=$conn->prepare($query);
-			$stmt->bind_param("sssisdssi",$name,$class,$code,$prod_qntty,$price,$capital,$description,$newimage,$id);
+			$stmt->bind_param("sssisssi",$name,$class,$code,$prod_qntty,$price,$description,$newimage,$id);
 			$stmt->execute();
 
 			// Clean and insert product units

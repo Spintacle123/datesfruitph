@@ -31,8 +31,11 @@ $result1 = mysqli_query($conn, $query);
 		<?php include("header.php") ?>
 	</div>
 
-	<div class="small-container">
-		<div class="flex justify-center">
+	<div class="small-container mt-[8em]">
+		<div class="w-full flex justify-between">
+			<h1><span id="category"></span> Product List</h1>
+		</div>
+		<!-- <div class="flex justify-center">
 			<div class="flex flex-row space-x-[19rem] pt-[5rem]">
 				<div class="flex flex-row space-x-3">
 					<div class="bg-[#EFEFEF] hover:border-[#FF8000] py-1 border rounded-bl-lg rounded-tr-lg px-5 samp">
@@ -64,7 +67,7 @@ $result1 = mysqli_query($conn, $query);
 					</button>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- <div class="row row-2">
 			<h2 class="title">All Products</h2>
@@ -96,21 +99,19 @@ $result1 = mysqli_query($conn, $query);
 				$result = $item->get_result();
 				while ($row = $result->fetch_assoc()) :
 				?>
-					<div class="card animate__animated animate__bounceInUp animate__delay-2s rounded-tr-[4rem] border rounded-bl-[4rem]">
+					<div class="card animate__animated animate__bounceInUp animate__delay-2s rounded-tr-[2rem] border rounded-bl-[2rem]">
 						<a href="product-details.php?product-details=<?= $row['id']; ?>">
-							<?php if ($row['purchased'] == 0) { ?>
+							<!-- <?php if ($row['purchased'] == 0) { ?>
 								<div class="pb-3"><span class="label-new">New</span></div>
-							<?php } ?>
+							<?php } ?> -->
 							<img class="" src="<?= $row['image'] ?>">
 							<p><?= $row['name'] ?></p>
-							<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span></span>
-							<div  class="flex justify-end -mr-[2rem]">
+							<!-- <div  class="flex justify-end -mr-[2rem]">
 								<div class="p-[0.2rem] border rounded-tr-lg rounded-bl-lg bg-[#EABF22] w-fit">
 								<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/></svg>
 								</div>
-							</div>
+							</div> -->
 							
-
 							<div><small>Starts at</small></div>
 							<?php
 							$query = "SELECT * FROM products_units WHERE product_id =?";
@@ -120,7 +121,8 @@ $result1 = mysqli_query($conn, $query);
 							$result2 = $stmt->get_result();
 							$row2 = $result2->fetch_assoc();
 							?>
-							<span><strong>PHP </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span>
+							<!-- <span><strong>PHP </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 9px">/<?php echo $row2['unit_value']; ?> <?php echo $row2['unit']; ?></span></span> -->
+							<h2 class="text-[1em] mt-0 font-bold">Php <?= $row['price'] ?> /<?php echo $row2['unit_value']; ?> <?php echo $row2['unit']; ?></h2>
 
 							<!-- <div class="ratings">
 								<span>Rating</span>
@@ -217,6 +219,8 @@ $result1 = mysqli_query($conn, $query);
 		// Decode the parameter value if needed
 		var decodedSearchTerm = decodeURIComponent(searchParam);
 
+		$('#category').text(decodedSearchTerm);
+
 		// Use the parameter value as needed
 		if (decodedSearchTerm !== "null") {
 			$.ajax({
@@ -275,10 +279,10 @@ $result1 = mysqli_query($conn, $query);
 
 	.items {
 		display: flex;
-		gap: 10px;
+		gap: 2px;
 		margin-top: 40px;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
+		justify-content: space-between;
 	}
 
 

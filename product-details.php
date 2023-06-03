@@ -18,6 +18,7 @@ error_reporting(0);
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script type="text/javascript">
 		function sizesselect() {
@@ -38,14 +39,13 @@ error_reporting(0);
 	
 
 	<div class="container">
-		<div class="product-details flex justify-center pt-[5rem]">
-			<div class="flex w-[70%] gap-0 bg-orange-100" style="gap: 0px">
+		<div class="product-details flex justify-center pt-[5rem] h-[45rem] rounded-tr-[20px]">
+			<div class="flex w-[70%] gap-0 rounded-tr-[20px]" style="gap: 0px">
 				<div class="p-img w-[60%]" style="background-image: url(<?= $dimage; ?>);background-repeat: no-repeat; background-size: cover">
 					<!-- <img class="w-full h-full" src="<?= $dimage; ?>" alt=""> -->
 				</div>
-				<div class="w-[40%] p-details h-max bg-orange-200 pl-0 pr-0">
-					<div class="bg-orange-300 w-full ">
-						<h1 class="p-0 m-0 bg-orange-100 py-3 text-orange-100">1</h1>
+				<div class="w-[40%] p-details h-[100%] bg-orange-200 pl-0 pr-0 rounded-tr-[30px]">
+					<div class="bg-orange-300 w-full rounded-tr-[20px] ">
 						<h2 class="font-bold titles text-white p-0 m-0 px-4 py-3"><?= $dname; ?></h2>
 					</div>
 					<!-- <div class="pl-4 pr-4 bg-white h-full">
@@ -53,66 +53,44 @@ error_reporting(0);
 						<h2>Quantity: <?= $dprod_qntty; ?></h2>
 						<h2>$ <span id="price"> <?= number_format($dprice, 2); ?></span> <span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"></span></h2>
 					</div> -->
-					<div class="pl-4 pr-4 bg-white h-full p-4">
+					<div class="pl-4 pr-4 bg-white h-100 p-4 relative overflow-hidden rounded-bl-[30px] border-l">
 						<div class="grid grid-cols-2">
-							<div class="border-2 p-2 font-bold">Grams/Kilos</div>
-							<div class="border-2 p-2 font-bold">Prices</div>
+							<div class="border-r border-b border-t p-2 border-l font-bold">Grams/Kilos</div>
+							<div class="border-r border-b border-t p-2 font-bold">Prices</div>
 						</div>
+						<?php
+							$query="SELECT * FROM products_units WHERE product_id =?";
+							$stmt=$conn->prepare($query);
+							$stmt->bind_param("i", $_GET['product-details']);
+							$stmt->execute();
+							$result2=$stmt->get_result();
+							$row2=$result2->fetch_all(MYSQLI_ASSOC);
+
+							foreach ($row2 as $key => $value) {
+						?>
 						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">200 Grams</div>
-							<div class="border-2 p-2">180 Php</div>
+							<div class="border-r border-b border-l p-2"><?php echo $value['unit_value']; ?> <?php echo $value['unit']; ?></div>
+							<div class="border-r border-b p-2"><?php echo number_format($value['unit_price']); ?> Php</div>
 						</div>
-						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">500 Grams</div>
-							<div class="border-2 p-2">326 Php</div>
-						</div>
-						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">1 Kilo</div>
-							<div class="border-2 p-2">680 Php</div>
-						</div>
-						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">1 Box (5 Kilo)</div>
-							<div class="border-2 p-2">1,900 Php</div>
-						</div>
-						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">Jar (250 Grams)</div>
-							<div class="border-2 p-2">280 Php</div>
-						</div>
-						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">Circle Can (500 Grams)</div>
-							<div class="border-2 p-2">375 Php</div>
-						</div>
-						<div class="grid grid-cols-2">
-							<div class="border-2 p-2">Heart Can (475 Grams)</div>
-							<div class="border-2 p-2">475 Php</div>
+						<?php } ?>
+						<div class="flex flex-col absolute bottom-0 w-full gap-0">
+							<span>We can arrange deliveries nationwide</span>
+							<div class="w-100 bg-gray-300 flex flex-1 py-2 px-2 rounded-tl-[10px]">
+								<div class="flex justify-center items-center">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8Z"/></g></svg>
+									<p class="text-[15px] font-medium">Newton Plaza Old Sta Mesa Manila</p>
+								</div>
+							</div>
+							<div class="w-100 bg-gray-300 flex flex-1 py-2 px-2 rounded-tl-[10px]">
+								<div class="flex justify-center items-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="m224 154.8l-47.09-21.11l-.18-.08a19.94 19.94 0 0 0-19 1.75a13.08 13.08 0 0 0-1.12.84l-22.31 19c-13-7.05-26.43-20.37-33.49-33.21l19.06-22.66a11.76 11.76 0 0 0 .85-1.15a20 20 0 0 0 1.66-18.83a1.42 1.42 0 0 1-.08-.18L101.2 32a20.06 20.06 0 0 0-20.78-11.85A60.27 60.27 0 0 0 28 80c0 81.61 66.39 148 148 148a60.27 60.27 0 0 0 59.85-52.42A20.06 20.06 0 0 0 224 154.8ZM176 204A124.15 124.15 0 0 1 52 80a36.29 36.29 0 0 1 28.48-35.54l18.82 42l-19.16 22.82a12 12 0 0 0-.86 1.16A20 20 0 0 0 78 130.08c9.42 19.28 28.83 38.56 48.31 48a20 20 0 0 0 19.69-1.45a11.63 11.63 0 0 0 1.11-.85l22.43-19.07l42 18.81A36.29 36.29 0 0 1 176 204Z"/></svg>
+									<p class="text-[15px] font-medium">0917-517-9722 / 0918-909-0831</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="p-details">
-				<h2><?= $dname; ?></h2>
-				<p>Description: <?= $ddescription; ?></p>
-			</div>
-
-			<div class="row mt-4" >
-				<?php
-          $query="SELECT * FROM products_units WHERE product_id =?";
-          $stmt=$conn->prepare($query);
-          $stmt->bind_param("i", $_GET['product-details']);
-          $stmt->execute();
-          $result2=$stmt->get_result();
-          $row2=$result2->fetch_all(MYSQLI_ASSOC);
-
-          foreach ($row2 as $key => $value) {
-        ?>
-        <div class="col-md-3 border" >
-        	<code class="mt-4 block" >Option <?php echo $key + 1; ?></code>
-					<h2 class="mt-0" >PHP <?php echo number_format($value['unit_price']); ?><span style="font-weight: 400; color: #c6c6c6; font-size: 1.5rem"> / <?php echo $value['unit_value']; ?> <?php echo $value['unit']; ?></span></h2>
-        </div>
-        <?php } ?>
-			</div>
-
-		</div>
 	</div>
 
 	<div class="modal-append"></div>
@@ -492,7 +470,8 @@ error_reporting(0);
 	}
 
 	.titles {
-		font-family: 'Niconne', 'cursive' !important;
+		font-family: 'Poppins', sans-serif;
+
 	}
 	.container>.product-details>.p-details {
 		width: calc(100% / 2);

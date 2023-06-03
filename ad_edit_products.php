@@ -120,14 +120,9 @@
                             </div>
 
                             <div class="row mb-3">
-                              <div class="col-sm-6">
+                              <div class="col-sm-12">
                                 <label>Product Price: </label>
                                 <input type="text" name="price" value="<?= $price; ?>" class="form-control" placeholder="Price">
-                              </div>
-                              
-                              <div class="col-sm-6">
-                                <label>Product Capital: </label>
-                                <input type="text" name="capital" value="<?= $capital; ?>" class="form-control" placeholder="Capital">
                               </div>
                             </div>
 
