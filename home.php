@@ -31,22 +31,23 @@
 
 	<div class="relative">
 		<div id="home" class="absolute top-0 -mt-20"></div>
-		<div class="absolute flex flex-col justify-center z-40 mt-28 ml-[19rem] w-[35vw] h-[50vh]">
-			<h1 class="text-[60px] tracking-[0.54px] leading-[70px] font-bold text-white">A Delectable and Nutritious Fruit</h1>
-			<p class="opacity-80 font-normal text-white text-[1.7rem]">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
-			<button class="flex mt-5 text-white bg-[#FFD700] w-44 h-9 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
+		<div class="relative z-50">
+			<div class="absolute flex flex-col justify-center z-40 mt-28 mr-[50vw] w-[35vw] h-[50vh] top-0 right-0 flex-wrap">
+				<h1 class="text-[3.75rem] tracking-[0.034rem] leading-[4.375rem] font-bold text-white">A Delectable and Nutritious Fruit</h1>
+				<p class="opacity-80 font-normal text-white text-[1.7rem]">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
+				<button class="flex mt-5 text-white bg-[#FFD700] w-44 h-9 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
+			</div>
 		</div>
 
-		<div class="absolute h-[75vh] w-[30vw]"></div>
+		<div class="relative swiper dates-slider mt-[10vh] font-medium w-[100vw]">
+			<div class="absolute h-[75vh] w-[75vw] bg-gradient-to-r from-black z-40"></div>
 
-		<div class="swiper dates-slider mt-[10vh] font-medium w-[100vw]">
 			<!-- Additional required wrapper -->
 			<div class="swiper-wrapper">
 				<!-- Slides -->
 				<div class="swiper-slide image-ad bg-[url('./assets/img/benefits-of-dates-for-women.jpg')]"></div>
 				<div class="swiper-slide image-ad bg-[url('./assets/img/main-ad.jpg')]"></div>
 				<div class="swiper-slide image-ad bg-[url('./assets/img/card.jpg')]"></div>
-				...
 			</div>
 			<!-- If we need pagination -->
 			<div class="swiper-pagination z-50"></div>
@@ -199,7 +200,7 @@
 			<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[10vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
 		</div>
 	</div>
-		</div>
+</div>
 	<!-- About Us -->
 	<div class="relative px-[19rem] pt-[10vh] pb-[10vh] bg-[#f7f2ec]">
 		<div id="about-us" class="absolute -mt-20 top-0"></div>
