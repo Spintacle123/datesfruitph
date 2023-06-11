@@ -122,7 +122,7 @@ $result1 = mysqli_query($conn, $query);
 	<div class="page-btn">
 		<!------- Pagination ------->
 		<?php
-		$pr_query = "select * from products";
+		$pr_query = "select * from giftings";
 		$pr_result = mysqli_query($conn, $pr_query);
 		$total_record = mysqli_num_rows($pr_result);
 
@@ -130,15 +130,15 @@ $result1 = mysqli_query($conn, $query);
 
 
 		if ($page > 1) {
-			echo "<a href='products.php?page=" . ($page - 1) . "'>&#129144</a>";
+			echo "<a href='gifting.php?page=" . ($page - 1) . "'>&#129144</a>";
 		}
 
 		for ($i = 1; $i < $total_pages; $i++) {
-			echo "<a href='products.php?page=" . $i . "'>$i</a>";
+			echo "<a href='gifting.php?page=" . $i . "'>$i</a>";
 		}
 
 		if ($i > $page) {
-			echo "<a href='products.php?page=" . ($page + 1) . "'>&#129146</a>";
+			echo "<a href='gifting.php?page=" . ($page + 1) . "'>&#129146</a>";
 		}
 		?>
 	</div>
