@@ -37,7 +37,7 @@ error_reporting(0);
 	
 
 	<div class="container my-[4em]">
-		<img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] left-0 rotate-[90deg] bottom-0"  alt="">
+		<!-- <img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] left-0 rotate-[90deg] bottom-0"  alt=""> -->
 		<img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] left-0 rotate-45"  alt="">
 
 		<img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] right-0 rotate-0 bottom-0"  alt="">

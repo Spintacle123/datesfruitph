@@ -9,7 +9,7 @@ error_reporting(0);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Exclusive Product | YAME T-SHIRT COLLECTION</title>
+	<title>Product Gifting</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/pdet10.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/pdetails1.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -53,36 +53,6 @@ error_reporting(0);
 				<br>
 				<p><?= $ddescription; ?></p>
 			</div>
-		</div>
-	</div>
-
-	<!------- More products ------->
-
-	<div class="small-container">
-		<div class="row row-2">
-			<h2><b>More Products</b></h2>
-			<a href="products.php"><b>View More</b></a>
-		</div>
-	</div>
-
-
-	<!------- products ------->
-	<div class="small-container">
-		<div class="row">
-			<?php
-			$item = $conn->prepare('SELECT * FROM giftings order by rand() limit 4');
-			$item->execute();
-			$result = $item->get_result();
-			while ($row = $result->fetch_assoc()) :
-			?>
-				<div class="col-4">
-					<a href="product-details.php?product-details=<?= $row['id']; ?>">
-						<img src="<?= $row['image'] ?>">
-						<h4><?= $row['name'] ?></h4>
-						<p><strong>₽</strong> <?= $row['price'] ?></p>
-					</a>
-				</div>
-			<?php endwhile; ?>
 		</div>
 	</div>
 
