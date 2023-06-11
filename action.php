@@ -54,7 +54,7 @@ if (isset($_GET['exclusive-details'])) {
 	$row = $result->fetch_assoc();
 
 	$did = $row['id'];
-	$dclass = $row['class'];
+	// $dclass = $row['class'];
 	$dimage = $row['image'];
 	$dimage1 = $row['image1'];
 	$dimage2 = $row['image2'];
