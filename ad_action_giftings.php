@@ -7,7 +7,7 @@ $update = false;
 $id = "";
 $name = "";
 $price = "";
-// $image="";
+// $image = "";
 $code = "";
 $ccode = "";
 $cdescription = "";
@@ -15,7 +15,14 @@ $cdescription = "";
 
 // add products
 if (isset($_POST['add'])) {
-	$image = $_FILES['images']['name'];
+	$imageCount = count($_FILES['images']['name']);
+	for ($i = 0; $i < $imageCount; $i++) {
+		$images[$i] = $_FILES['images']['name'][$i];
+		$validImageExtension = ['jpg', 'jpeg', 'png'];
+		$imageExtension = explode('.', $images[$i]);
+		$imageExtension = strtolower(end($imageExtension));
+	}
+	$image = $_FILES['image']['name'];
 	$validImageExtension = ['jpg', 'jpeg', 'png'];
 	$imageExtension = explode('.', $image);
 	$imageExtension = strtolower(end($imageExtension));
@@ -33,6 +40,9 @@ if (isset($_POST['add'])) {
 		$description = $_POST['description'];
 		$status = $_POST['status'];
 
+		for ($i = 0; $i < 4; $i++) {
+			$uploads[$i] = "images/" . $images[$i];
+		}
 		$upload = "images/" . $image;
 
 
@@ -44,11 +54,14 @@ if (isset($_POST['add'])) {
 			$_SESSION['response'] = "Sorry, gifting code is already taken! Please try again";
 			$_SESSION['res_type'] = "success";
 		} else {
-			$query = "INSERT INTO giftings(name,code,price,description,image,status)VALUES(?,?,?,?,?,?)";
+			$query = "INSERT INTO giftings(name,code,price,description,image,image1,image2,image3,image4,status)VALUES(?,?,?,?,?,?,?,?,?,?)";
 			$stmt = $conn->prepare($query);
-			$stmt->bind_param("sssssi", $name, $code, $price, $description, $upload, $status);
+			$stmt->bind_param("sssssssssi", $name, $code, $price, $description, $upload, $uploads[0], $uploads[1], $uploads[2], $uploads[3], $status);
 			$stmt->execute();
-			move_uploaded_file($_FILES['images']['tmp_name'], $upload);
+			for ($i = 0; $i < 4; $i++) {
+				move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploads[$i]);
+			}
+			move_uploaded_file($_FILES['image']['tmp_name'], $upload);
 
 			header('location:ad_addgiftings.php');
 			$_SESSION['response'] = "New Giftings Added Succesfully to Menu!";
