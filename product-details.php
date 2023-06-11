@@ -16,9 +16,7 @@ error_reporting(0);
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script type="text/javascript">
 		function sizesselect() {
@@ -30,7 +28,7 @@ error_reporting(0);
 	<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body style="background-image: url('./images/bg-light.png') !important; background-repeat: repeat;background-size: 60%">
 
 
 	<div class="header">
@@ -38,10 +36,14 @@ error_reporting(0);
 	</div>
 	
 
-	<div class="container">
+	<div class="container my-[4em]">
+		<img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] left-0 rotate-[90deg] bottom-0"  alt="">
+		<img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] left-0 rotate-45"  alt="">
+
+		<img src="./assets/Flying-green-leaves-vector-PNG.png" class="absolute h-[24em] right-0 rotate-0 bottom-0"  alt="">
 		<div class="product-details flex justify-center pt-[5rem] h-[45rem] rounded-tr-[20px]">
 			<div class="flex w-[70%] gap-0 rounded-tr-[20px]" style="gap: 0px">
-				<div class="p-img w-[60%]" style="background-image: url(<?= $dimage; ?>);background-repeat: no-repeat; background-size: cover">
+				<div class=" rounded-bl-[2em] p-img w-[60%]" style="background-image: url(<?= $dimage; ?>);background-repeat: no-repeat; background-size: cover">
 					<!-- <img class="w-full h-full" src="<?= $dimage; ?>" alt=""> -->
 				</div>
 				<div class="w-[40%] p-details h-[100%] bg-orange-200 pl-0 pr-0 rounded-tr-[30px]">
@@ -92,6 +94,7 @@ error_reporting(0);
 				</div>
 			</div>
 	</div>
+							</div>
 
 	<div class="modal-append"></div>
 
@@ -434,13 +437,15 @@ error_reporting(0);
 </script>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
 	body {
-		background-color: white !important;
+		background-repeat: repeat;
+		background-size: 50%;
+		/* background-color: white !important; */
+		
 	}
 
 	* {
-		font-family: 'Poppins', sans-serif;
+		font-family: 'Poppins', sans-serif !important;
 		color: #000;
 	}
 
@@ -450,7 +455,6 @@ error_reporting(0);
 
 	.container {
 		max-width: 1300px;
-		background-color: white !important;
 	}
 
 	.container>.product-details {
@@ -470,7 +474,7 @@ error_reporting(0);
 	}
 
 	.titles {
-		font-family: 'Poppins', sans-serif;
+		font-family: 'Poppins', sans-serif !important;
 
 	}
 	.container>.product-details>.p-details {

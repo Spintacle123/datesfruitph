@@ -17,8 +17,7 @@ $result1 = mysqli_query($conn, $query);
 	<link rel="stylesheet" type="text/css" href="css/products1.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
-	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -27,11 +26,11 @@ $result1 = mysqli_query($conn, $query);
 
 <body>
 
-	<div class="header">
+	<div class="header">																																																													
 		<?php include("header.php") ?>
 	</div>
 
-	<div class="small-container">
+	<div class="small-container max-h-screen px-[19em]">
 		<div class="flex justify-end">
 			<div class="flex flex-row space-x-[19rem] mr-[1.5rem] pt-[5rem]">
 				<div class="flex flex-row px-1 justify-center items-center border hover:border-[#FF8000] rounded-tr-lg rounded-bl-lg">
@@ -47,7 +46,7 @@ $result1 = mysqli_query($conn, $query);
 					</button>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<!-- <div class="row row-2">
 			<h2 class="title">All Products</h2>
@@ -257,7 +256,7 @@ $result1 = mysqli_query($conn, $query);
 </html>
 <style>
 	* {
-		font-family: 'Josefin Sans', sans-serif !important;
+		font-family: 'Poppins', sans-serif !important;
 	}
 
 	.items {

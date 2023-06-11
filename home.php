@@ -45,9 +45,9 @@
 			<!-- Additional required wrapper -->
 			<div class="swiper-wrapper">
 				<!-- Slides -->
-				<div class="swiper-slide image-ad bg-[url('./assets/img/benefits-of-dates-for-women.jpg')]"></div>
-				<div class="swiper-slide image-ad bg-[url('./assets/img/main-ad.jpg')]"></div>
-				<div class="swiper-slide image-ad bg-[url('./assets/img/card.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./images/fruits.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./images/preperation.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./images/datesstore.jpg')]"></div>
 			</div>
 			<!-- If we need pagination -->
 			<div class="swiper-pagination z-50"></div>
@@ -146,61 +146,63 @@
 				</a>
 			</div>
 		</div>
-
 		<div class="absolute h-full w-full floral-pattern opacity-5 top-0 left-0 z-0"></div>
 	</div>
 
-<!------- "Featured Products" ------->
-<div class="relative px-[19rem] flex flex-col  pt-[5vh] pb-[5vh] bg-[#e8e4de]">
-	<h2 class="text-[2em] font-bold text-[#DC7105] mb-6">Featured Products</h2>
-	<div class="row grid grid-cols-5 products justify-start">
-		<?php
-		include 'config.php';
-		$item = $conn->prepare('SELECT * FROM products WHERE isfeatured = 1 order by ID DESC limit 5');
-		$item->execute();
-		$result = $item->get_result();
-		while ($row = $result->fetch_assoc()) :
-		?>
-		<div class="h-max">
-			<a href="product-details.php?product-details=<?= $row['id']; ?>">
-				<div class="hover:opacity-90 hover:rounded-tl-[2em] hover:rounded-br-[2em] hover:rounded-tr-[0em] hover:rounded-bl-[0em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-3 py-3 items-start justify-left h-[21em] rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
-					<div class="bg-orange-400 text-white rounded-[5px] px-[5px] w-max">
-					<?php
-						$query = "SELECT * FROM products_units WHERE product_id =?";
-						$stmt = $conn->prepare($query);
-						$stmt->bind_param("i", $row['id']);
-						$stmt->execute();
-						$result2 = $stmt->get_result();
-						$row2 = $result2->fetch_assoc();
-					?>
-						<p class="text-white text-[0.9em] label my-1"><span><strong>PHP </strong> <?= $row2['unit_price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span></p>
-					</div>	
-					<div class="w-100 flex justify-center items-center m-auto">
-						<img src="<?= $row['image'] ?>" class="h-38 w-38 m-auto">
+	<!------- "Featured Products" ------->
+	<div class="relative px-[19rem] flex flex-col  pt-[5vh] pb-[5vh] bg-[#e8e4de]">
+		<h2 class="text-[2em] font-bold text-[#DC7105] mb-6">Featured Products</h2>
+		<div class="row grid grid-cols-5 products justify-start">
+			<?php
+			include 'config.php';
+			$item = $conn->prepare('SELECT * FROM products WHERE isfeatured = 1 order by ID DESC limit 5');
+			$item->execute();
+			$result = $item->get_result();
+			while ($row = $result->fetch_assoc()) :
+			?>
+			<div class="h-max">
+				<a href="product-details.php?product-details=<?= $row['id']; ?>" class="w-full">
+					<div class="hover:opacity-90 hover:rounded-tl-[2em] hover:rounded-br-[2em] hover:rounded-tr-[0em] hover:rounded-bl-[0em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-4 py-3 items-start justify-left h-max rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
+						<div class="w-full flex flex-col justify-center items-center m-auto">
+							<img src="<?= $row['image'] ?>" class="h-[200px] w-[200px] m-auto">
+						</div>
+						<p class="text-[1.1em] font-bold"> <?= $row['name'] ?></p>
+						<div class=" text-white rounded-[5px] px-[5px] w-max">
+							<?php
+								$query = "SELECT * FROM products_units WHERE product_id =?";
+								$stmt = $conn->prepare($query);
+								$stmt->bind_param("i", $row['id']);
+								$stmt->execute();
+								$result2 = $stmt->get_result();
+								$row2 = $result2->fetch_assoc();
+							?>
+								<p class="mt-2">Price Start at:</p>
+								<p class="text-[0.9em] border-2 rounded-md px-4  label my-1"><span><strong>PHP </strong> <?= $row2['unit_price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span></p>
+						</div>	
 					</div>
-					</a>
-				</div>
-		</div>
-		<?php endwhile; ?>
-		<button class="flex mt-14 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
-			Load More
-		</button>
+				</a>
+			</div>
+			<?php endwhile; ?>
+			<button class="flex mt-14 col-span-5 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
+				Load More
+			</button>
 
-		<div class="absolute flex flex-col h-fit w-fit -mt-[2vh] left-0 -ml-[3vw] z-50">
-			<img class="flex w-[320px] shrink-0 -ml-[5vw] mt-[0vh] rotate-90" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-			<img class="flex w-[320px] shrink-0 -ml-[5vw] -mt-[5vh] rotate-90 transform scale-x-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-			<img class="flex w-[320px] shrink-0 -ml-[7vw] -mt-[10vh] rotate-90 transform scale-x-[-1] scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-			<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[12vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-		</div>
+			<div class="absolute flex flex-col h-fit w-fit -mt-[2vh] left-0 -ml-[3vw] z-50">
+				<img class="flex w-[320px] shrink-0 -ml-[5vw] mt-[0vh] rotate-90" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+				<img class="flex w-[320px] shrink-0 -ml-[5vw] -mt-[5vh] rotate-90 transform scale-x-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+				<img class="flex w-[320px] shrink-0 -ml-[7vw] -mt-[10vh] rotate-90 transform scale-x-[-1] scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+				<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[12vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+			</div>
 
-		<div class="absolute flex flex-col h-fit w-fit -mt-[2vh] right-0 -mr-[3vw] transform scale-x-[-1] scale-y-[-1] z-50">
-			<img class="flex w-[320px] shrink-0 -ml-[5vw] mt-[0vh] rotate-90 transform scale-x-[-1] scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-			<img class="flex w-[320px] shrink-0 -ml-[5vw] -mt-[5vh] rotate-90 transform scale-x-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-			<img class="flex w-[320px] shrink-0 -ml-[7vw] -mt-[10vh] rotate-90 scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
-			<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[10vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+			<div class="absolute flex flex-col h-fit w-fit -mt-[2vh] right-0 -mr-[3vw] transform scale-x-[-1] scale-y-[-1] z-50">
+				<img class="flex w-[320px] shrink-0 -ml-[5vw] mt-[0vh] rotate-90 transform scale-x-[-1] scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+				<img class="flex w-[320px] shrink-0 -ml-[5vw] -mt-[5vh] rotate-90 transform scale-x-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+				<img class="flex w-[320px] shrink-0 -ml-[7vw] -mt-[10vh] rotate-90 scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+				<img class="flex w-[320px] shrink-0 -ml-[2vw] -mt-[10vh] rotate-90 transform scale-y-[-1]" src="./assets/Flying-green-leaves-vector-PNG.png" alt="">
+			</div>
+
 		</div>
 	</div>
-</div>
 	<!-- About Us -->
 	<div class="relative px-[19rem] pt-[10vh] pb-[10vh] bg-[#f7f2ec]">
 		<div id="about-us" class="absolute -mt-20 top-0"></div>
@@ -240,12 +242,12 @@
 			</div>
 			<div class="flex flex-col w-[23vw] items-center">
 				<img class="w-28 h-28" src="./assets/icon/fast-delivery.png" alt="">
-				<p class="text-center font-bold text-xl">Price lower than others</p>
-				<p class="text-center text-[#707070] opacity-[0.58] text-[1em]">Enjoy the added convenience of free delivery, bringing the delightful flavors of our dates and nuts directly to your doorstep without any additional cost.</p>
+				<p class="text-center font-bold text-xl">Delivery Anywhere in the Phillippines</p>
+				<p class="text-center text-[#707070] opacity-[0.58] text-[1em]">We offer convenient delivery services, ensuring that our delightful assortment of dates and nuts can be enjoyed anywhere in the Philippines.</p>
 			</div>
 			<div class="flex flex-col w-[23vw] items-center">
 				<img class="w-28 h-28" src="./assets/icon/commission.png" alt="">
-				<p class="text-center font-bold text-xl">Delivery Anywhere</p>
+				<p class="text-center font-bold text-xl">Price lower than others</p>
 				<p class="text-center text-[#707070] opacity-[0.58] text-[1em]">Experience the satisfaction of shopping with us as we offer prices that are consistently lower than our competitors, ensuring you receive exceptional value without compromising on quality.</p>
 			</div>
 		</div>

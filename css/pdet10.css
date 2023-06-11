@@ -2,7 +2,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 body{
@@ -77,6 +76,9 @@ p{
 	margin: auto;
 	padding-left: 25px;
 	padding-right: 25px;
+	background-image: url('../images/bg-light.png');
+	background-position: center;
+	background-size: cover;
 }
 .message{
     background-color: #1c9105;

@@ -14,11 +14,11 @@ $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' wit
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title></title>
-   <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+
    <!-- <link rel="stylesheet" type="text/css" href="css/homestyle1.css"> -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- rating -->
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
-
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -77,11 +77,11 @@ $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' wit
 <style>
    *,
    body {
-      font-family: 'Ubuntu'
+      font-family: 'Poppins', sans-serif;
    }
 
    h5 {
-      font-family: 'Ubuntu';
+      font-family: 'Poppins', sans-serif;
       color: #abff5f;
       margin-left: 30px;
       border-left: 2px solid;
@@ -97,7 +97,7 @@ $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' wit
    }
 
    nav ul li:hover {
-      background-color: none;
+      /* background-color: none; */
    }
 
    .logos>a>img {
@@ -143,8 +143,8 @@ $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' wit
    }
 
    .floral-pattern {
-      background-image: url('./assets/seamless-floral-boho-style-removebg-preview.png');
-      background-size: 300px 300px;
+      background-image: url('./images/pats.png');
+      background-size: 40%;
       background-repeat: repeat;
    }
 </style>

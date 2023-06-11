@@ -8,7 +8,7 @@
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div id="contact-us" class="footer">
+    <div id="contact-us" class="footer border-t border-gray-300">
 		<div class="container" style="padding-top: 0px">
 			<div class="footer flex foot px-32">
 				<div style="margin-right: 400px">
