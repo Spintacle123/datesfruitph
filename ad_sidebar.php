@@ -40,9 +40,9 @@
 <body>
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-    
+
     <ul class="sidebar-nav" id="sidebar-nav">
-      
+
       <li class="nav-item">
         <a class="nav-link " href="ad_index.php">
           <i class="ri ri-dashboard-fill"></i>
@@ -50,14 +50,22 @@
         </a>
       </li>
 
-      <hr></hr>
+      <hr>
+      </hr>
 
-      <?php if ($_SESSION['role' ] == "Admin") { ?>
-        
+      <?php if ($_SESSION['role'] == "Admin") { ?>
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="ad_addproducts.php">
             <i class="bx bx-coffee-togo"></i>
             <span>Products</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="ad_addgiftings.php">
+            <i class="bx bx-coffee-togo"></i>
+            <span>Giftings</span>
           </a>
         </li>
 
@@ -67,7 +75,7 @@
             <span>Categories</span>
           </a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="ad_accounts.php">
             <i class="ri-user-settings-fill"></i>
@@ -88,7 +96,7 @@
 
   </aside>
   <!-- End Sidebar-->
- 
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

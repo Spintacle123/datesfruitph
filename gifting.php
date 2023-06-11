@@ -90,7 +90,7 @@ $result1 = mysqli_query($conn, $query);
 				$prod_per_page = 5;
 				$start_from = ($page - 1) * $prod_per_page;
 
-				$item = $conn->prepare("SELECT * FROM giftings order by rand() limit $start_from,$prod_per_page ");
+				$item = $conn->prepare("SELECT * FROM giftings WHERE status = 1 order by rand() limit $start_from,$prod_per_page");
 				$item->execute();
 				$result = $item->get_result();
 				while ($row = $result->fetch_assoc()) :
