@@ -109,15 +109,28 @@ error_reporting(0);
                   <div class="row mb-3">
                     <div class="col-sm-12">
                       <label>Description: </label>
-                      <textarea type="text" name="description" class="form-control" value="<?= $description; ?>" required></textarea>
+                      <textarea type="text" name="description" class="form-control" value="<?= $description; ?>"><?php echo htmlspecialchars($description); ?></textarea>
                     </div>
                   </div>
 
-                  <!-- <div class="row mb-3">
-                              <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="images">
-                              </div>
-                            </div> -->
+                  <div class="row mb-3">
+                    <div class="col-sm-12">
+                      <label>Thumbnail Picture: </label>
+                      <input class="form-control" type="file" name="image">
+                      <input type="hidden" name="oldimage" value="<?= $oldimage; ?>">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-sm-12">
+                      <label>Additional Picture (4): </label>
+                      <input class="form-control" type="file" name="images[]" multiple>
+                      <input type="hidden" name="oldimage1" value="<?= $oldimage1; ?>">
+                      <input type="hidden" name="oldimage2" value="<?= $oldimage2; ?>">
+                      <input type="hidden" name="oldimage3" value="<?= $oldimage3; ?>">
+                      <input type="hidden" name="oldimage4" value="<?= $oldimage4; ?>">
+                    </div>
+                  </div>
 
                   <div class="row mb-3">
                     <div class="col-sm-4">

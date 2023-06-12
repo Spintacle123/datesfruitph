@@ -7,7 +7,11 @@ $update = false;
 $id = "";
 $name = "";
 $price = "";
-// $image = "";
+$oldimage = "";
+$oldimage1 = "";
+$oldimage2 = "";
+$oldimage3 = "";
+$oldimage4 = "";
 $code = "";
 $ccode = "";
 $cdescription = "";
@@ -84,6 +88,11 @@ if (isset($_GET['edit'])) {
 	$name = $row['name'];
 	$price = $row['price'];
 	$code = $row['code'];
+	$oldimage = $row['image'];
+	$oldimage1 = $row['image1'];
+	$oldimage2 = $row['image2'];
+	$oldimage3 = $row['image3'];
+	$oldimage4 = $row['image4'];
 	$description = $row['description'];
 
 	$update = true;
@@ -91,45 +100,69 @@ if (isset($_GET['edit'])) {
 
 //update products
 if (isset($_POST['update'])) {
+	$imageCount = count($_FILES['images']['name']);
+	for ($i = 0; $i < $imageCount; $i++) {
+		$images[$i] = $_FILES['images']['name'][$i];
+		$validImageExtension = ['jpg', 'jpeg', 'png'];
+		$imageExtension = explode('.', $images[$i]);
+		$imageExtension = strtolower(end($imageExtension));
+	}
 
-	// $image=$_FILES['images']['name'];    
-	// $validImageExtension = ['jpg', 'jpeg', 'png'];
-	// $imageExtension = explode('.', $image);
-	// $imageExtension = strtolower(end($imageExtension));
+	//thumbnail picture
+	if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != "")) {
 
-	// if(!in_array($imageExtension, $validImageExtension)){
-	// 	header('location:ad_addproducts.php');
-	// 	$_SESSION['response']="Invalid Image File Extension!!, only accept .jpg, .jpeg, .png";
-	// 	$_SESSION['res_type']="success";
-	// }else{
-	$id = $_POST['id'];
-	$name = $_POST['name'];
-	$code = $_POST['code'];
-	$price = $_POST['price'];
-	$description = $_POST['description'];
+		$image = $_FILES['image']['name'];
+		$validImageExtension = ['jpg', 'jpeg', 'png'];
+		$imageExtension = explode('.', $image);
+		$imageExtension = strtolower(end($imageExtension));
 
-	// if(isset($_FILES['images']['name'])&&($_FILES['images']['name']!="")){
-	// 	$newimage="images/".$_FILES['images']['name'];
-	// 	unlink($oldimage);
-	// 	move_uploaded_file($_FILES['images']['tmp_name'], $newimage);
-	// }
-	// else{
-	// 	$result = $conn->query("SELECT image FROM giftings WHERE id=$id");
-	// 	$row = $result->fetch_assoc();
+		$oldimage = "images/" . $image;
+	} else {
+		$oldimage = $_POST['oldimage'];
 
-	// 	$newimage=$row['image'];
-	// }
+		$validImageExtension = ['jpg', 'jpeg', 'png'];
+		$imageExtension = explode('.', $oldimage);
+		$imageExtension = strtolower(end($imageExtension));
+	}
 
 
-	$query = "UPDATE giftings SET name=?,code=?,price=?,description=? WHERE id=?";
-	$stmt = $conn->prepare($query);
-	$stmt->bind_param("ssssi", $name, $code, $price, $description, $id);
-	$stmt->execute();
+	if (!in_array($imageExtension, $validImageExtension)) {
+		header('location:ad_addgiftings.php');
+		$_SESSION['response'] = "Invalid Image File Extension!!, only accept .jpg, .jpeg, .png";
+		$_SESSION['res_type'] = "success";
+	} else {
+		$id = $_POST['id'];
+		$name = $_POST['name'];
+		$code = $_POST['code'];
+		$price = $_POST['price'];
+		$description = $_POST['description'];
 
-	$_SESSION['response'] = "Giftings Details Updated Successfully!";
-	$_SESSION['res_type'] = "primary";
+		$newimage = $oldimage;
 
-	header('location:ad_addgiftings.php');
+		if (count($_FILES['images']['name']) > 1) {
+			// unlink($oldimage);
+			for ($i = 0; $i < 4; $i++) {
+				$newimages[$i] = "images/" . $images[$i];
+			}
+		} else {
+			for ($i = 0; $i < 4; $i++) {
+				$newimages[$i] = $_POST['oldimage' . $i + 1];
+			}
+		}
+
+		move_uploaded_file($_FILES['images']['tmp_name'][$i], $newimages[$i]);
+		move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
+
+		$query = "UPDATE giftings SET name=?,code=?,price=?,description=?,image=?,image1=?,image2=?,image3=?,image4=? WHERE id=?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("sssssssssi", $name, $code, $price, $description, $newimage, $newimages[0], $newimages[1], $newimages[2], $newimages[3], $id);
+		$stmt->execute();
+
+		$_SESSION['response'] = "Giftings Details Updated Successfully!";
+		$_SESSION['res_type'] = "primary";
+
+		header('location:ad_addgiftings.php');
+	}
 }
 
 //get details
