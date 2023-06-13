@@ -38,17 +38,6 @@ $result1 = mysqli_query($conn, $query);
 			</div>
 		</div>
 
-		<!-- <div class="row row-2">
-			<h2 class="title">All Products</h2>
-
-			<select name="fetchval" id="fetchval">
-				<option value="" selected disabled>Categories</option>
-				<?php while ($row1 = mysqli_fetch_array($result1)) :; ?>
-					<option> <?php echo $row1[1]; ?> </option>
-				<?php endwhile; ?>
-			</select>
-		</div> -->
-
 		<div class="sort">
 			<div class="items">
 				<?php
@@ -59,7 +48,7 @@ $result1 = mysqli_query($conn, $query);
 					$page = 1;
 				}
 
-				$prod_per_page = 5;
+				$prod_per_page = 4;
 				$start_from = ($page - 1) * $prod_per_page;
 
 				$item = $conn->prepare("SELECT * FROM giftings WHERE status = 1 order by rand() limit $start_from,$prod_per_page");
@@ -67,14 +56,14 @@ $result1 = mysqli_query($conn, $query);
 				$result = $item->get_result();
 				while ($row = $result->fetch_assoc()) :
 				?>
-					<div class="card animate__animated animate__bounceInUp animate__delay-2s rounded-tr-[4rem] border rounded-bl-[4rem]">
+					<div class="card animate__animated animate__bounceInUp animate__delay-2s rounded-tr-[2rem] border rounded-bl-[4rem]">
 						<a href="product-giftings.php?exclusive-details=<?= $row['id']; ?>">
 							<?php if ($row['purchased'] == 0) { ?>
 								<div class="pb-3"><span class="label-new">New</span></div>
 							<?php } ?>
 							<img class="" src="<?= $row['image'] ?>">
 							<p><?= $row['name'] ?></p>
-							<span><strong>$ </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/day</span></span>
+							<span><strong>PHP: </strong> <?= $row['price'] ?></span>
 							<div class="flex justify-end -mr-[2rem]">
 								<div class="p-[0.2rem] border rounded-tr-lg rounded-bl-lg bg-[#EABF22] w-fit">
 									<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24">
@@ -82,9 +71,6 @@ $result1 = mysqli_query($conn, $query);
 									</svg>
 								</div>
 							</div>
-
-
-							<div><small>Starts at</small></div>
 							<?php
 							$query = "SELECT * FROM products_units WHERE product_id =?";
 							$stmt = $conn->prepare($query);
@@ -93,7 +79,7 @@ $result1 = mysqli_query($conn, $query);
 							$result2 = $stmt->get_result();
 							$row2 = $result2->fetch_assoc();
 							?>
-							<span><strong>PHP </strong> <?= $row['price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span>
+							
 
 							<!-- <div class="ratings">
 								<span>Rating</span>

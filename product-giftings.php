@@ -11,7 +11,7 @@ error_reporting(0);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Product Gifting</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/pdet10.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/pdetails1.css">
+	<link rel="stylesheet" type="text/css" href="css/pdetails2.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
 
@@ -26,32 +26,31 @@ error_reporting(0);
 	<!------- exclusive product details ------->
 	<div class="small-container single-product">
 		<div id="message"></div>
-		<div class="row">
-			<div class="col-2">
-				<img src="<?= $dimage; ?>" width="100%" id="ProductImg" style="padding-bottom: 7px;">
+		<div class="row mb-12 mt-24">
+			<div class="col-2 -ml-48">
+				<img src="<?= $dimage; ?>" class="h-[28rem] w-[32rem] rounded-[2rem] mb-2">
 
 				<div class="small-img-row">
-					<div class="small-img-col">
-						<img src="<?= $dimage1; ?>" width="100%" class="small-img">
+					<div class="small-img-col ml-2">
+						<img src="<?= $dimage1; ?>" class="small-img rounded-[1rem]">
 					</div>
-					<div class="small-img-col">
-						<img src="<?= $dimage2; ?>" width="100%" class="small-img">
+					<div class="small-img-col ml-2">
+						<img src="<?= $dimage2; ?>" class="small-img rounded-[1rem]">
 					</div>
-					<div class="small-img-col">
-						<img src="<?= $dimage3; ?>" width="100%" class="small-img">
+					<div class="small-img-col ml-2">
+						<img src="<?= $dimage3; ?>" class="small-img rounded-[1rem]">
 					</div>
-					<div class="small-img-col">
-						<img src="<?= $dimage4; ?>" width="100%" class="small-img">
+					<div class="small-img-col ml-2">
+						<img src="<?= $dimage4; ?>" class="small-img rounded-[1rem]">
 					</div>
 				</div>
 			</div>
 
 			<div class="col-2">
-				<h2><?= $dname; ?></h2>
-				<h4><strong>₽</strong> <?= $dprice; ?></h4>
-				<h2>Product Details <i class="fa fa-indent"></i></h2>
-				<br>
-				<p><?= $ddescription; ?></p>
+				<h2 class="font-medium"><?= $dname; ?></h2>
+				<h4 class=" "><span class="text-red-500">PHP:  </span> <?= $dprice; ?></h4>
+				<h6 class=" font-bold mt-32">Product Details:</h6>
+				<p class=" text-black font-normal text-lg"><?= $ddescription; ?></p>
 			</div>
 		</div>
 	</div>
@@ -97,5 +96,8 @@ error_reporting(0);
 
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 </body>
+
+<style>
+</style>
 
 </html>
