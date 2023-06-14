@@ -157,7 +157,6 @@
 		$cclass=$row['class'];
 		$cname=$row['name'];
 		$cprice=$row['price'];
-		$ccapital=$row['capital'];
 		$ccode=$row['code'];
 		$cprod_qntty=$row['prod_qntty'];
 		$description=$row['description'];

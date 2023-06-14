@@ -30,7 +30,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>STC-Admin Accounts</title>
+  <title>Admin Accounts</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -90,23 +90,23 @@
 
     <section class="section">
             
-        <div class="row">
+        <div class="row mt-12mt-12">
             <div class="card col-md-8 mx-auto">
                 <div class="row">
                     <div class="card-body col-md-7"><br>
-                        <a href="ad_accounts.php" type="button" class="btn btn-primary" style="float: right;">
-                        <i class="bx bxs-left-arrow-alt"></i></a>
-                        <img src="<?= $cimage; ?>" width="120" class="rounded-circle" style="border-radius: 1rem; margin-left:115px; border: 5px solid grey"><br>
-                        <h5 class="text-center"><b><?= $cname; ?></b></h5>
-                        <br>
-                        <h6><b>Username:</b> <?= $cusername; ?></h6>
-                        <h6><b>Email:</b> <?= $cemail; ?></h6>
-                        <h6><b>Phone:</b> <?= $cphone; ?></h6>
-                        <h6><b>Address:</b> <?= $caddress; ?></h6>
-                        <h6><b>Role:</b> <?= $crole; ?></h6>
+                      <a href="ad_accounts.php" type="button" class="btn btn-primary" style="float: right;">
+                      <i class="bx bxs-left-arrow-alt"></i></a>
+                      
+                      <h5 class="text-center mt-5"><b><?= $cname; ?></b></h5>
+                      <br>
+                      <h6 class="text-center"><b>Username:</b> <?= $cusername; ?></h6>
+                      <h6 class="text-center"><b>Email:</b> <?= $cemail; ?></h6>
+                      <h6 class="text-center"><b>Phone:</b> <?= $cphone; ?></h6>
+                      <h6 class="text-center"><b>Address:</b> <?= $caddress; ?></h6>
+                      <h6 class="text-center"><b>Role:</b> <?= $crole; ?></h6>
                     </div>
-
-                    <div class="card-body col-md-5" style="background-image: url('images/gg.png'); background-size: 100% 100%;">
+                    <div class="card-body col-md-5">
+                      <img src="<?= $cimage; ?>" class="h-[20rem] w-[20rem] rounded-full px-3 py-3">
                     </div>
                 </div>
             </div>
@@ -138,6 +138,8 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
 
   <script type="text/javascript">

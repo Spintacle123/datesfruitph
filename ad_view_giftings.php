@@ -80,12 +80,15 @@
         <div class="row">
             <div class="card col-md-8 mx-auto">
                 <div class="row">
+                    <div class="card-body col-md-5">
+                      <img src="<?= $cimage; ?>" class="h-[28rem] w-[32rem] rounded-[2rem] px-3 py-3">
+                    </div>
                     <div class="card-body col-md-7"><br>
-                        <a href="ad_addgiftings.php" type="button" class="btn btn-primary" style="float: right;">
-                        <i class="bx bxs-left-arrow-alt"></i></a>
-                        <img src="<?= $cimage; ?>" width="120" style="border-radius: 1rem; margin-left:115px"><br><br>
-                        <p><?= $cname; ?></p>
-                        <h6><?= $cdescription; ?></h6>
+                      <a href="ad_addgiftings.php" type="button" class="btn btn-primary" style="float: right;">
+                        <i class="bx bxs-left-arrow-alt"></i>
+                      </a>
+                      <h2 class=" mt-20 mb-3"><?= $cname; ?></h2>
+                      <h6><?= $cdescription; ?></h6>
                     </div>
                 </div>
             </div>
@@ -101,14 +104,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-    <?php 
-				$date = date('Y');
-				echo '<p class="copyright">Copyright '.$date.' - All Rights Reserved</p>';
-			?>
-    </div>
-  </footer>
+  <?php include("ad_footer.php") ?>
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -122,6 +118,8 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
   
 </body>
 

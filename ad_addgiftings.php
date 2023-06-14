@@ -80,7 +80,7 @@ include 'ad_action_giftings.php';
           $result = $stmt->get_result();
           ?>
           <div class="card-body">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered" style="float: right">
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#verticalycentered" style="float: right">
               <i class="bi-plus-square"></i> New Gifting
             </button><br>
             <table id="data-table" class="table">
@@ -226,6 +226,8 @@ include 'ad_action_giftings.php';
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {

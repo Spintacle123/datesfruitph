@@ -82,19 +82,16 @@
             <div class="card col-md-8 mx-auto">
                 <div class="row">
                     <div class="card-body col-md-7"><br>
-                        <a href="ad_addproducts.php" type="button" class="btn btn-primary" style="float: right;">
-                        <i class="bx bxs-left-arrow-alt"></i></a>
-                        <img src="<?= $cimage; ?>" width="120" style="border-radius: 1rem; margin-left:115px"><br><br>
-                        <h5 class="text-center"><b><?= $cname; ?></b></h5>
-                        <h6 class="text-center"><b>Category:</b> <?= $cclass; ?></h6>
-                        <h6 class="text-center"><b>Price: Php: </b> <?= $cprice; ?></h6>
-                        <h6 class="text-center"><b>Capital:</b> <?= $ccapital; ?></h6>
-                        <h6 class="text-center"><b>Quantity:</b> <?= $cprod_qntty; ?></h6>
-                        <h6 class="text-center"><b>Code:</b> <?= $ccode; ?></h6>
+                        <a href="ad_addproducts.php" type="button" class="btn btn-primary mb-5" style="float: right;">
+                        <i class="bx bxs-left-arrow-alt "></i></a>
+                        <h2 class="text-center mb-12 mt-12"><b><?= $cname; ?></b></h2>
+                        <h6 class="text-center"><b>Category:   &nbsp&nbsp&nbsp</b> <?= $cclass; ?></h6>
+                        <h6 class="text-center"><b>Price: Php: &nbsp&nbsp&nbsp</b> <?= $cprice; ?>.00</h6>
+                        <h6 class="text-center"><b>Quantity:  &nbsp&nbsp&nbsp</b> <?= $cprod_qntty; ?></h6>
+                        <h6 class="text-center"><b>Code:   &nbsp&nbsp&nbsp</b> <?= $ccode; ?></h6>
                     </div>
-
-                    <div class="card-body col-md-5" style="background-image: url('images/logo.jpg'); background-size: 100% 100%;"><br><br>
-                      <!-- <img src="<?= $cimage; ?>" width="140" height="300" style="border-radius: 1rem;"> -->
+                    <div class="card-body col-md-5">
+                      <img src="<?= $cimage; ?>" class="h-[26rem] w-[26rem] rounded-[2rem] px-3 py-3 mt-2 -ml-5">
                     </div>
                 </div>
             </div>
@@ -110,17 +107,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-    <?php 
-				$date = date('Y');
-				echo '<p class="copyright">Copyright '.$date.' - All Rights Reserved</p>';
-			?>
-    </div>
-    <div class="credits">
-      <a href="https://www.facebook.com/streettaqueriacafe/?ref=page_internal">Street Taqueria and Cafe</a>
-    </div>
-  </footer>
+  <?php include("ad_footer.php") ?>
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -136,6 +123,8 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
 
   <script type="text/javascript">

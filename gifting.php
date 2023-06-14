@@ -14,7 +14,7 @@ $result1 = mysqli_query($conn, $query);
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Menu</title>
-	<link rel="stylesheet" type="text/css" href="css/prod17.css">
+	<link rel="stylesheet" type="text/css" href="css/prod18.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- addtocart -->
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600;1,700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
@@ -79,24 +79,6 @@ $result1 = mysqli_query($conn, $query);
 							$result2 = $stmt->get_result();
 							$row2 = $result2->fetch_assoc();
 							?>
-							
-
-							<!-- <div class="ratings">
-								<span>Rating</span>
-								<div class="flex">
-									<?php
-									if ($row['rating']) {
-										for ($i = 0; $i < round($row['rating']); $i++) {
-											echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="main_star">
-											<path fill="#bdcd23" d="m12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72l3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41l-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18l-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z" />
-										</svg>';
-										}
-									} else {
-										echo 'No Rating Found';
-									}
-									?>
-								</div>
-							</div> -->
 						</a>
 					</div>
 				<?php endwhile; ?>
@@ -107,26 +89,28 @@ $result1 = mysqli_query($conn, $query);
 	<br><br>
 	<div class="page-btn">
 		<!------- Pagination ------->
-		<?php
-		$pr_query = "select * from giftings";
-		$pr_result = mysqli_query($conn, $pr_query);
-		$total_record = mysqli_num_rows($pr_result);
+		<div class=" flex justify-center">
+			<?php
+			$pr_query = "select * from giftings";
+			$pr_result = mysqli_query($conn, $pr_query);
+			$total_record = mysqli_num_rows($pr_result);
 
-		$total_pages = ceil($total_record / $prod_per_page);
+			$total_pages = ceil($total_record / $prod_per_page);
 
 
-		if ($page > 1) {
-			echo "<a href='gifting.php?page=" . ($page - 1) . "'>&#129144</a>";
-		}
+			if ($page > 1) {
+				echo "<a class='arrow -mr-[1.5rem] href='gifting.php?page=" . ($page - 1) . "'>&#129144</a>";
+			}
 
-		for ($i = 1; $i < $total_pages; $i++) {
-			echo "<a href='gifting.php?page=" . $i . "'>$i</a>";
-		}
+			for ($i = 1; $i < $total_pages; $i++) {
+				echo "<a class='-mr-[1.5rem]' href='gifting.php?page=" . $i . "'>$i</a>";
+			}
 
-		if ($i > $page) {
-			echo "<a href='gifting.php?page=" . ($page + 1) . "'>&#129146</a>";
-		}
-		?>
+			if ($i > $page) {
+				echo "<a class='arrow' href='gifting.php?page=" . ($page + 1) . "'>&#129146</a>";
+			}
+			?>
+		</div>
 	</div>
 	</div>
 

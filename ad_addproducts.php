@@ -2,7 +2,7 @@
   // include 'config.php';
   include 'ad_action_product.php';
 
-  // error_reporting(0);
+  error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +79,7 @@
 			        $result = $stmt->get_result();
 			      ?>
             <div class="card-body">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered" style="float: right">
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#verticalycentered" style="float: right">
               <i class="bi-plus-square"></i> New Products
             </button><br>
                     <table id="data-table" class="table">
@@ -141,7 +141,6 @@
                                   <td> 
                                     <a href="ad_view_products.php?details=<?= $row['id']; ?>" type="button" class="btn btn-info" ><i class="bi bi-eye"></i></a>
                                     <a href="ad_edit_products.php?edit=<?= $row['id']; ?>" type="button" class="btn btn-success"><i class="bx bxs-edit"></i></a>
-                                    <a href="ad_action_product.php?delete=<?= $row['id']; ?>" type="button" class="btn btn-danger" onclick="return confirm('Do you want delete this record?');"><i class="bx bxs-trash"></i></a>
                                   </td>
                                 </tr>
                             <?php } ?>

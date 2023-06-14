@@ -26,9 +26,9 @@ error_reporting(0);
 	<!------- exclusive product details ------->
 	<div class="small-container single-product">
 		<div id="message"></div>
-		<div class="row mb-12 mt-24">
-			<div class="col-2 -ml-48">
-				<img src="<?= $dimage; ?>" class="h-[28rem] w-[32rem] rounded-[2rem] mb-2">
+		<div class="row mb-12 mt-10">
+			<div class="col-2">
+				<img src="<?= $dimage; ?>" class="h-[28rem] w-[32rem] rounded-[2rem] mb-2" id="ProductImg">
 
 				<div class="small-img-row">
 					<div class="small-img-col ml-2">
@@ -48,7 +48,7 @@ error_reporting(0);
 
 			<div class="col-2">
 				<h2 class="font-medium"><?= $dname; ?></h2>
-				<h4 class=" "><span class="text-red-500">PHP:  </span> <?= $dprice; ?></h4>
+				<h4 class=" "><span class="text-red-500">PHP:  </span> <?= $dprice; ?>.00</h4>
 				<h6 class=" font-bold mt-32">Product Details:</h6>
 				<p class=" text-black font-normal text-lg"><?= $ddescription; ?></p>
 			</div>

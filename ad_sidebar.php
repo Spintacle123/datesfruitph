@@ -29,6 +29,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- Iconify Icons -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.3.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -43,10 +46,10 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
+      <li class="nav-item mb-5">
         <a class="nav-link " href="ad_index.php">
-          <i class="ri ri-dashboard-fill"></i>
-          <span>Dashboard</span>
+          <iconify-icon icon="ic:twotone-dashboard" style="color: brown;" width="30" height="30"></iconify-icon>
+          <span class="ml-5">Dashboard</span>
         </a>
       </li>
 
@@ -57,36 +60,29 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="ad_addproducts.php">
-            <i class="bx bx-coffee-togo"></i>
-            <span>Products</span>
+            <iconify-icon icon="mdi:seed" style="color: brown;" width="30" height="30"></iconify-icon>
+            <span class="ml-5">Products</span>
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="ad_addgiftings.php">
-            <i class="bx bx-coffee-togo"></i>
-            <span>Giftings</span>
+            <iconify-icon icon="twemoji:package" width="30" height="30"></iconify-icon>
+            <span class="ml-5">Giftings</span>
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="ad_categories.php">
-            <i class="ri ri-file-list-3-line"></i>
-            <span>Categories</span>
+            <iconify-icon icon="carbon:categories" style="color: brown;" width="30" height="30"></iconify-icon>
+            <span class="ml-5">Categories</span>
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="ad_accounts.php">
-            <i class="ri-user-settings-fill"></i>
-            <span>Accounts</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="ad_inquiries.php">
-            <i class="ri-user-settings-fill"></i>
-            <span>Inquiries</span>
+            <iconify-icon icon="mdi:accounts-group-outline" style="color: brown;" width="30" height="30"></iconify-icon>
+            <span class="ml-5">Accounts</span>
           </a>
         </li>
 
@@ -112,6 +108,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
 </body>
 

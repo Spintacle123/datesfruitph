@@ -324,17 +324,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-    <?php 
-				$date = date('Y');
-				echo '<p class="copyright">Copyright '.$date.' - All Rights Reserved</p>';
-			?>
-    </div>
-    <div class="credits">
-      <a href="https://www.facebook.com/streettaqueriacafe/?ref=page_internal">Street Taqueria and Cafe</a>
-    </div>
-  </footer>
+  <?php include("ad_footer.php") ?>
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

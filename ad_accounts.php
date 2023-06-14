@@ -88,7 +88,7 @@
 			        $result = $stmt->get_result();
 			      ?>
             <div class="card-body">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered" style="float:right">
+              <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#verticalycentered" style="float:right">
                 <i class="bi-person-plus-fill"></i> New Accounts
               </button>
               <br>
@@ -236,7 +236,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <<?php include("ad_footer.php") ?>
+  <?php include("ad_footer.php") ?>
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
