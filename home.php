@@ -151,7 +151,7 @@
 
 	<!------- "Featured Products" ------->
 	<div class="relative px-[19rem] flex flex-col  pt-[5vh] pb-[5vh] bg-[#e8e4de]">
-		<h2 class="text-[2em] font-bold text-[#DC7105] mb-6">Featured Products</h2>
+		<h2 class="text-[2em] font-bold text-[#DC7105] mb-6 text-center">Featured Products</h2>
 		<div class="row grid grid-cols-5 products justify-start">
 			<?php
 			include 'config.php';
@@ -409,7 +409,6 @@
 	}
 
 	h2 {
-
 		font-family: 'Poppins', sans-serif;
 	}
 

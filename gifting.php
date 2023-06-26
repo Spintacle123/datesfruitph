@@ -33,7 +33,7 @@ $result1 = mysqli_query($conn, $query);
 
 	<div class="small-container">
 		<div class="flex justify-start">
-			<div class="flex justify-start flex-row space-x-[19rem] pt-[5rem]">
+			<div class="flex justify-start flex-row space-x-[40rem] pt-[6rem]">
 				<h1>Product Giftings</h1>
 			</div>
 		</div>
@@ -56,7 +56,7 @@ $result1 = mysqli_query($conn, $query);
 				$result = $item->get_result();
 				while ($row = $result->fetch_assoc()) :
 				?>
-					<div class="card animate__animated animate__bounceInUp animate__delay-2s rounded-tr-[2rem] border rounded-bl-[4rem]">
+					<div class="card animate__animated animate__bounceInUp animate__delay-3s rounded-tr-[2rem] border rounded-bl-[4rem]">
 						<a href="product-giftings.php?exclusive-details=<?= $row['id']; ?>">
 							<?php if ($row['purchased'] == 0) { ?>
 								<div class="pb-3"><span class="label-new">New</span></div>
@@ -221,7 +221,7 @@ $result1 = mysqli_query($conn, $query);
 		gap: 10px;
 		margin-top: 40px;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
+		display: flex;
 	}
 
 
@@ -233,6 +233,7 @@ $result1 = mysqli_query($conn, $query);
 
 	.items>div {
 		width: calc(70%/4);
+		justify-content: center;
 	}
 
 	.garden-items {
