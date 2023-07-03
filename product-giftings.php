@@ -48,7 +48,7 @@ error_reporting(0);
 
 			<div class="col-2">
 				<h2 class="font-medium"><?= $dname; ?></h2>
-				<h4 class=" "><span class="text-red-500">PHP:  </span> <?= $dprice; ?>.00</h4>
+				<h4 class=" "><span class="text-red-500">PHP: </span> <?= number_format($dprice, 2); ?></h4>
 				<h6 class=" font-bold mt-32">Product Details:</h6>
 				<p class=" text-black font-normal text-lg"><?= $ddescription; ?></p>
 			</div>

@@ -33,7 +33,7 @@
 		<div id="home" class="absolute top-0 -mt-20"></div>
 		<div class="relative z-50">
 			<div class="absolute flex flex-col justify-center z-40 mt-28 mr-[50vw] w-[35vw] h-[50vh] top-0 right-0 flex-wrap">
-				<h1 class="text-[3.75rem] tracking-[0.034rem] leading-[4.375rem] font-bold text-white">A Delectable and Nutritious Fruit</h1>
+				<h1 class="text-[3.75rem] tracking-[0.034rem] leading-[4.375rem] font-semibold text-white">A Delectable and Nutritious Fruit</h1>
 				<p class="opacity-80 font-normal text-white text-[1.7rem]">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
 				<button class="flex mt-5 text-white bg-[#FFD700] w-44 h-9 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
 			</div>
@@ -151,7 +151,7 @@
 
 	<!------- "Featured Products" ------->
 	<div class="relative px-[19rem] flex flex-col  pt-[5vh] pb-[5vh] bg-[#e8e4de]">
-		<h2 class="text-[2em] font-bold text-[#DC7105] mb-6 text-center">Featured Products</h2>
+		<h2 class="text-[2em] font-semibold text-center  text-[#DC7105] mb-6">Featured Products</h2>
 		<div class="row grid grid-cols-5 products justify-start">
 			<?php
 			include 'config.php';
@@ -162,25 +162,29 @@
 			?>
 			<div class="h-max">
 				<a href="product-details.php?product-details=<?= $row['id']; ?>" class="w-full">
-					<div class="hover:opacity-90 hover:rounded-tl-[2em] hover:rounded-br-[2em] hover:rounded-tr-[0em] hover:rounded-bl-[0em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-4 py-3 items-start justify-left h-max rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
-						<div class="w-full flex flex-col justify-center items-center m-auto">
-							<img src="<?= $row['image'] ?>" class="h-[200px] w-[200px] m-auto">
-						</div>
-						<p class="text-[1.1em] font-bold"> <?= $row['name'] ?></p>
-						<div class=" text-white rounded-[5px] px-[5px] w-max">
-							<?php
-								$query = "SELECT * FROM products_units WHERE product_id =?";
-								$stmt = $conn->prepare($query);
-								$stmt->bind_param("i", $row['id']);
-								$stmt->execute();
-								$result2 = $stmt->get_result();
-								$row2 = $result2->fetch_assoc();
-							?>
-								<p class="mt-2">Price Start at:</p>
-								<p class="text-[0.9em] border-2 rounded-md px-4  label my-1"><span><strong>PHP </strong> <?= $row2['unit_price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span></p>
-						</div>	
-					</div>
-				</a>
+ 				<div class="hover:opacity-90 hover:rounded-tl-[2em] hover:rounded-br-[2em] hover:rounded-tr-[0em] hover:rounded-bl-[0em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-4 py-3 items-start justify-left h-max rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
+    			<div class="w-full flex flex-col justify-center items-center m-auto">
+      			<img src="<?= $row['image'] ?>" class="h-[200px] w-[200px] m-auto">
+    		</div>
+    			<p class="text-[1.1em] font-bold"><?= $row['name'] ?></p>
+    			<?php
+      			$query = "SELECT * FROM products_units WHERE product_id =?";
+      			$stmt = $conn->prepare($query);
+      			$stmt->bind_param("i", $row['id']);
+      			$stmt->execute();
+      			$result2 = $stmt->get_result();
+      			$row2 = $result2->fetch_assoc();
+
+      			// Check if the array is empty
+      		if (!empty($row2)) {
+    		?>
+      			<div class="text-white rounded-[5px] px-[5px] w-max">
+        		<p class="mt-2">Price Start at:</p>
+        		<p class="text-[0.9em] border-2 rounded-md px-4  label my-1"><span><strong>PHP </strong> <?= $row2['unit_price'] ?> <span class="color: #c6c6c6; font-size: 11px">/<?php echo $row2['unit']; ?></span></span></p>
+      			</div>
+    		<?php } ?>
+  			</div>
+			</a>
 			</div>
 			<?php endwhile; ?>
 			<button class="flex mt-14 col-span-5 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
@@ -387,6 +391,7 @@
 
 	.products {
 		gap: 15px !important;
+		align-items: start;
 	}
 
 	/* .products > div{

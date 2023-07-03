@@ -221,7 +221,7 @@ $result1 = mysqli_query($conn, $query);
 		gap: 10px;
 		margin-top: 40px;
 		flex-wrap: wrap;
-		display: flex;
+		justify-content: center;
 	}
 
 
