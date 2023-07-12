@@ -25,7 +25,7 @@ $isSpecificPage = ($currentPage === 'home.php'); // Replace '/specific-page' wit
 </head>
 
 <body>
-   <div class="navbar px-[19rem] pt-10 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
+   <div class="navbar px-[19rem] pt-3 pb-5 h-[6rem] bg-black border-b-4 border-yellow-400 floral-pattern">
       <div class="logos -mb-20">
          <a href="home.php" class="rounded-full h-[9rem] w-[9rem] overflow-hidden">
             <img src="./assets/datesfruits.png" class="">

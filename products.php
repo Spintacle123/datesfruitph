@@ -261,10 +261,11 @@ $result1 = mysqli_query($conn, $query);
 
 	.items {
 		display: flex;
-		gap: 2px;
+		gap: 10px;
 		margin-top: 40px;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: center;
+		align-self: start;
 	}
 
 
