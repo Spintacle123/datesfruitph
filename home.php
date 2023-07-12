@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+<div class="desktop-view">
 	<div class="header">
 		<?php include("header.php") ?>
 	</div>
@@ -283,7 +283,7 @@
 			}
 		}
 	</script>
-
+</div>
 	<script>
 		// Get all the clickable div elements
 		var clickableDivs = document.querySelectorAll("[id^='clickableDiv_parameter']");
@@ -363,6 +363,187 @@
 		});
 	</script>
 
+
+<div class="mobile-view">
+
+<div class="navbar px-[19rem] pt-3 pb-5 h-[5rem] bg-black border-b-4 border-yellow-400 floral-pattern">
+      <div class="logos -mb-20 pr-8">
+         <a href="home.php" class="rounded-full h-[6rem] w-[6rem] overflow-hidden">
+            <img src="./assets/datesfruits.png" class="">
+         </a>
+	  </div>
+	</div>
+	<div class="relative">
+  <div id="home" class="absolute pl-4"></div>
+  <div class="relative z-50">
+    <div class="absolute flex flex-col z-40 mr-[60vw] w-[35vw] h-[40vh] top-0 right-0 flex-wrap ">
+      <h1 class="text-2xl md:text-[2.75rem] tracking-tight leading-[1.5rem] font-semibold text-white pt-8">A&nbsp;Delectable&nbsp;and Nutritious Fruit</h1>
+      <div class= "-m-12 pl-12 pt-8">
+		<p class="opacity-80 font-normal text-sm md:text-[1.7rem]">Discover the Exquisite Delights and Abundant Nutritional Benefits of Dates: Nature's Sweet and Nourishing Fruit</p>
+	</div>
+		<button class="flex mt-8 text-sm text-white bg-[#FFD700] w-28 h-7 items-center justify-center rounded-tr-lg rounded-bl-lg">Our Products</button>
+    </div>
+  </div>
+</div>
+
+
+		<div class="relative swiper dates-slider mt-[8vh] font-medium w-[100vw]">
+			<div class="absolute h-[75vh] w-[75vw] bg-gradient-to-r from-black z-40"></div>
+
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide image-ad bg-[url('./images/fruits.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./images/preperation.jpg')]"></div>
+				<div class="swiper-slide image-ad bg-[url('./images/datesstore.jpg')]"></div>
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination z-50"></div>
+
+			<!-- If we need navigation buttons -->
+			<!-- <div class="swiper-button-prev"></div> -->
+			<!-- <div class="swiper-button-next"></div> -->
+
+			<!-- If we need scrollbar -->
+			<div class="swiper-scrollbar"></div>
+		</div>
+	</div>
+
+	<div class="relative px-6 pt-8 pb-8 bg-[#f7f2ec]">
+    <h2 class="relative z-50 text-2xl font-bold text-[#DC7105] mb-4">Our Products</h2>
+    <div class="grid grid-cols-3 gap-4 pb-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+	<a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter1" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/nuts.png" class="h-38 w-38 object-contain" alt="Nuts">
+                <p class="text-black">Dry Fruits</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter2" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/nuts.png" class="h-38 w-38 object-contain" alt="Nuts">
+                <p class="text-black">Nuts</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter3" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/nuts.png" class="h-38 w-38 object-contain" alt="Nuts">
+                <p class="text-black">Filed Dates</p>
+            </div>
+        </a>
+		<a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter4" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/nuts.png" class="h-38 w-38 object-contain" alt="Nuts">
+                <p class="text-black">Nuts</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter5" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/asoorted.png" class="h-38 w-38" alt="Trail Mix">
+                <p class="text-black">Trail Mix</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter6" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/nuts.png" class="h-38 w-38 object-contain" alt="Nuts">
+                <p class="text-black">Nuts</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter7" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/nuts.png" class="h-38 w-38 object-contain" alt="Nuts">
+                <p class="text-black">Nuts</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter8" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/baklavA.png" class="h-38 w-38" alt="Baklava">
+                <p class="text-black">Baklava</p>
+            </div>
+        </a>
+        <a href="#" class="hover:opacity-90">
+            <div id="clickableDiv_parameter9" class="flex flex-col bg-white p-4 items-center justify-center rounded-tl-2xl rounded-br-2xl overflow-hidden">
+                <img src="./assets/img/category/asoorted.png" class="h-38 w-38" alt="Trail Mix">
+                <p class="text-black">Trail Mix</p>
+            </div>
+        </a>
+    </div>
+    <div class="absolute h-full w-full floral-pattern opacity-5 top-0 left-0 z-0"></div>
+
+<!--featured product-->
+<div class="relative px-6 pt-8 pb-8 bg-[#e8e4de]">
+    <h2 class="text-2xl font-semibold text-center text-[#DC7105] mb-6">Featured Products</h2>
+    <div class="flex flex-row overflow-x-auto overflow-y-hidden">
+        <?php
+        include 'config.php';
+        $item = $conn->prepare('SELECT * FROM products WHERE isfeatured = 1 ORDER BY ID DESC LIMIT 5');
+        $item->execute();
+        $result = $item->get_result();
+        while ($row = $result->fetch_assoc()) :
+        ?>
+        <div class="hover:opacity-90 hover:rounded-[2em] hover:border-4 hover:border-[#ffca94] transition-all flex flex-col bg-white px-4 py-3 items-start justify-left rounded-tr-[2em] rounded-bl-[2em] overflow-hidden">
+            <a href="product-details.php?product-details=<?= $row['id']; ?>" class="w-full">
+                <div class="w-full flex flex-col justify-center items-center m-auto">
+                    <img src="<?= $row['image'] ?>" class="h-48 w-48 object-cover" alt="<?= $row['name'] ?>">
+                </div>
+                <p class="text-lg font-bold"><?= $row['name'] ?></p>
+                <?php
+                $query = "SELECT * FROM products_units WHERE product_id = ?";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("i", $row['id']);
+                $stmt->execute();
+                $result2 = $stmt->get_result();
+                $row2 = $result2->fetch_assoc();
+
+                // Check if the array is not empty
+                if (!empty($row2)) {
+                ?>
+                <div class="text-white rounded-[5px] px-[5px] w-max">
+                    <p class="mt-2">Price Start at:</p>
+                    <p class="text-sm border-2 rounded-md px-4 label my-1">
+                        <span><strong>PHP</strong> <?= $row2['unit_price'] ?></span>
+                        <span class="color: #c6c6c6; font-size: 11px">/<?= $row2['unit'] ?></span>
+                    </p>
+                </div>
+                <?php } ?>
+            </a>
+        </div>
+        <?php endwhile; ?>
+    </div>
+    <button class="flex mt-14 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
+        Load More
+    </button>
+</div>
+<div class="relative px-6 pt-8 pb-8 bg-[#f7f2ec]">
+    <div id="about-us" class="mt-[-20vh]"></div>
+    <div class="flex flex-col justify-center items-center bg-white rounded-tr-[3rem] rounded-bl-[3rem]">
+        <div class="flex flex-col justify-center items-center py-8">
+            <img src="./assets/img/DATESSHOP.jpg" class="h-auto max-h-[60vh] w-full object-cover" alt="About Us Image">
+        </div>
+        <div class="border-t border-gray-200 mx-4"></div>
+        <div class="flex flex-col justify-center items-center py-8 px-6">
+            <h2 class="text-3xl font-black mb-6">About Us</h2>
+            <p class="text-[#707070] text-center">
+                At our shop, we take pride in offering a delightful assortment of dates and nuts to satisfy your cravings and provide you with nourishing snacks. We believe in the power of natural and wholesome foods to enhance your well-being.
+            </p>
+            <p class="text-[#707070] text-center">
+                Our collection of dates includes a variety of delectable options, from soft and juicy Medjool dates to the sweet and caramel-like flavors of Deglet Noor dates. These luscious fruits are known for their natural sweetness, satisfying texture, and numerous health benefits.
+            </p>
+            <p class="text-[#707070] text-center">
+                In addition to dates, we also bring you a wide selection of premium nuts. Whether you prefer the buttery richness of almonds, the crunchiness of pistachios, or the earthy goodness of walnuts, our shop offers an array of high-quality nuts to suit every taste.
+            </p>
+            <p class="text-[#707070] text-center">
+                We carefully source our products from trusted suppliers who share our commitment to quality. Each date and nut is handpicked, ensuring freshness, flavor, and superior quality in every bite. Our friendly and knowledgeable team is here to assist you in finding the perfect combination of dates and nuts to suit your preferences. Whether you're looking for a healthy snack...
+            </p>
+            <button class="flex mt-10 text-white bg-orange-400 w-fit px-7 py-5 h-9 mx-auto items-center justify-center rounded-tr-lg rounded-bl-lg">
+                Read More
+            </button>
+        </div>
+    </div>
+    <div class="absolute h-full w-full floral-pattern opacity-5 top-0 left-0 z-0"></div>
+</div>
+
+
+      </div>
 </body>
 
 <style>
@@ -551,26 +732,52 @@
 	}
 
 	.ratings {
-		padding-top: 7px;
-		border-top: 1px solid #f1f1f1;
-		margin-top: 20px;
-	}
+  padding-top: 7px;
+  border-top: 1px solid #f1f1f1;
+  margin-top: 20px;
+}
 
-	.ads-1 {
-		content: url('./images/ad.jpg');
-		width: 100%;
-		border-radius: 10px;
-	}
+.ads-1 {
+  content: url('./images/ad.jpg');
+  width: 100%;
+  border-radius: 10px;
+}
 
-	.dates-slider .swiper-pagination-bullet {
-		width: 15px;
-		height: 15px;
-		background-color: #cecece;
-	}
+.dates-slider .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  background-color: #cecece;
+}
 
-	.swiper-scrollbar {
-		visibility: hidden;
-	}
+.swiper-scrollbar {
+  visibility: hidden;
+}
+
+/* Hide desktop view on mobile screens */
+@media (max-width: 767px) {
+  .desktop-view {
+    display: none;
+  }
+}
+
+/* Hide mobile view on desktop screens */
+@media (min-width: 768px) {
+  .mobile-view {
+    display: none;
+  }
+}
+
+/* Adjust image size for mobile view */
+@media (max-width: 767px) {
+  .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    height: 28vh; /* Adjust the height as needed */
+  }
+}
+
+
+
 </style>
 
 </html>
