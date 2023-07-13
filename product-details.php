@@ -46,7 +46,7 @@ error_reporting(0);
 				<div class=" rounded-bl-[2em] p-img w-[60%]" style="background-image: url(<?= $dimage; ?>);background-repeat: no-repeat; background-size: cover">
 					<!-- <img class="w-full h-full" src="<?= $dimage; ?>" alt=""> -->
 				</div>
-				<div class="w-[40%] p-details h-[100%] bg-orange-200 pl-0 pr-0 rounded-tr-[30px]">
+				<div class="w-[35%] p-details h-[89%] bg-orange-200 pl-0 pr-0 rounded-tr-[30px]">
 					<div class="bg-orange-300 w-full rounded-tr-[20px] ">
 						<h2 class="font-bold titles text-white p-0 m-0 px-4 py-3"><?= $dname; ?></h2>
 					</div>
