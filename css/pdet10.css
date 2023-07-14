@@ -45,6 +45,7 @@ nav ul li a:hover{
 	color: #cc0000;
 	border-radius: 1.5rem;
 	padding: 15px;
+	text-decoration: none;/* Add this line */
 }
 a{
 	text-decoration: none;
