@@ -26,7 +26,7 @@ $result1 = mysqli_query($conn, $query);
 </head>
 
 <body>
-
+	<div class="desktop-view">
 	<div class="header">
 		<?php include("header.php") ?>
 	</div>
@@ -111,7 +111,6 @@ $result1 = mysqli_query($conn, $query);
 			}
 			?>
 		</div>
-	</div>
 	</div>
 
 
@@ -207,6 +206,138 @@ $result1 = mysqli_query($conn, $query);
 			}
 		});
 	</script>
+	</div>
+
+	<div class="mobile-view">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="navbar pt-3 pb-5 h-[5rem] bg-black border-b-4 border-yellow-400 floral-pattern">
+   <div class="mr-64 pt-2 pl-2 opacity-70 hamburger-icon" onclick="toggleMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 512 512">
+         <path fill="white" d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"/>
+      </svg>
+   </div>
+   <div class="logos -mb-20 pr-8">
+      <a href="home.php" class="rounded-full h-[6rem] w-[6rem] overflow-hidden">
+         <img src="./assets/datesfruits.png" class="" style="max-width: 100%; max-height: 100%;">
+      </a>
+   </div>
+</div>
+
+<div class="menu">
+   <ul>
+      <li><a href="home.php">Home</a></li>
+      <li><a href="products.php">Products</a></li>
+      <li><a href="gifting.php">Gifting</a></li>
+      <li><a href="contact.php">Contact</a></li>
+      <li><a href="about.php">About Us</a></li>
+   </ul>
+</div>
+
+<script>
+function toggleMenu() {
+   var menu = document.querySelector(".menu");
+   menu.style.display = (menu.style.display === "none") ? "block" : "none";
+}
+</script>
+
+
+
+
+<div class="small-container">
+	<div class="flex justify-center">
+		<div class="flex justify-start flex-row">
+			<h1 class="text-2xl mb-2 mt-12 mr-32">Product Giftings</h1>
+		</div>
+	</div>
+
+	<div class="sort">
+	<div class="items">
+		<?php
+		if (isset($_GET['page'])) {
+			$page = $_GET['page'];
+		} else {
+			$page = 1;
+		}
+
+		$prod_per_page = 4;
+		$start_from = ($page - 1) * $prod_per_page;
+
+		$item = $conn->prepare("SELECT * FROM giftings WHERE status = 1 ORDER BY RAND() LIMIT $start_from, $prod_per_page");
+		$item->execute();
+		$result = $item->get_result();
+		while ($row = $result->fetch_assoc()) :
+		?>
+			<div class="card animate__animated animate__bounceInUp animate__delay-3s rounded-tr-[2rem] border rounded-bl-[4rem]">
+				<a href="product-giftings.php?exclusive-details=<?= $row['id']; ?>">
+					<?php if ($row['purchased'] == 0) { ?>
+						<div class="pb-3"><span class="label-new">New</span></div>
+					<?php } ?>
+					<div class="image-container">
+						<img class="image" src="<?= $row['image'] ?>">
+					</div>
+					<p><?= $row['name'] ?></p>
+					<span><strong>PHP: </strong><?= $row['price'] ?></span>
+					<div class="flex justify-end">
+						<div class="p-[0.2rem] border rounded-tr-lg rounded-bl-lg bg-[#EABF22] w-fit">
+							<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24">
+								<path fill="white" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm-.5 5a1 1 0 1 0 0 2h.5a1 1 0 1 0 0-2h-.5ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd" />
+							</svg>
+						</div>
+					</div>
+					<?php
+					$query = "SELECT * FROM products_units WHERE product_id =?";
+					$stmt = $conn->prepare($query);
+					$stmt->bind_param("i", $row['id']);
+					$stmt->execute();
+					$result2 = $stmt->get_result();
+					$row2 = $result2->fetch_assoc();
+					?>
+				</a>
+			</div>
+		<?php endwhile; ?>
+	</div>
+</div>
+
+<div id="contact-us" class="footer border-t border-gray-300">
+		<div class="container" style="padding-top: 0px">
+			<div class="footer flex flex-col items-center justify-between px-6 py-8">
+				<div class="text-center">
+					<div class="-mt-6 flex justify-center">
+						<a href="home.php" class="rounded-full h-16 w-16 overflow-hidden">
+							<img src="./assets/datesfruits.png" class="">
+						</a>
+					</div>
+					<h3 class="text-center font-bold">DATES FRUITS PH</h3>
+					<p class="ml-7 text-center">hello@datefruits.com.ph</p>
+				</div>
+				<div class="mt-3">
+					<p class="mt-5 text-center">Contact Us:</p>
+					<p class="con text-center">(833-1931) / +639123456789</p>
+					<p class="mt-5 text-center">Follow Us:</p>
+					<div class="grid grid-cols-3 gap-4 justify-center">
+						<div class="bg-white w-12 h-12 rounded-full flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5Z"/></svg>
+						</div>
+						<div class="bg-white w-12 h-12 rounded-full flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
+						</div>
+						<div class="bg-white w-12 h-12 rounded-full flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z"/></svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr class="h-px bg-gray-200 border-0 dark:bg-gray-900 py-[2px]">
+		<div class="text-center">
+			<?php 
+				$date = date('Y');
+				echo '<p class="text-center text-gray-600 text-sm mt-3">© '.$date.' - Datesfruitsph. All rights reserved.</p>';
+			?>
+		</div>
+	</div>
+	</div>
 
 </body>
 
@@ -329,4 +460,77 @@ $result1 = mysqli_query($conn, $query);
 		border: 2px solid #FF8000;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
+	.sort .items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sort .items .card {
+  max-width: 300px; /* Adjust the width as needed */
+  /* Your existing styles for the card */
+}
+
+.sort .items .card .image-container {
+  width: 100%;
+  height: 200px; /* Adjust the height as needed */
+  overflow: hidden;
+}
+
+.sort .items .card .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 767px) {
+  .sort .items .card {
+    max-width: 100%;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .sort .items {
+    display: block;
+  }
+}
+
+	/* Hide desktop view on mobile screens */
+@media (max-width: 767px) {
+  .desktop-view {
+    display: none;
+  }
+}
+
+/* Hide mobile view on desktop screens */
+@media (min-width: 768px) {
+  .mobile-view {
+    display: none;
+  }
+}
+.menu {
+		position: absolute;
+		width: 100%;
+         top: 5rem;
+         z-index: 999;
+         background-color: #000;
+         padding: 1rem;
+         display: none;
+      }
+      .menu ul {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+      }
+      .menu ul li {
+		z-index: 999;
+         margin-bottom: 1rem;
+      }
+      .menu ul li a {
+         color: #fff;
+         text-decoration: none;
+      }
+
 </style>
