@@ -460,35 +460,6 @@ function toggleMenu() {
 		border: 2px solid #FF8000;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
-	.sort .items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.sort .items .card {
-  max-width: 300px; /* Adjust the width as needed */
-  /* Your existing styles for the card */
-}
-
-.sort .items .card .image-container {
-  width: 100%;
-  height: 200px; /* Adjust the height as needed */
-  overflow: hidden;
-}
-
-.sort .items .card .image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media screen and (max-width: 767px) {
-  .sort .items .card {
-    max-width: 100%;
-  }
-}
 
 
 @media screen and (min-width: 768px) {
