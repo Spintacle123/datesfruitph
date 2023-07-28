@@ -59,7 +59,7 @@
 			display: flex;
 			gap: 20px;
 		}
-		.flex < a {
+		.flex  a {
 			 color: white !important;
 		}
 		.con{
@@ -90,5 +90,5 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 </body>
 
-</html
+</html>
  
