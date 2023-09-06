@@ -222,11 +222,25 @@
                               </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                             <div class="col-sm-12">
                                 <input class="form-control" type="file" name="images">
                             </div>
-                            </div>
+                            </div> -->
+
+                            <div class="row mb-3">
+                        <div class="col-sm-12">
+                          <label>Thumbnail Picture: </label>
+                          <input class="form-control" type="file" name="image">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-sm-12">
+                          <label>Additional Picture (4): </label>
+                          <input class="form-control" type="file" name="images[]" multiple>
+                        </div>
+                      </div>
 
                             <div class="row mb-3">
                             <div class="col-sm-4">

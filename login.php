@@ -14,7 +14,7 @@
     <div class="container">
       <div class="navbar">
         <div class="logos">
-          <a href="home.php"><img src="./assets/img/datesfruits.jpg" style="border-radius: 10rem; heigth: 70px; width: 70px"></a>
+          <a href="home.php"><img src="./assets/img/datesfruits.jpg" style="border-radius: 10rem; height: 70px; width: 70px"></a>
         </div>
       </div>
     </div>

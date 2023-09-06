@@ -35,6 +35,8 @@
 
     <?php
       $query = 'SELECT * FROM users WHERE id = '.$_SESSION['ID'];
+      // $query = 'SELECT * FROM users WHERE id = 112';
+
       $stmt = $conn->prepare($query);
       $stmt->execute();
       $result = $stmt->get_result();
@@ -46,7 +48,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="ad_index.php" class="logo d-flex align-items-center">
-          <img src="./assets/img/datesfruits.jpg" style="border-radius: 10rem; heigth: 25px; width: 25px">
+          <img src="./assets/img/datesfruits.jpg" style="border-radius: 10rem; height: 25px; width: 25px">
           <h5 style="color:#fff">Dates Fruits</h5>
         </a>
       <i class="bi bi-list toggle-sidebar-btn" style="color:#fff"></i>
