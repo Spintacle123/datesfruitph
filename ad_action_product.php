@@ -50,9 +50,9 @@ if (isset($_POST['add'])) {
         $isfeatured = $_POST['isfeatured'];
         $description = $_POST['description'];
 
-		for ($i = 0; $i < 4; $i++) {
-			$uploads[$i] = "images/" . $images[$i];
-		}
+		// for ($i = 0; $i < 4; $i++) {
+		// 	$uploads[$i] = "images/" . $images[$i];
+		// }
 
         $upload = 'images/' . $image;
 
@@ -99,10 +99,10 @@ if (isset($_GET['edit'])) {
     // $capital=$row['capital'];
     $description = $row['description'];
     $oldimage = $row['image'];
-    $oldimage1 = $row['image1'];
-	$oldimage2 = $row['image2'];
-	$oldimage3 = $row['image3'];
-	$oldimage4 = $row['image4'];
+    // $oldimage1 = $row['image1'];
+	// $oldimage2 = $row['image2'];
+	// $oldimage3 = $row['image3'];
+	// $oldimage4 = $row['image4'];
 
     $update = true;
 }
@@ -185,9 +185,9 @@ if (isset($_POST['update'])) {
 		// }
 
         
-        echo "<pre>";
-        print_r($_FILES);
-        exit;
+        // echo "<pre>";
+        // print_r($_FILES);
+        // exit;
 
 		move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
 
@@ -215,9 +215,18 @@ if (isset($_POST['update'])) {
 
             //image validation
 
-            //move image to dir
-            $uploadDir = 'images/';
-            $uploadPath = $uploadDir . $imageName;
+            //check if image is blank
+            if($imageName == ""){
+                // echo "<pre>";
+                // print_r($_POST['unit_image_old'][$i]);
+                // exit;
+                $imageName == $_POST['unit_image_old'][$i];
+                $uploadPath = $imageName;
+            } else {
+                //move image to dir
+                $uploadDir = 'images/';
+                $uploadPath = $uploadDir . $imageName;
+            }
 
             if (move_uploaded_file($imageTmpName, $uploadPath)) {
                 // If image move is successful, bind the image path and insert into the database
