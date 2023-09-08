@@ -10,6 +10,9 @@ $name = '';
 $price = '';
 $prod_qntty = '';
 $isfeatured = '';
+
+$images = [];
+
 $oldimage = "";
 $oldimage1 = "";
 $oldimage2 = "";
@@ -21,13 +24,13 @@ $ccode = '';
 
 // add products
 if (isset($_POST['add'])) {
-	$imageCount = count($_FILES['images']['name']);
-	for ($i = 0; $i < $imageCount; $i++) {
-		$images[$i] = $_FILES['images']['name'][$i];
-		$validImageExtension = ['jpg', 'jpeg', 'png'];
-		$imageExtension = explode('.', $images[$i]);
-		$imageExtension = strtolower(end($imageExtension));
-	}
+	// $imageCount = count($_FILES['images']['name']);
+	// for ($i = 0; $i < $imageCount; $i++) {
+	// 	$images[$i] = $_FILES['images']['name'][$i];
+	// 	$validImageExtension = ['jpg', 'jpeg', 'png'];
+	// 	$imageExtension = explode('.', $images[$i]);
+	// 	$imageExtension = strtolower(end($imageExtension));
+	// }
 
     $image = $_FILES['image']['name'];
     $validImageExtension = ['jpg', 'jpeg', 'png'];
@@ -61,9 +64,9 @@ if (isset($_POST['add'])) {
             $_SESSION['response'] = 'Sorry, product code is already taken! Please try again';
             $_SESSION['res_type'] = 'success';
         } else {
-            $query = 'INSERT INTO products(class,name,code,prod_qntty,price,isfeatured,description,image,image1,image2,image3,image4)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
+            $query = 'INSERT INTO products(class,name,code,prod_qntty,price,isfeatured,description,image)VALUES(?,?,?,?,?,?,?,?)';
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('sssisissssss', $class, $name, $code, $prod_qntty, $price, $isfeatured, $description, $upload, $uploads[0], $uploads[1], $uploads[2], $uploads[3]);
+            $stmt->bind_param('sssisiss', $class, $name, $code, $prod_qntty, $price, $isfeatured, $description, $upload);
             $stmt->execute();
 			for ($i = 0; $i < 4; $i++) {
 				move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploads[$i]);
@@ -118,17 +121,20 @@ if (isset($_POST['update'])) {
     // 	$_SESSION['res_type']="success";
     // }else{
 
-    $imageCount = count($_FILES['images']['name']);
-    for ($i = 0; $i < $imageCount; $i++) {
-        $images[$i] = $_FILES['images']['name'][$i];
-        $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = explode('.', $images[$i]);
-        $imageExtension = strtolower(end($imageExtension));
-    }
+    // $imageCount = count($_FILES['images']['name']);
+    // //convert file name to lowercase
+    // for ($i = 0; $i < $imageCount; $i++) {
+    //     $images[$i] = $_FILES['images']['name'][$i];
+    //     $validImageExtension = ['jpg', 'jpeg', 'png'];
+    //     $imageExtension = explode('.', $images[$i]);
+    //     $imageExtension = strtolower(end($imageExtension));
+    // }
 
     //thumbnail picture
+    //check if a new image was submitted
 	if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != "")) {
 
+        //convert file name to lowercase
 		$image = $_FILES['image']['name'];
 		$validImageExtension = ['jpg', 'jpeg', 'png'];
 		$imageExtension = explode('.', $image);
@@ -136,6 +142,7 @@ if (isset($_POST['update'])) {
 
 		$oldimage = "images/" . $image;
 	} else {
+        // if walang newly submitted na image, use the old image
 		$oldimage = $_POST['oldimage'];
 
 		$validImageExtension = ['jpg', 'jpeg', 'png'];
@@ -143,11 +150,14 @@ if (isset($_POST['update'])) {
 		$imageExtension = strtolower(end($imageExtension));
 	}
 
+    //check kung valid yung img extension
     if (!in_array($imageExtension, $validImageExtension)) {
 		header('location:ad_addgiftings.php');
 		$_SESSION['response'] = "Invalid Image File Extension!!, only accept .jpg, .jpeg, .png";
 		$_SESSION['res_type'] = "success";
 	} else {
+
+        //kuha ng ibang info from the submitted form
         $id = $_POST['id'];
         $class = $_POST['class'];
         $name = $_POST['name'];
@@ -157,39 +167,72 @@ if (isset($_POST['update'])) {
         // $capital=$_POST['capital'];
         $description = $_POST['description'];
 
+        //new value of the image (either bago or luma)
         $newimage = $oldimage;
 
-        if (count($_FILES['images']['name']) > 1) {
-			// unlink($oldimage);
-			for ($i = 0; $i < 4; $i++) {
-				$newimages[$i] = "images/" . $images[$i];
-			}
-		} else {
-			for ($i = 0; $i < 4; $i++) {
-				$newimages[$i] = $_POST['oldimage' . $i + 1];
-			}
-		}
+        //check if more than 1 yung submitted sa multiple image input
+        // if (count($_FILES['images']['name']) > 1) {
+		// 	// unlink($oldimage);
+		// 	for ($i = 0; $i < 4; $i++) {
+		// 		$newimages[$i] = "images/" . $images[$i];
+        //         move_uploaded_file($_FILES['images']['tmp_name'][$i], $newimages[$i]);
+		// 	}
+		// } else {
+		// 	for ($i = 0; $i < 4; $i++) {
+        //         move_uploaded_file($_FILES['images']['tmp_name'][$i], $newimages[$i]);
+		// 		$newimages[$i] = $_POST['oldimage' . $i + 1];
+		// 	}
+		// }
 
-        move_uploaded_file($_FILES['images']['tmp_name'][$i], $newimages[$i]);
+        
+        echo "<pre>";
+        print_r($_FILES);
+        exit;
+
 		move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
 
-        $query = 'UPDATE products SET name=?,class=?,code=?,prod_qntty=?,price=?,description=?,image=?,image1=?,image2=?,image3=?,image4=? WHERE id=?';
+        //sql query
+        $query = 'UPDATE products SET name=?,class=?,code=?,prod_qntty=?,price=?,description=?,image=? WHERE id=?';
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('sssisssssssi', $name, $class, $code, $prod_qntty, $price, $description, $newimage, $newimages[0], $newimages[1], $newimages[2], $newimages[3], $id);
+        $stmt->bind_param('sssisssi', $name, $class, $code, $prod_qntty, $price, $description, $newimage, $id);
         $stmt->execute();
 
-        // Clean and insert product units
-    $query = 'DELETE FROM `products_units` WHERE `product_id` = ?';
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
+        if (isset($_POST['unit']) && count($_POST['unit']) > 0) {
+            //delete existing product units
+            $query = 'DELETE FROM `products_units` WHERE `product_id` = ?';
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+        }
 
-    for ($i = 0; $i < count($_POST['unit']); $i++) {
-        $query = 'INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`) VALUES(?, ?, ?, ?)';
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('isss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i]);
-        $stmt->execute();
-    }
+        for ($i = 0; $i < count($_POST['unit']); $i++) {
+            $query = 'INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`, `unit_image`) VALUES(?, ?, ?, ?, ?)';
+            $stmt = $conn->prepare($query);
+
+            // Prepare image file for upload
+            $imageTmpName = $_FILES['unit_image']['tmp_name'][$i];
+            $imageName = $_FILES['unit_image']['name'][$i];
+
+            //image validation
+
+            //move image to dir
+            $uploadDir = 'images/';
+            $uploadPath = $uploadDir . $imageName;
+
+            if (move_uploaded_file($imageTmpName, $uploadPath)) {
+                // If image move is successful, bind the image path and insert into the database
+                $query = 'INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`, `unit_image`) VALUES(?, ?, ?, ?, ?)';
+                $stmt1 = $conn->prepare($query);
+                $stmt1->bind_param('issss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i], $uploadPath);
+                $stmt1->execute();
+            } else {
+                $_SESSION['response'] = 'Image Upload Error';
+                $_SESSION['res_type'] = 'success';
+
+                $stmt->bind_param('issss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i], $uploadPath);
+                $stmt->execute();
+            }
+        }
 
         $_SESSION['response'] = "Product Details Updated Successfully!";
 		$_SESSION['res_type'] = "primary";

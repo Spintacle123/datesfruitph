@@ -45,9 +45,9 @@ if (isset($_POST['add'])) {
 		$status = $_POST['status'];
 
 		for ($i = 0; $i < 4; $i++) {
-			$uploads[$i] = "images/" . $images[$i];
+			$uploads[$i] = "https://datesfruits.devdojo.cloud/images/" . $images[$i];
 		}
-		$upload = "images/" . $image;
+		$upload = "https://datesfruits.devdojo.cloud/images/" . $image;
 
 
 		$sql_code = "SELECT * FROM giftings WHERE code='$code'";
