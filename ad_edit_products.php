@@ -95,15 +95,20 @@ error_reporting(0);
                                         <!-- <label>Select Category: </label> -->
                                         <div class="col-sm-8">
                                             <label>Select Category: </label>
-                                            <select name="class" value="<?= $class ?>" class="form-select"
-                                                aria-label="Default select example" required>
-                                                <!-- <select id="class" class="form-select" aria-label="Default select example" required> -->
-                                                <?php $sql_category = 'SELECT * FROM categories'; ?>
-                                                <?php $qry_category = mysqli_query($conn, $sql_category); ?>
-                                                <?php while ($get_category = mysqli_fetch_array($qry_category)) { ?>
-                                                <option value="<?php echo $get_category['cat_name']; ?>"><?php echo $get_category['cat_name']; ?></option>
-                                                <?php } ?>
-                                            </select>
+
+                                            <select name="class" class="form-select" aria-label="Default select example" required>
+    <?php
+    $sql_category = 'SELECT * FROM categories';
+    $qry_category = mysqli_query($conn, $sql_category);
+    
+    while ($get_category = mysqli_fetch_array($qry_category)) {
+        $cat_name = $get_category['cat_name'];
+        $selected = ($cat_name == $class) ? 'selected' : '';
+        echo '<option value="' . $cat_name . '" ' . $selected . '>' . $cat_name . '</option>';
+    }
+    ?>
+</select>
+
 
                                             <label>Product Name: </label>
                                             <input type="text" name="name" value="<?= $name ?>"

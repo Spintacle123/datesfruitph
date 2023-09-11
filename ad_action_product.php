@@ -170,6 +170,8 @@ if (isset($_POST['update'])) {
         //new value of the image (either bago or luma)
         $newimage = $oldimage;
 
+        
+
         //check if more than 1 yung submitted sa multiple image input
         // if (count($_FILES['images']['name']) > 1) {
 		// 	// unlink($oldimage);
@@ -185,9 +187,10 @@ if (isset($_POST['update'])) {
 		// }
 
         
-        // echo "<pre>";
+        echo "<pre>";
         // print_r($_FILES);
-        // exit;
+        print_r($class);
+        exit;
 
 		move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
 
@@ -217,11 +220,12 @@ if (isset($_POST['update'])) {
 
             //check if image is blank
             if($imageName == ""){
+                $imageName = $_POST['unit_image_old'][$i];
+                $uploadPath = $imageName;
                 // echo "<pre>";
+                // print_r($_FILES);
                 // print_r($_POST['unit_image_old'][$i]);
                 // exit;
-                $imageName == $_POST['unit_image_old'][$i];
-                $uploadPath = $imageName;
             } else {
                 //move image to dir
                 $uploadDir = 'images/';
