@@ -230,11 +230,11 @@
                             </div> -->
 
                             <div class="row mb-3">
-                        <div class="col-sm-12">
-                          <label>Thumbnail Picture: </label>
-                          <input class="form-control" type="file" name="image">
-                        </div>  
-                      </div>
+                              <div class="col-sm-12">
+                                <label>Thumbnail Picture: </label>
+                                <input class="form-control" type="file" name="image">
+                              </div>  
+                            </div>
 
                             <div class="row mb-3">
                             <div class="col-sm-4">

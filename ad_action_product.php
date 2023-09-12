@@ -156,10 +156,17 @@ if (isset($_POST['update'])) {
         //convert file name to lowercase
 		$image = $_FILES['image']['name'];
 		$validImageExtension = ['jpg', 'jpeg', 'png'];
-		$imageExtension = explode('.', $image);
-		$imageExtension = strtolower(end($imageExtension));
+        $imageExtension = pathinfo($image, PATHINFO_EXTENSION);
+        $imageExtension = strtolower($imageExtension);
+
+        $image = preg_replace("/[^a-zA-Z0-9.]/", "", $image);
+
+        if (strlen($image) > 25) {
+            $image = substr($image, 0, 25) . '.' . $imageExtension;
+        }
 
 		$oldimage = "images/" . $image;
+
 	} else {
         // if walang newly submitted na image, use the old image
 		$oldimage = $_POST['oldimage'];
