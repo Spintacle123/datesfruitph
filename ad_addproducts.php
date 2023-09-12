@@ -73,7 +73,7 @@
 
         <div class="card recent-sales overflow-auto">
             <?php
-			        $query = 'SELECT * FROM products ORDER BY id DESC';
+			        $query = 'SELECT * FROM products WHERE deleted_at IS NULL ORDER BY id DESC';
 			        $stmt = $conn->prepare($query);
 			        $stmt->execute();
 			        $result = $stmt->get_result();
@@ -141,6 +141,7 @@
                                   <td> 
                                     <a href="ad_view_products.php?details=<?= $row['id']; ?>" type="button" class="btn btn-info" ><i class="bi bi-eye"></i></a>
                                     <a href="ad_edit_products.php?edit=<?= $row['id']; ?>" type="button" class="btn btn-success"><i class="bx bxs-edit"></i></a>
+                                    <a href="ad_delete_products.php?edit=<?= $row['id']; ?>" type="button" class="btn btn-danger"><i class="bx bxs-trash"></i></a>
                                   </td>
                                 </tr>
                             <?php } ?>
@@ -234,13 +235,6 @@
                           <input class="form-control" type="file" name="image">
                         </div>  
                       </div>
-
-                      <!-- <div class="row mb-3">
-                        <div class="col-sm-12">
-                          <label>Additional Picture (4): </label>
-                          <input class="form-control" type="file" name="images[]" multiple>
-                        </div>
-                      </div> -->
 
                             <div class="row mb-3">
                             <div class="col-sm-4">

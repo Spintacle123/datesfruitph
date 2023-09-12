@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 session_start();
-$db = mysqli_connect('localhost', 'root', '', 'stc');
+// $db = mysqli_connect('localhost', 'root', '', 'stc');
 
 $update = false;
 $id = "";

@@ -1,6 +1,7 @@
 <?php 
     session_start();
-  $db = mysqli_connect('localhost', 'root', '', 'stc');
+  // $db = mysqli_connect('localhost', 'root', '', 'stc');
+  include 'config.php';
 
   $name = "";
   $username = "";

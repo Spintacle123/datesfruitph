@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 session_start();
-$db = mysqli_connect('localhost', 'root', '', 'stc');
+// $db = mysqli_connect('localhost', 'root', '', 'stc');
 
 $update = false;
 $id = '';
@@ -31,11 +31,22 @@ if (isset($_POST['add'])) {
 	// 	$imageExtension = explode('.', $images[$i]);
 	// 	$imageExtension = strtolower(end($imageExtension));
 	// }
-
-    $image = $_FILES['image']['name'];
     $validImageExtension = ['jpg', 'jpeg', 'png'];
-    $imageExtension = explode('.', $image);
-    $imageExtension = strtolower(end($imageExtension));
+
+    $image = $_FILES['image']['name'];    
+    $imageExtension = pathinfo($image, PATHINFO_EXTENSION);
+    $imageExtension = strtolower($imageExtension);
+
+    $image = preg_replace("/[^a-zA-Z0-9.]/", "", $image);
+
+    if (strlen($image) > 25) {
+        $image = substr($image, 0, 25) . '.' . $imageExtension;
+    }
+
+    // echo "<pre>";
+    //     // print_r($_FILES);
+    //     print_r($imageExtension);
+    //     exit;
 
     if (!in_array($imageExtension, $validImageExtension)) {
         header('location:ad_addproducts.php');
@@ -50,11 +61,14 @@ if (isset($_POST['add'])) {
         $isfeatured = $_POST['isfeatured'];
         $description = $_POST['description'];
 
-		// for ($i = 0; $i < 4; $i++) {
-		// 	$uploads[$i] = "images/" . $images[$i];
-		// }
+        // Specify the directory where you want to save the uploaded image
+        $uploadDirectory = 'images/';
 
-        $upload = 'images/' . $image;
+        // Create a unique filename using the current timestamp
+        $uniqueFilename = time() . '-' . $image;
+
+        // Combine the directory and the unique filename
+        $upload = $uploadDirectory . $uniqueFilename;
 
         $sql_code = "SELECT * FROM products WHERE code='$code'";
         $res_code = mysqli_query($db, $sql_code);
@@ -68,10 +82,15 @@ if (isset($_POST['add'])) {
             $stmt = $conn->prepare($query);
             $stmt->bind_param('sssisiss', $class, $name, $code, $prod_qntty, $price, $isfeatured, $description, $upload);
             $stmt->execute();
-			for ($i = 0; $i < 4; $i++) {
-				move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploads[$i]);
-			}
+			// for ($i = 0; $i < 4; $i++) {
+			// 	move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploads[$i]);
+			// }
             move_uploaded_file($_FILES['image']['tmp_name'], $upload);
+            // id-uniqid().1.jpeg
+
+            // 10-123123123123.1.jpg
+            // nutella butter cup
+            // nutella-butter-cup-10-1.jpeg
 
             header('location:ad_addproducts.php');
             $_SESSION['response'] = 'New Products Added Succesfully to Menu!';
@@ -187,10 +206,10 @@ if (isset($_POST['update'])) {
 		// }
 
         
-        echo "<pre>";
-        // print_r($_FILES);
-        print_r($class);
-        exit;
+        // echo "<pre>";
+        // // print_r($_FILES);
+        // print_r($class);
+        // exit;
 
 		move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
 
@@ -216,7 +235,20 @@ if (isset($_POST['update'])) {
             $imageTmpName = $_FILES['unit_image']['tmp_name'][$i];
             $imageName = $_FILES['unit_image']['name'][$i];
 
-            //image validation
+            //image validationd
+            $validImageExtension = ['jpg', 'jpeg', 'png'];
+
+            // $image = $_FILES['image']['name'];    
+            $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
+            $imageExtension = strtolower($imageExtension);
+
+            
+
+            $imageName = preg_replace("/[^a-zA-Z0-9.]/", "", $imageName);
+
+            if (strlen($imageName) > 25) {
+                $imageName = substr($imageName, 0, 25) . '.' . $imageExtension;
+            }
 
             //check if image is blank
             if($imageName == ""){
@@ -295,6 +327,31 @@ if (isset($_GET['details'])) {
     $cprod_qntty = $row['prod_qntty'];
     $description = $row['description'];
     $cimage = $row['image'];
+}
+
+//soft delete products
+if (isset($_POST['softDelete'])) {
+    $id = $_POST['id'];
+
+    $sql = "UPDATE products SET deleted_at = NOW() WHERE id = ?";
+
+    $stmt3 = $conn->prepare($sql);
+    $stmt3->bind_param('i', $id);
+
+    if ($stmt3->execute()) {
+        header('location:ad_addproducts.php'); 
+        $_SESSION['response'] = 'Successfully Deleted!';
+        $_SESSION['res_type'] = 'danger';
+        exit();
+    } else {
+        // echo "Error: " . $stmt->errorInfo()[2];
+    }
+}
+
+if (isset($_POST['cancel'])) {
+    // Redirect to the cancel page or any other appropriate action
+    header('location:ad_addproducts.php');
+    exit();
 }
 
 //delete deatails

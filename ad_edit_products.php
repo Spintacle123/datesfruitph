@@ -97,16 +97,16 @@ error_reporting(0);
                                             <label>Select Category: </label>
 
                                             <select name="class" class="form-select" aria-label="Default select example" required>
-    <?php
-    $sql_category = 'SELECT * FROM categories';
-    $qry_category = mysqli_query($conn, $sql_category);
-    
-    while ($get_category = mysqli_fetch_array($qry_category)) {
-        $cat_name = $get_category['cat_name'];
-        $selected = ($cat_name == $class) ? 'selected' : '';
-        echo '<option value="' . $cat_name . '" ' . $selected . '>' . $cat_name . '</option>';
-    }
-    ?>
+                        <?php
+                        $sql_category = 'SELECT * FROM categories';
+                        $qry_category = mysqli_query($conn, $sql_category);
+                        
+                        while ($get_category = mysqli_fetch_array($qry_category)) {
+                            $cat_name = $get_category['cat_name'];
+                            $selected = ($cat_name == $class) ? 'selected' : '';
+                            echo '<option value="' . $cat_name . '" ' . $selected . '>' . $cat_name . '</option>';
+                        }
+                        ?>
 </select>
 
 
@@ -167,6 +167,10 @@ error_reporting(0);
                                                         <option>piece</option>
                                                         <option>gram</option>
                                                         <option>kilo</option>
+                                                        <option>bottle</option>
+                                                        <option>can</option>
+                                                        <option>jar</option>
+                                                        <option>box</option>
                                                     </select>
                                                     <input x-model="item.unit_value" name="unit_value[]"
                                                         type="text" class="form-control"
