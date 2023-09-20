@@ -96,18 +96,29 @@ error_reporting(0);
                                         <div class="col-sm-8">
                                             <label>Select Category: </label>
 
-                                            <select name="class" class="form-select" aria-label="Default select example" required>
-                        <?php
-                        $sql_category = 'SELECT * FROM categories';
-                        $qry_category = mysqli_query($conn, $sql_category);
-                        
-                        while ($get_category = mysqli_fetch_array($qry_category)) {
-                            $cat_name = $get_category['cat_name'];
-                            $selected = ($cat_name == $class) ? 'selected' : '';
-                            echo '<option value="' . $cat_name . '" ' . $selected . '>' . $cat_name . '</option>';
-                        }
-                        ?>
-</select>
+                                            <select name="cat_id" class="form-select"
+                                                aria-label="Default select example" required>
+                                                <?php
+                                                $sql_category = 'SELECT * FROM categories WHERE deleted_at IS NULL';
+                                                $qry_category = mysqli_query($conn, $sql_category);
+                                                
+                                                while ($get_category = mysqli_fetch_array($qry_category)) {
+                                                    $id = $get_category['id'];
+                                                    $cat_name = $get_category['cat_name'];
+                                                    // $selected_cat_id = $id; 
+                                                    $selected = ($cat_id == $id) ? 'selected' : '';
+                                                    echo '<option value="' . $cat_id . '" ' . $selected . '>' . $cat_name . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+
+                                            <?php 
+                                            // echo "<div>";
+                                            // // print_r($_FILES);
+                                            // print_r($selected);
+                                            // echo "</div>";
+                                            // exit;
+                                            ?>
 
 
                                             <label>Product Name: </label>
@@ -185,8 +196,10 @@ error_reporting(0);
                                                     <div class="row mb-3">
                                                         <div class="flex flex-col mx-0 px-0">
                                                             <label>Image: </label>
-                                                            <input type="hidden" x-model="item.unit_image" name="unit_image_old[]" >
-                                                            <input class="form-control" type="file" name="unit_image[]" />
+                                                            <input type="hidden" x-model="item.unit_image"
+                                                                name="unit_image_old[]">
+                                                            <input class="form-control" type="file"
+                                                                name="unit_image[]" />
                                                         </div>
                                                     </div>
                                                 </div>

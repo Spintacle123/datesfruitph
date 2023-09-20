@@ -66,6 +66,14 @@
     </div><!-- End Page Title -->
 
     <section class="section">
+    <div class="row">
+          <?php if (isset($_SESSION['response'])) { ?>
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show alert-dismissible fade show col-sm-6" role="alert" style="padding: 8px; margin-left:auto">
+              <b><?= $_SESSION['response']; ?></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close" style="padding: 10px"></button>
+            </div>
+          <?php } unset($_SESSION['response']); ?>
+          
       <div class="row">
 
         <div class="card recent-sales overflow-auto col-md-9 mx-auto">

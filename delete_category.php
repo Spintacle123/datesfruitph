@@ -3,9 +3,9 @@ include 'config.php';
 
 if (isset($_POST["id"])) {
     $id = $_POST["id"];
-    $query = "DELETE FROM categories WHERE id = '$id'";
+    $query = "UPDATE categories SET deleted_at = NOW() WHERE id = '$id'";
     if (mysqli_query($conn, $query)) {
-        echo "Category deleted successfully.";
+        echo "Category soft-deleted successfully.";
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -15,3 +15,4 @@ if (isset($_POST["id"])) {
 
 mysqli_close($conn);
 ?>
+

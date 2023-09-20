@@ -10,7 +10,26 @@
 	if(isset($_POST['add'])){
 			$cat_name=$_POST['cat_name'];
 
-			// Handle image upload
+			// Check if the category already exists
+			$checkQuery = "SELECT * FROM categories WHERE cat_name=? AND deleted_at IS NULL";
+			$stmt = $conn->prepare($checkQuery);
+			$stmt->bind_param("s", $cat_name);
+			$stmt->execute();
+			$result = $stmt->get_result();
+
+			// echo "<pre>";
+			// // print_r($_FILES);
+			// print_r($result);
+			// exit;
+		
+			if ($result->num_rows > 0) {
+				// Category already exists
+				header('location:ad_categories.php');
+				$_SESSION['response'] = "Category already exists in the database.";
+				$_SESSION['res_type'] = "error";
+				
+			} else {
+				// Handle image upload
 			$uploadDir = 'images/';
 			$uploadedFileName = $_FILES['cat_image']['name'];
 			$uploadedTempPath = $_FILES['cat_image']['tmp_name'];
@@ -47,5 +66,6 @@
 					$_SESSION['res_type'] = "error";
 				}
 			}
+			}	
 	}
 ?>

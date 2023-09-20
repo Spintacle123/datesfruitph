@@ -53,13 +53,19 @@ if (isset($_POST['add'])) {
         $_SESSION['response'] = 'Invalid Image File Extension!!, only accept .jpg, .jpeg, .png';
         $_SESSION['res_type'] = 'success';
     } else {
-        $class = $_POST['class'];
+        // $class = $_POST['class'];
+        $cat_id = $_POST['cat_id']; 
         $name = $_POST['name'];
         $code = $_POST['code'];
         $prod_qntty = $_POST['prod_qntty'];
         $price = $_POST['price'];
         $isfeatured = $_POST['isfeatured'];
         $description = $_POST['description'];
+
+        // echo "<pre>";
+        // // print_r($_FILES);
+        // print_r($_POST['cat_id']);
+        // exit;
 
         // Specify the directory where you want to save the uploaded image
         $uploadDirectory = 'images/';
@@ -78,9 +84,9 @@ if (isset($_POST['add'])) {
             $_SESSION['response'] = 'Sorry, product code is already taken! Please try again';
             $_SESSION['res_type'] = 'success';
         } else {
-            $query = 'INSERT INTO products(class,name,code,prod_qntty,price,isfeatured,description,image)VALUES(?,?,?,?,?,?,?,?)';
+            $query = 'INSERT INTO products(cat_id,name,code,prod_qntty,price,isfeatured,description,image)VALUES(?,?,?,?,?,?,?,?)';
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('sssisiss', $class, $name, $code, $prod_qntty, $price, $isfeatured, $description, $upload);
+            $stmt->bind_param('issisiss', $cat_id, $name, $code, $prod_qntty, $price, $isfeatured, $description, $upload);
             $stmt->execute();
 			// for ($i = 0; $i < 4; $i++) {
 			// 	move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploads[$i]);
@@ -110,7 +116,8 @@ if (isset($_GET['edit'])) {
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    $class = $row['class'];
+    // $class = $row['class'];
+    $cat_id = $row['cat_id'];
     $name = $row['name'];
     $code = $row['code'];
     $prod_qntty = $row['prod_qntty'];
@@ -185,7 +192,8 @@ if (isset($_POST['update'])) {
 
         //kuha ng ibang info from the submitted form
         $id = $_POST['id'];
-        $class = $_POST['class'];
+        // $class = $_POST['class'];
+        $cat_id = $_POST['cat_id'];
         $name = $_POST['name'];
         $code = $_POST['code'];
         $prod_qntty = $_POST['prod_qntty'];
@@ -196,6 +204,10 @@ if (isset($_POST['update'])) {
         //new value of the image (either bago or luma)
         $newimage = $oldimage;
 
+        // echo "<pre>";
+        // // print_r($_FILES);
+        // print_r($cat_id);
+        // exit;
         
 
         //check if more than 1 yung submitted sa multiple image input
@@ -221,9 +233,9 @@ if (isset($_POST['update'])) {
 		move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
 
         //sql query
-        $query = 'UPDATE products SET name=?,class=?,code=?,prod_qntty=?,price=?,description=?,image=? WHERE id=?';
+        $query = 'UPDATE products SET name=?,cat_id=?,code=?,prod_qntty=?,price=?,description=?,image=? WHERE id=?';
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('sssisssi', $name, $class, $code, $prod_qntty, $price, $description, $newimage, $id);
+        $stmt->bind_param('sisisssi', $name, $cat_id, $code, $prod_qntty, $price, $description, $newimage, $id);
         $stmt->execute();
 
         if (isset($_POST['unit']) && count($_POST['unit']) > 0) {
@@ -234,62 +246,71 @@ if (isset($_POST['update'])) {
             $stmt->execute();
         }
 
-        for ($i = 0; $i < count($_POST['unit']); $i++) {
-            $query = 'INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`, `unit_image`) VALUES(?, ?, ?, ?, ?)';
-            $stmt = $conn->prepare($query);
-
-            // Prepare image file for upload
-            $imageTmpName = $_FILES['unit_image']['tmp_name'][$i];
-            $imageName = $_FILES['unit_image']['name'][$i];
-
-            //image validationd
-            $validImageExtension = ['jpg', 'jpeg', 'png'];
-
-            // $image = $_FILES['image']['name'];    
-            $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
-            $imageExtension = strtolower($imageExtension);
-
-            
-
-            $imageName = preg_replace("/[^a-zA-Z0-9.]/", "", $imageName);
-
-            if (strlen($imageName) > 25) {
-                $imageName = substr($imageName, 0, 25) . '.' . $imageExtension;
-            }
-
-            //check if image is blank
-            if($imageName == ""){
-                $imageName = $_POST['unit_image_old'][$i];
-                $uploadPath = $imageName;
-                // echo "<pre>";
-                // print_r($_FILES);
-                // print_r($_POST['unit_image_old'][$i]);
-                // exit;
-            } else {
-                //move image to dir
-                $uploadDir = 'images/';
-                $uploadPath = $uploadDir . $imageName;
-            }
-
-            if (move_uploaded_file($imageTmpName, $uploadPath)) {
-                // If image move is successful, bind the image path and insert into the database
+        if (isset($_POST['unit']) && is_array($_POST['unit']) && count($_POST['unit']) > 0) {
+            // 'unit' is set in $_POST, it's an array, and it has elements
+            for ($i = 0; $i < count($_POST['unit']); $i++) {
                 $query = 'INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`, `unit_image`) VALUES(?, ?, ?, ?, ?)';
-                $stmt1 = $conn->prepare($query);
-                $stmt1->bind_param('issss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i], $uploadPath);
-                $stmt1->execute();
-            } else {
-                $_SESSION['response'] = 'Image Upload Error';
-                $_SESSION['res_type'] = 'success';
-
-                $stmt->bind_param('issss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i], $uploadPath);
-                $stmt->execute();
+                $stmt = $conn->prepare($query);
+    
+                // Prepare image file for upload
+                $imageTmpName = $_FILES['unit_image']['tmp_name'][$i];
+                $imageName = $_FILES['unit_image']['name'][$i];
+    
+                //image validationd
+                $validImageExtension = ['jpg', 'jpeg', 'png'];
+    
+                // $image = $_FILES['image']['name'];    
+                $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
+                $imageExtension = strtolower($imageExtension);
+    
+                
+    
+                $imageName = preg_replace("/[^a-zA-Z0-9.]/", "", $imageName);
+    
+                if (strlen($imageName) > 25) {
+                    $imageName = substr($imageName, 0, 25) . '.' . $imageExtension;
+                }
+    
+                //check if image is blank
+                if($imageName == ""){
+                    $imageName = $_POST['unit_image_old'][$i];
+                    $uploadPath = $imageName;
+                    // echo "<pre>";
+                    // print_r($_FILES);
+                    // print_r($_POST['unit_image_old'][$i]);
+                    // exit;
+                } else {
+                    //move image to dir
+                    $uploadDir = 'images/';
+                    $uploadPath = $uploadDir . $imageName;
+                }
+    
+                if (move_uploaded_file($imageTmpName, $uploadPath)) {
+                    // If image move is successful, bind the image path and insert into the database
+                    $query = 'INSERT INTO `products_units`(`product_id`, `unit`, `unit_value`, `unit_price`, `unit_image`) VALUES(?, ?, ?, ?, ?)';
+                    $stmt1 = $conn->prepare($query);
+                    $stmt1->bind_param('issss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i], $uploadPath);
+                    $stmt1->execute();
+                } else {
+                    $_SESSION['response'] = 'Image Upload Error';
+                    $_SESSION['res_type'] = 'success';
+    
+                    $stmt->bind_param('issss', $id, $_POST['unit'][$i], $_POST['unit_value'][$i], $_POST['unit_price'][$i], $uploadPath);
+                    $stmt->execute();
+                }
             }
+            
+                    
+            $_SESSION['response'] = "Product Details Updated Successfully!";
+            $_SESSION['res_type'] = "primary";
+
+            header('location:ad_addproducts.php');
+        } else {
+            // $_SESSION['response'] = "Encountered a problem when updating Product Details";
+            // $_SESSION['res_type'] = "primary";
+
+            header('location:ad_addproducts.php');
         }
-
-        $_SESSION['response'] = "Product Details Updated Successfully!";
-		$_SESSION['res_type'] = "primary";
-
-		header('location:ad_addproducts.php');
     }
 
     
