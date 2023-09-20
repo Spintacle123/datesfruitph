@@ -79,7 +79,7 @@ error_reporting(0);
                 <div class="card recent-sales overflow-auto">
                     <?php
                     // $query = 'SELECT * FROM products WHERE deleted_at IS NULL ORDER BY id DESC';
-                    $query = 'SELECT p.id, p.name, p.class, p.status, p.isfeatured, c.cat_name
+                    $query = 'SELECT p.id, p.name, p.status, p.isfeatured, c.cat_name
                                                   FROM products p
                                                   LEFT JOIN categories c ON p.cat_id = c.id
                                                   WHERE p.deleted_at IS NULL
@@ -119,21 +119,7 @@ error_reporting(0);
                                 <tr>
                                     <td><?= $row['id'] ?></td>
                                     <td><?= $row['name'] ?></td>
-                                    <!-- <td><?//= $row['class']; ?></td> -->
-                                    <td>
-                                        <?php
-                                        if ($row['class'] == '') {
-                                            echo $row['cat_name'];
-                                            // echo $row['cat_name'];
-                                        } else {
-                                            echo $row['class'];
-                                            // echo "<pre>";
-                                            // // print_r($_FILES);
-                                            // print_r($row['cat_id']);
-                                            // exit;
-                                        }
-                                        ?>
-                                    </td>
+                                    <td><?=$row['cat_name'];?></td>
 
                                     <td>
                                         <?php

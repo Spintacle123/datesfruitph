@@ -107,7 +107,7 @@ error_reporting(0);
                                                     $cat_name = $get_category['cat_name'];
                                                     // $selected_cat_id = $id; 
                                                     $selected = ($cat_id == $id) ? 'selected' : '';
-                                                    echo '<option value="' . $cat_id . '" ' . $selected . '>' . $cat_name . '</option>';
+                                                    echo '<option value="' . $id . '" ' . $selected . '>' . $cat_name . '</option>';
                                                 }
                                                 ?>
                                             </select>
