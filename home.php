@@ -1,5 +1,11 @@
 <?php
 // session_start();
+// Check if the session ID is set
+if (!isset($_SESSION['ID'])) {
+	// Redirect to the login page
+	header('Location:login.php');
+	exit();
+  }
 ?>
 <!DOCTYPE html>
 <html>

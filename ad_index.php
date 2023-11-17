@@ -1,5 +1,7 @@
 <?php
 	include 'config.php';
+  header('location: ad_addproducts.php');
+  exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">

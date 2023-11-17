@@ -66,6 +66,14 @@
     </div><!-- End Page Title -->
 
     <section class="section">
+    <div class="row">
+          <?php if (isset($_SESSION['response'])) { ?>
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show alert-dismissible fade show col-sm-6" role="alert" style="padding: 8px; margin-left:auto">
+              <b><?= $_SESSION['response']; ?></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close" style="padding: 10px"></button>
+            </div>
+          <?php } unset($_SESSION['response']); ?>
+          
       <div class="row">
 
         <div class="card recent-sales overflow-auto col-md-9 mx-auto">
@@ -80,6 +88,8 @@
                   <tr>
                     <th scope="col" class="text-center">ID</th>
                     <th scope="col" class="text-center">Category Name</th>
+                    <th scope="col" class="text-center">Update</th>
+                    <th scope="col" class="text-center">Delete</th>
                   </tr>
                 </thead>
               </table>
@@ -116,6 +126,15 @@
                               <label>Category Name: </label>
                               <div class="col-sm-12">
                                   <input type="text" name="cat_name" value="<?= $cat_name; ?>" class="form-control" required>
+                              </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row mb-3">
+                              <label>Category Image: </label>
+                              <div class="col-sm-12">
+                                  <input type="file" name="cat_image" value="<?= $cat_name; ?>" class="form-control" required>
                               </div>
                             </div>
 
@@ -211,6 +230,28 @@
    var value = $(this).text();
    update_data(id, column_name, value);
   });
+
+  // Handle delete button click
+  $(document).on('click', '.delete', function() {
+      var id = $(this).data("id");
+      if (confirm("Are you sure you want to delete this category?")) {
+        $.ajax({
+          url: "delete_category.php",
+          method: "POST",
+          data: { id: id },
+          success: function(data) {
+            $('#alert_message').html('<div class="alert alert-success">' + data + '</div>');
+            $('#user_data').DataTable().ajax.reload();
+          }
+        });
+      }
+    });
+
+    // Handle change image button click
+    $(document).on('click', '.change-image', function() {
+        var id = $(this).data("id");
+        window.location.href = 'change_image.php?id=' + id;
+    });
 });
 </script>
 
